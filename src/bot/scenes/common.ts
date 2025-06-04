@@ -5,21 +5,26 @@ export function registerCommonHandlers(bot: Bot<Context>) {
   bot.callbackQuery("back_to_home", async (ctx) => {
     await ctx.answerCallbackQuery();
 
-    const msg = ctx.callbackQuery.message;
     const chatId = ctx.chat?.id;
+    const msg = ctx.callbackQuery.message;
 
-    if (msg && chatId) {
+    if (chatId && msg) {
       try {
+
         await ctx.api.deleteMessage(chatId, msg.message_id);
       } catch (err) {
-        console.warn("Could not delete previous message:", err);
+        console.warn("Could not delete old message:", err);
       }
-    }
 
-    // ✅ Force fresh message (not reply, not edit)
-    await ctx.api.sendMessage(ctx.chat!.id, "🏠 *Back to Main Menu*", {
-      parse_mode: "Markdown",
-      reply_markup: getMainMenuKeyboard(),
-    });
+      await new Promise((r) => setTimeout(r, 250));
+
+      await ctx.api.sendMessage(chatId, 
+        `🏠 *Back to Main Menu*\n\nSelect one of the options below to continue:`,
+        {
+          parse_mode: "Markdown",
+          reply_markup: getMainMenuKeyboard(),
+        }
+      );
+    }
   });
 }
