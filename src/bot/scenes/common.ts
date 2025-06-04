@@ -16,12 +16,10 @@ export function registerCommonHandlers(bot: Bot<Context>) {
       }
     }
 
-    // ✅ Delay new message slightly to force Telegram layout refresh
-    setTimeout(async () => {
-      await ctx.reply("🏠 *Back to Main Menu*", {
-        parse_mode: "Markdown",
-        reply_markup: getMainMenuKeyboard(),
-      });
-    }, 200); // 200ms delay — enough for Telegram to clear UI context
+    // ✅ Force fresh message (not reply, not edit)
+    await ctx.api.sendMessage(ctx.chat!.id, "🏠 *Back to Main Menu*", {
+      parse_mode: "Markdown",
+      reply_markup: getMainMenuKeyboard(),
+    });
   });
 }
