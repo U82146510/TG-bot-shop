@@ -1,5 +1,6 @@
 import { Bot, Context } from "grammy";
 import { getMainMenuKeyboard } from "../keyboards/mainMenu.ts";
+import { logger } from "../logger/logger.ts";
 
 export function registerCommonHandlers(bot: Bot<Context>) {
   bot.callbackQuery("back_to_home", async (ctx) => {
@@ -13,7 +14,7 @@ export function registerCommonHandlers(bot: Bot<Context>) {
 
         await ctx.api.deleteMessage(chatId, msg.message_id);
       } catch (err) {
-        console.warn("Could not delete old message:", err);
+        logger.warn("Could not delete old message:", err);
       }
 
       await new Promise((r) => setTimeout(r, 250));
