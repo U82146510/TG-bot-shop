@@ -62,7 +62,7 @@ export function registerListingHandlers(bot:Bot<Context>){
         await ctx.answerCallbackQuery();
         const filePath = path.resolve(__dirname,'../../price_list.txt');
         const stream = createReadStream(filePath);
-        const inputFile = new InputFile(stream);
+        const inputFile = new InputFile(stream,'price_list.txt');
         await ctx.replyWithDocument(inputFile);
     });
 };
