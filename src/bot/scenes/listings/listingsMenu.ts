@@ -9,6 +9,5 @@ export function getListingsMenu():InlineKeyboard{
     .text("Item 5","listing_5").row()
     .text("Item 6","listing_6").row()
     .text("Item 7","listing_7").row()
-    .text("Back","back_to_menu").text("Price List","price_list").text("Balance","balance")
+    .text("Back","back_to_home").text("Price List","price_list").text("Balance","balance").row()
 };
-
