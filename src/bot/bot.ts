@@ -6,6 +6,7 @@ import {registerMainMenu} from './commands/start.ts';
 import {registerAboutMenu} from './scenes/about.ts';
 import {registerCommonHandlers} from './scenes/common.ts';
 import {registerListingScene} from './scenes/listings/index.ts';
+import {registerReadWarning} from './scenes/readWarning.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,6 +24,7 @@ if(!token){
 const bot:Bot<Context,Api> = new Bot(token);
 registerMainMenu(bot);
 registerAboutMenu(bot);
-registerCommonHandlers(bot);
+registerReadWarning(bot);
 registerListingScene(bot);
+registerCommonHandlers(bot);
 bot.start();
