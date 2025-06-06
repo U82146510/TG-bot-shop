@@ -7,6 +7,7 @@ import {registerAboutMenu} from './scenes/about.ts';
 import {registerCommonHandlers} from './scenes/common.ts';
 import {registerListingScene} from './scenes/listings/index.ts';
 import {registerReadWarning} from './scenes/readWarning.ts';
+import {registerFAQScene} from './scenes/faq/index.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,5 +27,6 @@ registerMainMenu(bot);
 registerAboutMenu(bot);
 registerReadWarning(bot);
 registerListingScene(bot);
+registerFAQScene(bot);
 registerCommonHandlers(bot);
 bot.start();
