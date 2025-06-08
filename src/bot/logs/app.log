@@ -1,1 +1,17 @@
 {"description":"Bad Request: message to delete not found","error_code":400,"level":"warn","message":"Could not delete old message: Call to 'deleteMessage' failed! (400: Bad Request: message to delete not found)","method":"deleteMessage","name":"GrammyError","ok":false,"parameters":{},"payload":{"chat_id":7580426932,"message_id":587},"stack":"GrammyError: Call to 'deleteMessage' failed! (400: Bad Request: message to delete not found)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/common.ts:15:9\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-05T09:13:59.370Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-08T12:18:30.000Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-08T12:18:57.455Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-08T12:23:56.377Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-08T12:25:01.861Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-08T12:25:03.788Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-08T12:31:17.138Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-08T12:31:51.483Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-08T12:36:39.350Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-08T12:36:40.828Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-08T12:37:25.838Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-08T12:37:28.295Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-08T12:53:57.283Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-08T12:53:59.086Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-08T13:00:08.242Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-08T13:00:10.097Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-08T15:22:58.404Z"}

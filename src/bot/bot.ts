@@ -8,6 +8,8 @@ import {registerCommonHandlers} from './scenes/common.ts';
 import {registerListingScene} from './scenes/listings/index.ts';
 import {registerReadWarning} from './scenes/readWarning.ts';
 import {registerFAQScene} from './scenes/faq/index.ts';
+import { logger } from "./logger/logger.ts";
+import {connect_db} from './config/atlas.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,4 +31,14 @@ registerReadWarning(bot);
 registerListingScene(bot);
 registerFAQScene(bot);
 registerCommonHandlers(bot);
-bot.start();
+
+const start = async()=>{
+    try {
+        await connect_db();
+        await bot.start();
+    } catch (error) {
+        logger.error(error);
+    }
+};
+
+start()

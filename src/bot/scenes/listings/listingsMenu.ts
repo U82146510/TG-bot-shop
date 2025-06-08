@@ -1,13 +1,14 @@
 import { InlineKeyboard } from "grammy";
+import {Product} from '../../models/Products.ts';
 
-export function getListingsMenu():InlineKeyboard{
-    return new InlineKeyboard()
-    .text("Item 1","listing_1").row()
-    .text("Item 2","listing_2").row()
-    .text("Item 3","listing_3").row()
-    .text("Item 4","listing_4").row()
-    .text("Item 5","listing_5").row()
-    .text("Item 6","listing_6").row()
-    .text("Item 7","listing_7").row()
-    .text("Back","back_to_home").text("Price List","price_list").text("Balance","balance").row()
+export async function getListingsMenu():Promise<InlineKeyboard>{
+
+    const menu_names = await Product.find().select('name -_id').lean();
+    const keyboard = new InlineKeyboard();
+    for(const arg of menu_names){
+        keyboard.text(arg.name,`${arg.name}list`).row()
+    }
+
+    keyboard.text("Back","back_to_home").text("Price List","price_list").text("Balance","balance").row()
+    return keyboard
 };

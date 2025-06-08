@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 dotnev.config({
-    path:path.resolve(__dirname,"../../.env")
+    path:path.resolve(__dirname,"../../../.env")
 });
 
 const connection_string = process.env.atlas;

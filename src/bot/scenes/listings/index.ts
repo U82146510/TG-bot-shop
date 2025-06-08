@@ -8,10 +8,10 @@ export function registerListingScene(bot: Bot<Context>): void {
 
     bot.callbackQuery("all_listings", async (ctx) => {
         await ctx.answerCallbackQuery();
-
+        const keyboard = await getListingsMenu();
         await safeEditOrReply(ctx,
             `🗂️ *Available Listings*\n\nSelect a listing from the options below:`,
-            getListingsMenu()
+            keyboard
         );
     });
 }
