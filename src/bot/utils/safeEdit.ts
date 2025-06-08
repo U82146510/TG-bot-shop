@@ -11,13 +11,19 @@ export async function safeEditOrReply(
       reply_markup: keyboard,
     });
   } catch (error: any) {
+    const errMsg = error?.description ?? "";
+
+    // 1. Ignore harmless "not modified" error
+    if (errMsg.includes("message is not modified")) {
+      return;
+    }
+
+    // 2. Fallback if edit is not possible (message deleted, expired, etc)
     const knownErrors = [
       "MESSAGE_ID_INVALID",
-      "MESSAGE_CANNOT_BE_EDITED",
-      "MESSAGE_NOT_MODIFIED",
+      "MESSAGE_CANNOT_BE_EDITED"
     ];
 
-    const errMsg = error?.description ?? "";
     if (knownErrors.some((code) => errMsg.includes(code))) {
       await ctx.reply(text, {
         parse_mode: "Markdown",

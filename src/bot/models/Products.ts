@@ -1,27 +1,39 @@
-import mongoose,{Document,Schema,model} from "mongoose";
+import {Document,Schema,model} from "mongoose";
+
+interface VariantOption {
+    name:string;
+    price:number;
+    quantity:number;
+    image:string;
+    description:string;
+};
+
+interface Variants {
+  name: string;
+  options: VariantOption[];
+}
 
 interface IProduct extends Document{
     name:string,
-    type_of:{
-        type_of:string;
-        name:string;
-        price:number;
-        quantity:number;
-        image:string;
-        reviews:Array<string>;
-    }
+    models:Variants[];
 };
 
+const variantOptionSchema = new Schema<VariantOption>({
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  quantity: { type: Number, default: 0 },
+  image: { type: String },
+  description: { type: String },
+});
+
+const productModelSchema = new Schema<Variants>({
+  name: { type: String, required: true },
+  options: [variantOptionSchema],
+});
+
 const productSchema = new Schema<IProduct>({
-    name:{type:String,unique:true,required:true},
-    type_of:{
-        type_of:{type:String,unique:true,required:true},
-        name:{type:String,required:true},
-        price:{type:Number,required:true,default:0},
-        quantity:{type:Number,required:true,default:0},
-        image:{type:String},
-        reviews:[{type:String}]
-    }
+  name: { type: String, required: true, unique: true },
+  models: [productModelSchema],
 });
 
 export const Product = model<IProduct>('Product',productSchema);

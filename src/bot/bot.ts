@@ -25,16 +25,17 @@ if(!token){
 };
 
 const bot:Bot<Context,Api> = new Bot(token);
-registerMainMenu(bot);
-registerAboutMenu(bot);
-registerReadWarning(bot);
-registerListingScene(bot);
-registerFAQScene(bot);
-registerCommonHandlers(bot);
+
 
 const start = async()=>{
     try {
         await connect_db();
+        registerMainMenu(bot);
+        registerAboutMenu(bot);
+        registerReadWarning(bot);
+        registerListingScene(bot);
+        registerFAQScene(bot);
+        registerCommonHandlers(bot);
         await bot.start();
     } catch (error) {
         logger.error(error);
