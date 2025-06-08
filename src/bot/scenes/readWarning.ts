@@ -1,5 +1,5 @@
 import {Bot,Context,InlineKeyboard} from 'grammy';
-import { logger } from '../logger/logger.ts';
+import {safeEditOrReply} from '../utils/safeEdit.ts';
 
 
 export function registerReadWarning(bot:Bot<Context>){
@@ -7,22 +7,7 @@ export function registerReadWarning(bot:Bot<Context>){
         await ctx.answerCallbackQuery();
         const keyboard = new InlineKeyboard()
         .text("🔙 Back", "back_to_home");
-        const msg = ctx.callbackQuery?.message;
-        if(msg){
-            try {
-                if(!ctx.chat){
-                    await ctx.reply("❌ Something went wrong. Please try again later.");
-                    logger.warn("Chat ID not found in callback query context.");
-                    return;
-                }
-                await ctx.api.deleteMessage(ctx.chat.id,msg.message_id);
-            } catch (error) {
-                logger.error(error);
-            }
-           
-        }
-      await ctx.reply(
-`⚠️ READ BEFORE ORDERING \\! ⚠️
+        const msg = `⚠️ READ BEFORE ORDERING \\! ⚠️
 
 1 ➜ Pay the *EXACT* amount \\(repeat *EXACT*\\) in cryptocurrency, NOT GBP/EUR, to avoid over or underpayment\\.
 
@@ -36,12 +21,7 @@ export function registerReadWarning(bot:Bot<Context>){
 
 ➜ You can retrieve your tracking after \\~30h since dispatch Tues\\-Fri around 6PM through our dedicated tracking bot at @MrWispaGoldTracking\\_tsbot, follow instructions after starting the bot\\.
 
-⚠️ If you cannot find your tracking, it most likely has not been added yet, the tracking bot displays when it was last updated\\.`,
-{
-  parse_mode: "MarkdownV2",
-  reply_markup: keyboard,
-});
-
-
+⚠️ If you cannot find your tracking, it most likely has not been added yet, the tracking bot displays when it was last updated\\.`
+    await safeEditOrReply(ctx,msg,keyboard);
     });
 }

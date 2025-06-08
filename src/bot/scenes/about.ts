@@ -3,7 +3,6 @@ import {safeEditOrReply} from '../utils/safeEdit.ts'
 
 export function registerAboutMenu(bot:Bot<Context>){
     bot.callbackQuery("about",async(ctx:Context)=>{
-        console.log("⚠️ read callback triggered"); // <--- LOG THIS
         await ctx.answerCallbackQuery();
         const keyboard = new InlineKeyboard()
         .text("🔙 Back", "back_to_home");
