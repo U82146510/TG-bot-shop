@@ -13,10 +13,10 @@ interface IUserCart extends Document {
 }
 
 const cartItemSchema = new Schema<CartItem>({
-  productId: { type: String, required: true },
-  modelName: { type: String, required: true },
-  optionName: { type: String, required: true },
-  quantity: { type: Number, required: true },
+  productId: String,
+  modelName: String,
+  optionName: String,
+  quantity: Number,
 });
 
 const userCartSchema = new Schema<IUserCart>({
