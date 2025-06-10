@@ -86,7 +86,13 @@ export async function registerListingHandlers(bot:Bot<Context>){
             optionName,
             quantity,
         };
-        
+
+        await UserCart.findOneAndUpdate(
+            { userId },
+            { $push: { items: cartEntry } },
+            { upsert: true, new: true }
+        );
+        await ctx.reply(`✅ Added *${optionName}* (x${quantity}) to basket.`, { parse_mode: "Markdown" });
     });
 
     bot.callbackQuery("price_list",async(ctx:Context)=>{
