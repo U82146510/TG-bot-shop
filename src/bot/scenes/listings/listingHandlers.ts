@@ -74,6 +74,32 @@ export async function registerListingHandlers(bot:Bot<Context>){
         await safeEditOrReply(ctx, msg, keyboard);
     });
 
+    bot.callbackQuery(/^qty_(inc|dec)_([a-f0-9]{24})_(.+)_(.+)_(\d+)$/, async (ctx) => {
+        await ctx.answerCallbackQuery();
+        const [_, action, productId, modelName, optionName, qtyStr] = ctx.match ?? [];
+        let quantity = parseInt(qtyStr);
+
+        if (action === "inc") quantity++;
+        if (action === "dec") quantity = Math.max(1, quantity - 1);
+
+        const product = await Product.findById(productId).lean();
+        const model = product?.models.find((m) => m.name === modelName);
+        const option = model?.options.find((o) => o.name === optionName);
+
+        if (!option) return ctx.reply("⚠️ Option not found.");
+
+        const msg = `🧩 *${option.name}*\n\n💰 Price: $${option.price}\n📦 Available: ${option.quantity}\n📝 ${option.description || "No description."}`;
+
+        const keyboard = new InlineKeyboard()
+        .text("➖", `qty_dec_${productId}_${modelName}_${optionName}_${quantity}`)
+        .text(String(quantity), `qty_current_${productId}_${modelName}_${optionName}_${quantity}`)
+        .text("➕", `qty_inc_${productId}_${modelName}_${optionName}_${quantity}`).row()
+        .text("🛒 Add to Basket", `add_${productId}_${modelName}_${optionName}_${quantity}`).row()
+        .text("🔙 Back", `model_${productId}_${modelName}`);
+
+        await safeEditOrReply(ctx, msg, keyboard);
+    });
+
     bot.callbackQuery(/^add_([a-f0-9]{24})_(.+)_(.+)_(\d+)$/,async(ctx:Context)=>{
         await ctx.answerCallbackQuery();
         const [_, productId, modelName, optionName, quantityStr] = ctx.match ?? [];
