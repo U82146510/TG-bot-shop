@@ -213,3 +213,35 @@
 {"level":"info","message":"db disconnected","timestamp":"2025-06-11T13:59:20.152Z"}
 {"level":"info","message":"db connected","timestamp":"2025-06-11T13:59:21.871Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-11T14:06:47.450Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T19:15:22.617Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T19:32:13.709Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T19:32:15.629Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T19:38:43.243Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T19:38:47.333Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T20:04:17.514Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T20:04:19.328Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T20:04:51.387Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T20:21:08.122Z"}
+{"ctx":{"api":{"config":{},"raw":{},"token":"8006582070:AAGKrNZnj0ld8K_RDYkde8xkHA0IxzRKj1g"},"match":["cart_del_0","del","0"],"me":{"can_connect_to_business":false,"can_join_groups":true,"can_read_all_group_messages":false,"first_name":"WispaBOT","has_main_web_app":false,"id":8006582070,"is_bot":true,"supports_inline_queries":false,"username":"U82146511_bot"},"update":{"callback_query":{"chat_instance":"2730295128514129651","data":"cart_del_0","from":{"first_name":"MR. White","id":7580426932,"is_bot":false,"language_code":"en","username":"mr_white99999"},"id":"4887569655828630354","message":{"chat":{"first_name":"MR. White","id":7580426932,"type":"private","username":"mr_white99999"},"date":1749672287,"entities":[{"length":8,"offset":0,"type":"bold"}],"from":{"first_name":"WispaBOT","id":8006582070,"is_bot":true,"username":"U82146511_bot"},"message_id":999,"reply_markup":{"inline_keyboard":[[{"callback_data":"cart_dec_0","text":"➖"},{"callback_data":"cart_del_0","text":"🗑"},{"callback_data":"cart_inc_0","text":"➕"}]]},"text":"Standard (x7)\nModel: Edition"}},"update_id":887486687}},"error":{"description":"Bad Request: query is too old and response timeout expired or query ID is invalid","error_code":400,"method":"answerCallbackQuery","name":"GrammyError","ok":false,"parameters":{},"payload":{"callback_query_id":"4887569655828630354"}},"level":"error","name":"BotError","timestamp":"2025-06-11T20:21:08.510Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T20:21:12.146Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T20:21:13.962Z"}
+{"ctx":{"api":{"config":{},"raw":{},"token":"8006582070:AAGKrNZnj0ld8K_RDYkde8xkHA0IxzRKj1g"},"match":["cart_del_2","del","2"],"me":{"can_connect_to_business":false,"can_join_groups":true,"can_read_all_group_messages":false,"first_name":"WispaBOT","has_main_web_app":false,"id":8006582070,"is_bot":true,"supports_inline_queries":false,"username":"U82146511_bot"},"update":{"callback_query":{"chat_instance":"2730295128514129651","data":"cart_del_2","from":{"first_name":"MR. White","id":7580426932,"is_bot":false,"language_code":"en","username":"mr_white99999"},"id":"4887569655941407969","message":{"chat":{"first_name":"MR. White","id":7580426932,"type":"private","username":"mr_white99999"},"date":1749672285,"entities":[{"length":6,"offset":0,"type":"bold"}],"from":{"first_name":"WispaBOT","id":8006582070,"is_bot":true,"username":"U82146511_bot"},"message_id":998,"reply_markup":{"inline_keyboard":[[{"callback_data":"cart_dec_2","text":"➖"},{"callback_data":"cart_del_2","text":"🗑"},{"callback_data":"cart_inc_2","text":"➕"}]]},"text":"Medium (x3)\nModel: Size"}},"update_id":887486688}},"error":{"description":"Bad Request: query is too old and response timeout expired or query ID is invalid","error_code":400,"method":"answerCallbackQuery","name":"GrammyError","ok":false,"parameters":{},"payload":{"callback_query_id":"4887569655941407969"}},"level":"error","name":"BotError","timestamp":"2025-06-11T20:21:14.394Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T20:21:15.061Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T20:21:16.767Z"}
+{"ctx":{"api":{"config":{},"raw":{},"token":"8006582070:AAGKrNZnj0ld8K_RDYkde8xkHA0IxzRKj1g"},"match":["cart_del_1","del","1"],"me":{"can_connect_to_business":false,"can_join_groups":true,"can_read_all_group_messages":false,"first_name":"WispaBOT","has_main_web_app":false,"id":8006582070,"is_bot":true,"supports_inline_queries":false,"username":"U82146511_bot"},"update":{"callback_query":{"chat_instance":"2730295128514129651","data":"cart_del_1","from":{"first_name":"MR. White","id":7580426932,"is_bot":false,"language_code":"en","username":"mr_white99999"},"id":"4887569653042662760","message":{"chat":{"first_name":"MR. White","id":7580426932,"type":"private","username":"mr_white99999"},"date":1749672282,"entities":[{"length":6,"offset":0,"type":"bold"}],"from":{"first_name":"WispaBOT","id":8006582070,"is_bot":true,"username":"U82146511_bot"},"message_id":997,"reply_markup":{"inline_keyboard":[[{"callback_data":"cart_dec_1","text":"➖"},{"callback_data":"cart_del_1","text":"🗑"},{"callback_data":"cart_inc_1","text":"➕"}]]},"text":"Medium (x7)\nModel: Size"}},"update_id":887486689}},"error":{"description":"Bad Request: query is too old and response timeout expired or query ID is invalid","error_code":400,"method":"answerCallbackQuery","name":"GrammyError","ok":false,"parameters":{},"payload":{"callback_query_id":"4887569653042662760"}},"level":"error","name":"BotError","timestamp":"2025-06-11T20:21:17.198Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T20:21:18.532Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T20:21:20.135Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T20:22:35.082Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T20:30:58.674Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T20:31:28.266Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T20:35:37.339Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T20:35:39.469Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T20:57:25.919Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T20:57:28.001Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T21:07:39.928Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T21:07:43.193Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T21:15:40.905Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T21:15:43.543Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T21:31:01.170Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-11T21:31:03.472Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-11T21:31:56.166Z"}

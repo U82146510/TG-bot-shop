@@ -122,112 +122,129 @@ export async function registerListingHandlers(bot:Bot<Context>){
     });
 
 
+  bot.callbackQuery(/^cart_(inc|dec|del)_(\d+)$/, async (ctx) => {
+    await ctx.answerCallbackQuery();
+    const [_, action, indexStr] = ctx.match ?? [];
+    const index = parseInt(indexStr);
+    const userId = String(ctx.from?.id);
 
-    bot.callbackQuery(/^cart_(inc|dec|del)_(\d+)$/, async (ctx) => {
-        await ctx.answerCallbackQuery();
-        const [_, action, indexStr] = ctx.match ?? [];
-        const index = parseInt(indexStr);
-        const userId = String(ctx.from?.id);
+    const cart = await UserCart.findOne({ userId });
+    if (!cart || index >= cart.items.length) return;
 
-        const cart = await UserCart.findOne({ userId });
-        if (!cart || index >= cart.items.length) return;
+    // Update cart state
+    if (action === "del") {
+      cart.items.splice(index, 1);
+    } else if (action === "inc") {
+      cart.items[index].quantity += 1;
+    } else if (action === "dec") {
+      cart.items[index].quantity = Math.max(1, cart.items[index].quantity - 1);
+    }
 
-        if (action === "del") {
-            cart.items.splice(index, 1);
-        } else if (action === "inc") {
-            cart.items[index].quantity += 1;
-        } else if (action === "dec") {
-            cart.items[index].quantity = Math.max(1, cart.items[index].quantity - 1);
-        }
+    await cart.save();
 
-        await cart.save();
+    // Handle item deleted
+    if (!cart.items[index]) {
+      try {
+        await ctx.deleteMessage();
+      } catch (e) {
+        console.error("Cannot delete message", e);
+      }
+      return;
+    }
 
-        if (cart.items.length === 0) {
-            return await safeEditOrReply(ctx, "🛒 Your cart is now empty.");
-        }
+    const item = cart.items[index];
+    const message = `*${item.optionName}* (x${item.quantity})\nModel: ${item.modelName}`;
+    const keyboard = new InlineKeyboard()
+      .text("➖", `cart_dec_${index}`)
+      .text("🗑", `cart_del_${index}`)
+      .text("➕", `cart_inc_${index}`);
 
-        // Rebuild full cart
-        let message = "🛒 *Your Cart:*\n\n";
-        const keyboard = new InlineKeyboard();
+    try {
+      await ctx.editMessageText(message, {
+        parse_mode: "Markdown",
+        reply_markup: keyboard,
+      });
+    } catch {
+      await ctx.reply(message, {
+        parse_mode: "Markdown",
+        reply_markup: keyboard,
+      });
+    }
+  });
 
-        cart.items.forEach((item, idx) => {
-            message += `*${item.optionName}* (x${item.quantity})\nModel: ${item.modelName}\n\n`;
-            keyboard
-            .text("➖", `cart_dec_${idx}`)
-            .text("🗑", `cart_del_${idx}`)
-            .text("➕", `cart_inc_${idx}`)
-            .row();
-        });
 
-        const last = lastVisitedModel.get(ctx.from?.id!);
-        if (last) {
-            keyboard.text("🔙 Continue Shopping", `model_${last.productId}_${last.modelName}`);
-        }
+bot.callbackQuery("view_cart", async (ctx) => {
+  await ctx.answerCallbackQuery();
+  try {
+    await ctx.deleteMessage(); // 🔧 This line removes the previous message like "🗂️ Available Listings"
+  } catch (e) {
+    console.warn("Message already deleted or cannot be deleted");
+  }
 
-        await safeEditOrReply(ctx, message, keyboard);
+  const userId = String(ctx.from?.id);
+  const cart = await UserCart.findOne({ userId });
+
+  if (!cart || cart.items.length === 0) {
+    return ctx.reply("🛒 Your cart is empty.");
+  }
+
+  for (const [index, item] of cart.items.entries()) {
+    const keyboard = new InlineKeyboard()
+      .text("➖", `cart_dec_${index}`)
+      .text("🗑", `cart_del_${index}`)
+      .text("➕", `cart_inc_${index}`);
+
+    await ctx.reply(`*${item.optionName}* (x${item.quantity})\nModel: ${item.modelName}`, {
+      parse_mode: "Markdown",
+      reply_markup: keyboard,
     });
 
-    
-    bot.callbackQuery("view_cart", async (ctx) => {
-        await ctx.answerCallbackQuery();
-        const userId = String(ctx.from?.id);
-        const cart = await UserCart.findOne({ userId });
+    await ctx.reply("────────────"); // separator
+  }
 
-        if (!cart || cart.items.length === 0) {
-            return ctx.reply("🛒 Your cart is empty.");
-        }
+  const last = lastVisitedModel.get(ctx.from?.id!);
+  const continueKeyboard = new InlineKeyboard();
+  if (last) {
+    continueKeyboard.text("🔙 Continue Shopping", `model_${last.productId}_${last.modelName}`);
+  } else {
+    continueKeyboard.text("🔙 Back to Listings", "all_listings");
+  }
 
-        // Combine cart content into a single message
-        let message = "🛒 *Your Cart:*\n\n";
-        const keyboard = new InlineKeyboard();
-
-        cart.items.forEach((item, index) => {
-            message += `*${item.optionName}* (x${item.quantity})\nModel: ${item.modelName}\n\n`;
-            keyboard
-            .text("➖", `cart_dec_${index}`)
-            .text("🗑", `cart_del_${index}`)
-            .text("➕", `cart_inc_${index}`)
-            .row();
-        });
-
-        const last = lastVisitedModel.get(ctx.from?.id!);
-        if (last) {
-            keyboard.text("🔙 Continue Shopping", `model_${last.productId}_${last.modelName}`);
-        }
-
-        await safeEditOrReply(ctx, message, keyboard);
+  await ctx.reply("🧾 You can continue shopping or update your cart.", {
+    reply_markup: continueKeyboard,
+  });
 });
 
 
-
+    
     bot.callbackQuery(/^qty_(inc|dec)_(.+)_(.+)_(.+)_(\d+)$/, async (ctx) => {
-        await ctx.answerCallbackQuery();
-        const [_, action, productId, modelName, optionName, qtyStr] = ctx.match ?? [];
-        let quantity = parseInt(qtyStr);
+            await ctx.answerCallbackQuery();
+            const [_, action, productId, modelName, optionName, qtyStr] = ctx.match ?? [];
+            let quantity = parseInt(qtyStr);
 
-        if (action === "inc") quantity++;
-        if (action === "dec") quantity = Math.max(1, quantity - 1);
+            if (action === "inc") quantity++;
+            if (action === "dec") quantity = Math.max(1, quantity - 1);
 
-        const product = await Product.findById(productId).lean();
-        const model = product?.models.find((m) => m.name === modelName);
-        const option = model?.options.find((o) => o.name === optionName);
+            const product = await Product.findById(productId).lean();
+            const model = product?.models.find((m) => m.name === modelName);
+            const option = model?.options.find((o) => o.name === optionName);
 
-        if (!option) return ctx.reply("⚠️ Option not found.");
+            if (!option) return ctx.reply("⚠️ Option not found.");
 
-        lastVisitedModel.set(ctx.from?.id!, { productId, modelName });
+            lastVisitedModel.set(ctx.from?.id!, { productId, modelName });
 
-        const msg = `🧩 *${option.name}*\n\n💰 Price: $${option.price}\n📦 Available: ${option.quantity}\n📝 ${option.description || "No description."}`;
+            const msg = `🧩 *${option.name}*\n\n💰 Price: $${option.price}\n📦 Available: ${option.quantity}\n📝 ${option.description || "No description."}`;
 
-        const keyboard = new InlineKeyboard()
-        .text("➖", `qty_dec_${productId}_${modelName}_${optionName}_${quantity}`)
-        .text(String(quantity), `qty_current_${productId}_${modelName}_${optionName}_${quantity}`)
-        .text("➕", `qty_inc_${productId}_${modelName}_${optionName}_${quantity}`).row()
-        .text("🛒 Add to Basket", `add_${productId}_${modelName}_${optionName}_${quantity}`).row()
-        .text("🛒 View Cart", `view_cart`).row()
-        .text("🔙 Back", `model_${productId}_${modelName}`);
+            const keyboard = new InlineKeyboard()
+            .text("➖", `qty_dec_${productId}_${modelName}_${optionName}_${quantity}`)
+            .text(String(quantity), `qty_current_${productId}_${modelName}_${optionName}_${quantity}`)
+            .text("➕", `qty_inc_${productId}_${modelName}_${optionName}_${quantity}`).row()
+            .text("🛒 Add to Basket", `add_${productId}_${modelName}_${optionName}_${quantity}`).row()
+            .text("🛒 View Cart", `view_cart`).row()
+            .text("🔙 Back", `model_${productId}_${modelName}`);
 
-        await safeEditOrReply(ctx, msg, keyboard);
-    });
+            await safeEditOrReply(ctx, msg, keyboard);
+        });
 
     bot.callbackQuery("price_list",async(ctx:Context)=>{
         await ctx.answerCallbackQuery();
