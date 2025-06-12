@@ -116,7 +116,20 @@ export async function registerListingHandlers(bot: Bot<Context>) {
     const quantity = parseInt(quantityStr);
     const userId = String(ctx.from?.id);
 
+    const product = await Product.findById(productId).lean();
+    const model = product?.models.find((m) => m.name === modelName);
+    const option = model?.options.find((o) => o.name === optionName);
+    if (!option) return ctx.reply("⚠️ Option not found.");
+
     const cart = await UserCart.findOne({ userId });
+    const existingQty = cart?.items.find(
+      (i) => i.productId === productId && i.modelName === modelName && i.optionName === optionName
+    )?.quantity ?? 0;
+
+    if (existingQty + quantity > option.quantity) {
+      return ctx.reply(`❌ Only ${option.quantity - existingQty} left in stock.`);
+    }
+
     if (cart) {
       const existing = cart.items.find(
         (i) => i.productId === productId && i.modelName === modelName && i.optionName === optionName
@@ -239,15 +252,24 @@ export async function registerListingHandlers(bot: Bot<Context>) {
     await ctx.answerCallbackQuery();
     const [_, action, itemId] = ctx.match ?? [];
     const userId = String(ctx.from?.id);
+
     const cart = await UserCart.findOne({ userId });
     if (!cart) return;
 
     const item = cart.items.find((i) => String(i._id) === itemId);
     if (!item) return;
 
+    const product = await Product.findById(item.productId).lean();
+    const model = product?.models.find((m) => m.name === item.modelName);
+    const option = model?.options.find((o) => o.name === item.optionName);
+    if (!option) return ctx.reply("⚠️ Option not found.");
+
     if (action === "del") {
       cart.items = cart.items.filter((i) => String(i._id) !== itemId);
     } else if (action === "inc") {
+      if (item.quantity + 1 > option.quantity) {
+        return ctx.reply("❌ Cannot increase quantity beyond stock limit.");
+      }
       item.quantity += 1;
     } else if (action === "dec") {
       item.quantity = Math.max(1, item.quantity - 1);
@@ -261,7 +283,7 @@ export async function registerListingHandlers(bot: Bot<Context>) {
     } else {
       const keyboard = new InlineKeyboard()
         .text("➖", `cart_dec_${item._id}`)
-        .text("🗑", `cart_del_${item._id}`)
+        .text("🗑 Remove", `cart_del_${item._id}`)
         .text("➕", `cart_inc_${item._id}`);
 
       try {
