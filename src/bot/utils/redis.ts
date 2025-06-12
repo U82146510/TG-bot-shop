@@ -9,7 +9,7 @@ type RedisConfig = {
     retryDelays:number;
 };
 
-export class RedisClient {
+class RedisClient {
     private client:RedisClientType;
     private config:RedisConfig;
 
@@ -95,4 +95,18 @@ export class RedisClient {
         const result = await this.client.exists(key);
         return result === 1;
     }
-}
+    public async getList(key: string): Promise<string[]> {
+        return await this.client.lRange(key, 0, -1);
+    }
+
+    public async pushList(key: string, values: string[], ttlSeconds?: number): Promise<void> {
+        await this.client.rPush(key, values);
+        if (ttlSeconds) await this.client.expire(key, ttlSeconds);
+    }
+
+    public getClient():RedisClientType{
+        return this.client;
+    }
+};
+
+export const redis = new RedisClient();

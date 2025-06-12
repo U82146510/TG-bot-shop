@@ -10,6 +10,7 @@ import {registerReadWarning} from './scenes/readWarning.ts';
 import {registerFAQScene} from './scenes/faq/index.ts';
 import { logger } from "./logger/logger.ts";
 import {connect_db} from './config/atlas.ts';
+import {redis} from './utils/redis.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,6 +31,7 @@ const bot:Bot<Context,Api> = new Bot(token);
 const start = async()=>{
     try {
         await connect_db();
+        await redis.connect();
         registerMainMenu(bot);
         registerAboutMenu(bot);
         registerReadWarning(bot);
