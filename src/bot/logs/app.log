@@ -256,3 +256,25 @@
 {"level":"info","message":"db disconnected","timestamp":"2025-06-12T08:49:52.664Z"}
 {"level":"info","message":"db connected","timestamp":"2025-06-12T08:54:32.929Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-12T09:46:50.239Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-12T20:39:45.088Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-12T20:39:45.094Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-12T20:39:45.099Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-12T20:40:35.319Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-12T20:40:36.469Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-12T20:40:39.571Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-12T20:40:42.071Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-12T20:40:43.590Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-12T20:40:48.166Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-12T20:40:52.366Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-12T20:40:53.911Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-12T20:40:57.753Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-12T20:41:05.214Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-12T20:41:15.487Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-12T20:41:17.140Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-12T20:41:18.805Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-12T20:41:22.401Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-12T20:41:25.533Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-12T20:41:26.940Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-12T20:41:29.595Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-12T20:41:40.362Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-12T20:41:52.935Z"}

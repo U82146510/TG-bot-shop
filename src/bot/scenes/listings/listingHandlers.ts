@@ -8,6 +8,7 @@ import { UserCart } from "../../models/Cart.ts";
 import { ObjectId } from "mongodb";
 import { UserState } from "../../models/UserState.ts";
 import { logger } from "../../logger/logger.ts";
+import { redis } from "../../utils/redis.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,58 +36,57 @@ export async function registerListingHandlers(bot: Bot<Context>) {
     await safeEditOrReply(ctx, `📦 *${product.name} Models*`, keyboard);
   });
 
-bot.callbackQuery(/^model_([a-f0-9]{24})_(.+)$/, async (ctx) => {
-    await ctx.answerCallbackQuery();
-    const userId = String(ctx.from?.id);
+  bot.callbackQuery(/^model_([a-f0-9]{24})_(.+)$/, async (ctx) => {
+      await ctx.answerCallbackQuery();
+      const userId = String(ctx.from?.id);
+      const redisKey = `cart_msgs:${userId}`;
 
-    logger.info(`User ${userId} navigated to model variants`);
-    // Cleanup old cart messages
-    const previousMessages = userMessageMap.get(userId) || [];
-    for (const msgId of previousMessages) {
-      try {
-        await ctx.api.deleteMessage(ctx.chat!.id, msgId);
-      } catch {}
-    }
-    userMessageMap.set(userId, []);
+      logger.info(`User ${userId} navigated to model variants`);
 
-    const [_, productId, modelName] = ctx.match ?? [];
-    const product = await Product.findById(productId).lean();
-    const model = product?.models.find((m) => m.name === modelName);
-    if (!model || !model.options?.length) {
-      logger.warn(`No options found for model ${modelName} by user ${userId}`);
-      return ctx.reply("⚠️ No options found.");
-    }
+      const ids = await redis.getList(redisKey);
+      for (const id of ids) {
+        try {
+          await ctx.api.deleteMessage(ctx.chat!.id, Number(id));
+        } catch {}
+      }
+      await redis.delete(redisKey);
 
-    const keyboard = new InlineKeyboard();
-    for (const option of model.options) {
-      keyboard.text(option.name, `variant_${productId}_${modelName}_${option.name}`).row();
-    }
-    keyboard.text("🔙 Back", `product_${productId}`);
+      const [_, productId, modelName] = ctx.match ?? [];
+      const product = await Product.findById(productId).lean();
+      const model = product?.models.find((m) => m.name === modelName);
+      if (!model || !model.options?.length) {
+        logger.warn(`No options found for model ${modelName} by user ${userId}`);
+        return ctx.reply("⚠️ No options found.");
+      }
 
-    await safeEditOrReply(ctx, `📂 *${model.name} Variants*
-Select one to view details:`, keyboard);
-  });
+      const keyboard = new InlineKeyboard();
+      for (const option of model.options) {
+        keyboard.text(option.name, `variant_${productId}_${modelName}_${option.name}`).row();
+      }
+      keyboard.text("🔙 Back", `product_${productId}`);
+
+      await safeEditOrReply(ctx, `📂 *${model.name} Variants*\nSelect one to view details:`, keyboard);
+    });
 
   bot.callbackQuery(/^variant_([a-f0-9]{24})_(.+)_(.+)$/, async (ctx) => {
     await ctx.answerCallbackQuery();
     const userId = String(ctx.from?.id);
+    const redisKey = `cart_msgs:${userId}`;
 
     logger.info(`User ${userId} opened variant details`);
 
-    // Cleanup old cart messages
-    const previousMessages = userMessageMap.get(userId) || [];
-    for (const msgId of previousMessages) {
+    const ids = await redis.getList(redisKey);
+    for (const id of ids) {
       try {
-        await ctx.api.deleteMessage(ctx.chat!.id, msgId);
+        await ctx.api.deleteMessage(ctx.chat!.id, Number(id));
       } catch {}
     }
-    userMessageMap.set(userId, []);
+    await redis.delete(redisKey);
 
     const [_, productId, modelName, optionName] = ctx.match ?? [];
     const product = await Product.findById(productId).lean();
     const model = product?.models.find((m) => m.name === modelName);
     const option = model?.options.find((o) => o.name === optionName);
-
     if (!option) {
       logger.warn(`Option not found: ${optionName} for user ${userId}`);
       return ctx.reply("⚠️ Option not found.");
@@ -98,11 +98,7 @@ Select one to view details:`, keyboard);
       { upsert: true }
     );
 
-    const msg = `🧩 *${option.name}*
-
-💰 Price: $${option.price}
-📦 Available: ${option.quantity}
-📝 ${option.description || "No description."}`;
+    const msg = `🧩 *${option.name}*\n\n💰 Price: $${option.price}\n📦 Available: ${option.quantity}\n📝 ${option.description || "No description."}`;
     const keyboard = new InlineKeyboard()
       .text("➖", `qty_dec_${productId}_${modelName}_${optionName}_1`)
       .text("1", `qty_current_${productId}_${modelName}_${optionName}_1`)
@@ -162,20 +158,26 @@ Select one to view details:`, keyboard);
     } catch {}
 
     const userId = String(ctx.from?.id);
+    const redisKey = `cart_msgs:${userId}`;
+
     logger.info(`User ${userId} triggered view_cart`);
+
     // Clear previously sent cart messages
-    const previousMessages = userMessageMap.get(userId) || [];
-    for (const msgId of previousMessages) {
+    const ids = await redis.getList(redisKey);
+    for (const id of ids) {
       try {
-        await ctx.api.deleteMessage(ctx.chat!.id, msgId);
-      } catch(e) {
-        logger.debug(`Failed to delete message for user ${userId}`);
+        await ctx.api.deleteMessage(ctx.chat!.id, Number(id));
+      } catch (e) {
+        logger.debug(`Failed to delete message ${id} for user ${userId}`);
       }
     }
-    userMessageMap.set(userId, []);
+    await redis.delete(redisKey);
 
     const cart = await UserCart.findOne({ userId });
-    if (!cart || cart.items.length === 0) return ctx.reply("🛒 Your cart is empty.");
+    if (!cart || cart.items.length === 0) {
+      logger.info(`Cart is empty for user ${userId}`);
+      return ctx.reply("🛒 Your cart is empty.");
+    }
 
     const newMsgIds: number[] = [];
     for (const item of cart.items) {
@@ -203,9 +205,12 @@ Select one to view details:`, keyboard);
     });
     newMsgIds.push(summaryMsg.message_id);
 
-    // Save for cleanup
-    userMessageMap.set(userId, newMsgIds);
+    // Save to Redis for cleanup
+    if (newMsgIds.length) {
+      await redis.pushList(redisKey, newMsgIds.map(String), 600);
+    }
   });
+
 
 
   bot.callbackQuery(/^cart_(inc|dec|del)_([a-f0-9]{24})$/, async (ctx) => {
