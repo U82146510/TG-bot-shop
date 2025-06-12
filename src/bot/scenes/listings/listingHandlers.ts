@@ -174,9 +174,19 @@ export async function registerListingHandlers(bot: Bot<Context>) {
     await redis.delete(redisKey);
 
     const cart = await UserCart.findOne({ userId });
+    const last = await UserState.findOne({ userId });
+
     if (!cart || cart.items.length === 0) {
       logger.info(`Cart is empty for user ${userId}`);
-      return ctx.reply("🛒 Your cart is empty.");
+      const emptyKb = new InlineKeyboard();
+      if (last) {
+        emptyKb.text("🔙 Continue Shopping", `model_${last.productId}_${last.modelName}`);
+      } else {
+        emptyKb.text("🔙 Back to Listings", "all_listings");
+      }
+      return ctx.reply("🛒 Your cart is empty.", {
+        reply_markup: emptyKb
+      });
     }
 
     const newMsgIds: number[] = [];
@@ -193,13 +203,14 @@ export async function registerListingHandlers(bot: Bot<Context>) {
       newMsgIds.push(msg.message_id);
     }
 
-    const last = await UserState.findOne({ userId });
     const continueKeyboard = new InlineKeyboard();
     if (last) {
       continueKeyboard.text("🔙 Continue Shopping", `model_${last.productId}_${last.modelName}`);
     } else {
       continueKeyboard.text("🔙 Back to Listings", "all_listings");
     }
+    continueKeyboard.text("✅ Buy Now", "checkout_xmr");
+
     const summaryMsg = await ctx.reply("🧾 You can continue shopping or update your cart.", {
       reply_markup: continueKeyboard,
     });
@@ -210,6 +221,17 @@ export async function registerListingHandlers(bot: Bot<Context>) {
       await redis.pushList(redisKey, newMsgIds.map(String), 600);
     }
   });
+
+
+  bot.callbackQuery("checkout_xmr", async (ctx) => {
+    await ctx.answerCallbackQuery();
+    const userId = String(ctx.from?.id);
+    logger.info(`User ${userId} initiated checkout`);
+
+    // Stub for now - to be replaced with XMR payment generation logic
+    return ctx.reply("🚀 XMR Checkout flow will be implemented here.");
+  });
+
 
 
 
