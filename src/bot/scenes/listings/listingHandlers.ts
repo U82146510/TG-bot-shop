@@ -7,6 +7,7 @@ import { safeEditOrReply } from "../../utils/safeEdit.ts";
 import { UserCart } from "../../models/Cart.ts";
 import { ObjectId } from "mongodb";
 import { UserState } from "../../models/UserState.ts";
+import { logger } from "../../logger/logger.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,7 +17,7 @@ const userMessageMap = new Map<string, number[]>(); // userId => messageIds[]
 
 export async function registerListingHandlers(bot: Bot<Context>) {
   bot.catch((err) => {
-    console.error("Telegram Error:", err);
+    logger.error("Telegram Error:", err);
   });
 
   bot.callbackQuery(/^product_(.+)$/, async (ctx) => {
@@ -38,6 +39,7 @@ bot.callbackQuery(/^model_([a-f0-9]{24})_(.+)$/, async (ctx) => {
     await ctx.answerCallbackQuery();
     const userId = String(ctx.from?.id);
 
+    logger.info(`User ${userId} navigated to model variants`);
     // Cleanup old cart messages
     const previousMessages = userMessageMap.get(userId) || [];
     for (const msgId of previousMessages) {
@@ -51,6 +53,7 @@ bot.callbackQuery(/^model_([a-f0-9]{24})_(.+)$/, async (ctx) => {
     const product = await Product.findById(productId).lean();
     const model = product?.models.find((m) => m.name === modelName);
     if (!model || !model.options?.length) {
+      logger.warn(`No options found for model ${modelName} by user ${userId}`);
       return ctx.reply("⚠️ No options found.");
     }
 
@@ -68,6 +71,8 @@ Select one to view details:`, keyboard);
     await ctx.answerCallbackQuery();
     const userId = String(ctx.from?.id);
 
+    logger.info(`User ${userId} opened variant details`);
+
     // Cleanup old cart messages
     const previousMessages = userMessageMap.get(userId) || [];
     for (const msgId of previousMessages) {
@@ -81,7 +86,11 @@ Select one to view details:`, keyboard);
     const product = await Product.findById(productId).lean();
     const model = product?.models.find((m) => m.name === modelName);
     const option = model?.options.find((o) => o.name === optionName);
-    if (!option) return ctx.reply("⚠️ Option not found.");
+
+    if (!option) {
+      logger.warn(`Option not found: ${optionName} for user ${userId}`);
+      return ctx.reply("⚠️ Option not found.");
+    }
 
     await UserState.findOneAndUpdate(
       { userId: String(ctx.from?.id) },
@@ -153,13 +162,15 @@ Select one to view details:`, keyboard);
     } catch {}
 
     const userId = String(ctx.from?.id);
-
+    logger.info(`User ${userId} triggered view_cart`);
     // Clear previously sent cart messages
     const previousMessages = userMessageMap.get(userId) || [];
     for (const msgId of previousMessages) {
       try {
         await ctx.api.deleteMessage(ctx.chat!.id, msgId);
-      } catch {}
+      } catch(e) {
+        logger.debug(`Failed to delete message for user ${userId}`);
+      }
     }
     userMessageMap.set(userId, []);
 
