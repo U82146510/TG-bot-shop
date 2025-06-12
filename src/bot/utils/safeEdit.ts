@@ -13,15 +13,14 @@ export async function safeEditOrReply(
   } catch (error: any) {
     const errMsg = error?.description ?? "";
 
-    // 1. Ignore harmless "not modified" error
-    if (errMsg.includes("message is not modified")) {
-      return;
-    }
+    // Ignore harmless error
+    if (errMsg.includes("message is not modified")) return;
 
-    // 2. Fallback if edit is not possible (message deleted, expired, etc)
+    // Handle known fallbacks
     const knownErrors = [
       "MESSAGE_ID_INVALID",
-      "MESSAGE_CANNOT_BE_EDITED"
+      "MESSAGE_CANNOT_BE_EDITED",
+      "Bad Request: message to edit not found"
     ];
 
     if (knownErrors.some((code) => errMsg.includes(code))) {
