@@ -1,6 +1,6 @@
 import {Schema,Document,Model, model} from 'mongoose';
 
-interface IPayment extends Document{
+export interface IPayment extends Document{
     userId:string;
     integratedAddress:string;
     paymentId:string;
