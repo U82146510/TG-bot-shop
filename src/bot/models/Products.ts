@@ -13,7 +13,7 @@ interface Variants {
   options: VariantOption[];
 }
 
-interface IProduct extends Document{
+export interface IProduct extends Document{
     name:string,
     models:Variants[];
 };
