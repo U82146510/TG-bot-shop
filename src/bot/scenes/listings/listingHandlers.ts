@@ -300,18 +300,26 @@ export async function registerListingHandlers(bot: Bot<Context>) {
     }
   });
 
-  bot.callbackQuery(/^qty_(inc|dec)_(.+)_(.+)_(.+)_(\d+)$/, async (ctx) => {
+ bot.callbackQuery(/^qty_(inc|dec)_(.+)_(.+)_(.+)_(\d+)$/, async (ctx) => {
     await ctx.answerCallbackQuery();
     const [_, action, productId, modelName, optionName, qtyStr] = ctx.match ?? [];
     let quantity = parseInt(qtyStr);
-
-    if (action === "inc") quantity++;
-    if (action === "dec") quantity = Math.max(1, quantity - 1);
 
     const product = await Product.findById(productId).lean();
     const model = product?.models.find((m) => m.name === modelName);
     const option = model?.options.find((o) => o.name === optionName);
     if (!option) return ctx.reply("⚠️ Option not found.");
+
+    if (action === "inc") {
+      if (quantity + 1 > option.quantity) {
+        return ctx.reply(`⚠️ Only ${option.quantity} available.`);
+      }
+      quantity++;
+    }
+
+    if (action === "dec") {
+      quantity = Math.max(1, quantity - 1);
+    }
 
     await UserState.findOneAndUpdate(
       { userId: String(ctx.from?.id) },
@@ -329,13 +337,5 @@ export async function registerListingHandlers(bot: Bot<Context>) {
       .text("🔙 Back", `model_${productId}_${modelName}`);
 
     await safeEditOrReply(ctx, msg, keyboard);
-  });
-
-  bot.callbackQuery("price_list", async (ctx) => {
-    await ctx.answerCallbackQuery();
-    const filePath = path.resolve(__dirname, "../../price_list.txt");
-    const stream = createReadStream(filePath);
-    const inputFile = new InputFile(stream, "price_list.txt");
-    await ctx.replyWithDocument(inputFile);
   });
 }
