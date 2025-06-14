@@ -24,7 +24,7 @@ const paymentSchema = new Schema<IPayment>({
   confirmedAt: { type: Date, default: null },
 });
 
-paymentSchema.index({ paymentId: 1 });
+
 paymentSchema.index({ status: 1, createdAt: 1 }); // Optional compound index
 
 export const Payment = model<IPayment>('Payment', paymentSchema);

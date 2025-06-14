@@ -408,3 +408,17 @@
 {"level":"info","message":"db connected","timestamp":"2025-06-13T20:10:07.976Z"}
 {"level":"info","message":"db reconnected","timestamp":"2025-06-13T20:10:07.976Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-13T20:38:14.927Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-14T08:16:09.296Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-14T08:16:09.322Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-14T08:16:09.324Z"}
+{"cause":{"code":"ECONNRESET","errno":-104,"syscall":"read"},"level":"error","message":"❌ Error checking XMR payment fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at async Timeout._onTimeout (file:///home/convict/Downloads/Tesseract/src/bot/services/xmrPaymentWatcher.ts:15:26)","timestamp":"2025-06-14T08:17:10.306Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Error checking XMR payment fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Timeout._onTimeout (file:///home/convict/Downloads/Tesseract/src/bot/services/xmrPaymentWatcher.ts:15:26)","timestamp":"2025-06-14T08:17:10.308Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-14T14:20:56.975Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-14T14:21:01.073Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-14T14:21:01.086Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-14T14:21:01.089Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-14T15:02:01.140Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-14T15:02:17.957Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-14T15:02:19.362Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-14T15:02:22.398Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-14T20:39:48.275Z"}

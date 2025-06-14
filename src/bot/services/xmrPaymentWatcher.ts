@@ -1,7 +1,7 @@
-import { IPayment, Payment } from "../models/Payment.ts";
+import { type IPayment, Payment } from "../models/Payment.ts";
 import { logger } from "../logger/logger.ts";
 import { UserCart } from "../models/Cart.ts";
-import { Product, IProduct } from "../models/Products.ts";
+import { Product, type IProduct } from "../models/Products.ts";
 import { Bot } from "grammy";
 
 export function startXmrPaymentWatcher(bot: Bot): void {
@@ -71,8 +71,16 @@ export function startXmrPaymentWatcher(bot: Bot): void {
     );
 
     await Payment.deleteMany({
-      status: { $in: ["confirmed", "expired"] },
-      confirmedAt: { $lt: cleanupThreshold },
+      $or: [
+        {
+          status: "expired",
+          createdAt: { $lt: cleanupThreshold }
+        },
+        {
+          status: "confirmed",
+          confirmedAt: { $lt: cleanupThreshold }
+        }
+      ]
     });
   }, 60_000);
 }
