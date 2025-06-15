@@ -1,4 +1,4 @@
-import {Schema,model,Types, modelNames} from 'mongoose';
+import {Schema,model,Types} from 'mongoose';
 
 interface IOrder extends Document{
     user:Types.ObjectId,
