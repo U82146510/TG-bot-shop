@@ -26,5 +26,6 @@ const paymentSchema = new Schema<IPayment>({
 
 
 paymentSchema.index({ status: 1, createdAt: 1 }); // Optional compound index
+paymentSchema.index({ createdAt: 1 }, { expireAfterSeconds: 7200 });
 
 export const Payment = model<IPayment>('Payment', paymentSchema);
