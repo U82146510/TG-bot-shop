@@ -440,3 +440,8 @@
 {"level":"info","message":"User 7784066194 navigated to model variants","timestamp":"2025-06-15T06:49:18.558Z"}
 {"level":"info","message":"User 7784066194 opened variant details","timestamp":"2025-06-15T06:49:22.515Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-15T08:42:06.400Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-15T09:59:31.399Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-15T09:59:31.407Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-15T09:59:31.408Z"}
+{"level":"info","message":"New user registered: 7580426932","timestamp":"2025-06-15T09:59:36.031Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-15T10:02:51.502Z"}
