@@ -422,3 +422,21 @@
 {"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-14T15:02:19.362Z"}
 {"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-14T15:02:22.398Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-14T20:39:48.275Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-14T21:17:28.448Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-14T21:17:28.455Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-14T21:17:28.457Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-14T21:20:51.504Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-14T21:20:52.686Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-14T21:20:54.228Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-14T21:21:01.559Z"}
+{"level":"info","message":"User 7784066194 navigated to model variants","timestamp":"2025-06-15T06:48:41.216Z"}
+{"level":"info","message":"User 7784066194 opened variant details","timestamp":"2025-06-15T06:48:42.084Z"}
+{"level":"info","message":"User 7784066194 navigated to model variants","timestamp":"2025-06-15T06:48:44.638Z"}
+{"level":"info","message":"User 7784066194 navigated to model variants","timestamp":"2025-06-15T06:48:49.530Z"}
+{"level":"info","message":"User 7784066194 opened variant details","timestamp":"2025-06-15T06:48:50.878Z"}
+{"level":"info","message":"User 7784066194 triggered view_cart","timestamp":"2025-06-15T06:48:53.490Z"}
+{"level":"info","message":"Cart is empty for user 7784066194","timestamp":"2025-06-15T06:48:53.600Z"}
+{"level":"info","message":"User 7784066194 navigated to model variants","timestamp":"2025-06-15T06:48:55.110Z"}
+{"level":"info","message":"User 7784066194 navigated to model variants","timestamp":"2025-06-15T06:49:18.558Z"}
+{"level":"info","message":"User 7784066194 opened variant details","timestamp":"2025-06-15T06:49:22.515Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-15T08:42:06.400Z"}

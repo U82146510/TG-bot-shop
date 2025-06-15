@@ -2,7 +2,7 @@ import { type IPayment, Payment } from "../models/Payment.ts";
 import { logger } from "../logger/logger.ts";
 import { UserCart } from "../models/Cart.ts";
 import { Product, type IProduct } from "../models/Products.ts";
-import { Bot } from "grammy";
+import { Bot, InlineKeyboard } from "grammy";
 
 export function startXmrPaymentWatcher(bot: Bot): void {
   setInterval(async () => {
@@ -24,35 +24,51 @@ export function startXmrPaymentWatcher(bot: Bot): void {
         });
 
         const data: any = await response.json();
-        const received: boolean = Array.isArray(data.result?.payments) && data.result.payments.length > 0;
+        const receivedPayments = data.result?.payments;
 
-        if (received) {
-          payment.status = "confirmed";
-          payment.confirmedAt = new Date();
-          await payment.save();
+        if (Array.isArray(receivedPayments) && receivedPayments.length > 0) {
+          const totalReceivedAtomic = receivedPayments.reduce((sum: number, p: any) => sum + Number(p.amount), 0);
+          const amountDueAtomic = Math.floor(payment.amount * 1e12); // Convert to atomic units (piconero)
 
-          logger.info(`✅ Payment confirmed for ${payment.userId}`);
+          if (totalReceivedAtomic >= amountDueAtomic) {
+            payment.status = "confirmed";
+            payment.confirmedAt = new Date();
+            await payment.save();
 
-          try {
-            await bot.api.sendMessage(payment.userId, `✅ Payment confirmed for $${payment.amount.toFixed(2)}. Your order is now being processed.`);
-          } catch (notifyErr) {
-            logger.warn(`⚠️ Failed to notify user ${payment.userId}:`, notifyErr);
-          }
+            logger.info(`✅ Payment confirmed for ${payment.userId}`);
 
-          const cart = await UserCart.findOne({ userId: payment.userId });
-          if (cart) {
-            for (const item of cart.items) {
-              const productDoc = await Product.findById(item.productId);
-              if (!productDoc) continue;
+            try {
+              const keyboard = new InlineKeyboard()
+                .text("🛍 Continue Shopping", "all_listings").row()
+                .text("📦 Track Order", `track_${payment.paymentId}`);
 
-              const model = productDoc.models.find((m) => m.name === item.modelName);
-              const option = model?.options.find((o) => o.name === item.optionName);
-              if (option) {
-                option.quantity = Math.max(0, option.quantity - item.quantity);
-              }
-              await productDoc.save();
+              await bot.api.sendMessage(
+                payment.userId,
+                `✅ Payment confirmed for $${payment.amount.toFixed(2)}.\n\n🧾 *Order ID:* \`${payment.paymentId}\`\n\nYour order is now being processed.`,
+                {
+                  parse_mode: "Markdown",
+                  reply_markup: keyboard,
+                }
+              );
+            } catch (notifyErr) {
+              logger.warn(`⚠️ Failed to notify user ${payment.userId}:`, notifyErr);
             }
-            await UserCart.deleteOne({ userId: payment.userId });
+
+            const cart = await UserCart.findOne({ userId: payment.userId });
+            if (cart) {
+              for (const item of cart.items) {
+                const productDoc = await Product.findById(item.productId);
+                if (!productDoc) continue;
+
+                const model = productDoc.models.find((m) => m.name === item.modelName);
+                const option = model?.options.find((o) => o.name === item.optionName);
+                if (option) {
+                  option.quantity = Math.max(0, option.quantity - item.quantity);
+                }
+                await productDoc.save();
+              }
+              await UserCart.deleteOne({ userId: payment.userId });
+            }
           }
         }
       } catch (error) {
