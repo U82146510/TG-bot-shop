@@ -445,3 +445,7 @@
 {"level":"info","message":"Redis connected and ready","timestamp":"2025-06-15T09:59:31.408Z"}
 {"level":"info","message":"New user registered: 7580426932","timestamp":"2025-06-15T09:59:36.031Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-15T10:02:51.502Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-15T10:35:08.698Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-15T10:35:08.707Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-15T10:35:08.717Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-15T10:35:42.745Z"}

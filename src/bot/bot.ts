@@ -12,6 +12,7 @@ import { logger } from "./logger/logger.ts";
 import {connect_db} from './config/atlas.ts';
 import {redis} from './utils/redis.ts';
 import {startXmrPaymentWatcher} from './services/xmrPaymentWatcher.ts';
+import {registerBalanceHandler} from './scenes/balance.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -34,6 +35,7 @@ const start = async()=>{
         await connect_db();
         await redis.connect();
         startXmrPaymentWatcher(bot);
+        registerBalanceHandler(bot);
         registerMainMenu(bot);
         registerAboutMenu(bot);
         registerReadWarning(bot);
