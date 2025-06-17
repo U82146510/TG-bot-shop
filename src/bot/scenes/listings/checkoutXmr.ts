@@ -1,4 +1,4 @@
-import { Bot, Context } from 'grammy';
+import { Bot, Context, InlineKeyboard } from 'grammy';
 import { Product } from "../../models/Products.ts";
 import { logger } from "../../logger/logger.ts";
 import { UserCart } from "../../models/Cart.ts";
@@ -110,14 +110,14 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
         { telegramId },
         { $push: { orders: newOrder._id } }
       );
-
+      const keyboard = new InlineKeyboard().text("🔙 Back to Listings", "all_listings");
       await ctx.reply(
         `✅ Purchase successful!\n` +
         `🧾 Order ID: \`${orderId}\`\n` +
         `💸 You’ve spent *${total.toFixed(2)} XMR*\n` +
         `📦 Shipping to:\n\`${shippingAddress}\`\n\n` +
         `Your order is now being processed.`,
-        { parse_mode: "Markdown" }
+        { parse_mode: "Markdown",reply_markup:keyboard }
       );
     } catch (error) {
       logger.error("❌ Checkout error", error);
