@@ -5,6 +5,7 @@ import { UserCart } from "../../models/Cart.ts";
 import { User } from "../../models/User.ts";
 import {UserFlowState} from '../../models/UserFlowState.ts';
 import {Order} from '../../models/Order.ts';
+import {safeEditOrReply} from '../../utils/safeEdit.ts';
 
 export function registerCheckoutXmr(bot: Bot<Context>) {
   bot.callbackQuery("checkout_xmr", async (ctx) => {
@@ -16,17 +17,16 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
       const flowState = await UserFlowState.findOne({userId});
       const shippingAddress = flowState?.data.shippingAddress;
       if(!shippingAddress){
-        await ctx.reply("📦 Please enter your *shipping address* to continue with checkout:", {
-          parse_mode: "Markdown"
-      })
-  
-      await UserFlowState.findOneAndUpdate({userId},{
-          $set:{
-            flow:'awaiting_address'
-          }
+        const cancelKeyboard = new InlineKeyboard().text("❌ Cancel", "cancel_add_balance");
+        await safeEditOrReply(ctx, "📦 Please enter your *shipping address* to continue with checkout:", cancelKeyboard);
+
+        await UserFlowState.findOneAndUpdate({userId},{
+            $set:{
+              flow:'awaiting_address'
+            }
         },{upsert:true})
-      return
-      };
+        return
+    };
       
       
       const cart = await UserCart.findOne({ userId });
@@ -124,6 +124,19 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
       await ctx.reply("⚠️ An unexpected error occurred during checkout. Please try again later.");
     }
   });
+
+  bot.callbackQuery("cancel_checkout", async (ctx) => {
+    await ctx.answerCallbackQuery();
+    const userId = String(ctx.from?.id);
+
+    await UserFlowState.deleteOne({ userId });
+
+    const keyboard = new InlineKeyboard()
+      .text("🔙 Back to Menu", "back_to_home");
+
+    await safeEditOrReply(ctx, "❌ Checkout canceled. Your address was not saved.", keyboard);
+  });
+    
   
   bot.on("message:text", async (ctx, next) => {
     const userId = String(ctx.from?.id);
@@ -131,25 +144,38 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
     
     if (flowState?.flow !== "awaiting_address") return next();
 
-      const address = ctx.message.text.trim();
-      if (address.length < 5) {
-        return ctx.reply("❌ Address too short. Please enter a valid address.");
-      }
+    const address = ctx.message.text.trim();
+    if (address.length < 5) {
+      return ctx.reply("❌ Address too short. Please enter a valid address.");
+    }
 
-      await UserFlowState.findOneAndUpdate(
-        { userId },
-        {
-          $set: {
-            "data.shippingAddress": address,
-            flow: "checkout"
-          }
+    await UserFlowState.findOneAndUpdate(
+      { userId },
+      {
+        $set: {
+          "data.shippingAddress": address,
+          flow: "checkout"
         }
-      );
+      }
+    );
 
-      await ctx.reply(`✅ Address saved:\n\n📍 ${address}`);
-      await ctx.reply("Now press *Buy Now* again to complete your order.", {
-        parse_mode: "Markdown"
-      });
+    function escapeMarkdown(text: string): string {
+      return text.replace(/[_*[\]()~`>#+=|{}.!\\-]/g, '\\$&');
+    }
+
+    await ctx.reply(`✅ Address saved:\n\n📍 ${escapeMarkdown(address)}`, { parse_mode: "Markdown" });
+    await ctx.reply("Now press *Buy Now* again to complete your order.", {
+      parse_mode: "Markdown"
+    });
+
+    const keyboard = new InlineKeyboard()
+      .text("🔙 Continue Shopping", "all_listings")
+      .text("✅ Buy Now", "checkout_xmr")
+      .row()
+      .text("❌ Cancel", "cancel_checkout");
+
+    await ctx.reply("🧾 You can now proceed to checkout:", {
+      reply_markup: keyboard,
+    });
   });
-
 }

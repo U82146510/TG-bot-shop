@@ -32,7 +32,7 @@ const orderItemSchema = new Schema<IOrderItem>(
 const orderSchema = new Schema<IOrder>(
   {
     userId: { type: String, required: true },
-    orderId: { type: String, required: true, unique: true },
+    orderId: { type: String, required: true, unique: true }, // ✅ this alone defines the unique index
     items: [orderItemSchema],
     shippingAddress: { type: String, required: true },
     total: { type: Number, required: true },
@@ -47,8 +47,7 @@ const orderSchema = new Schema<IOrder>(
   }
 );
 
-// Indexes for performance
-orderSchema.index({ orderId: 1 }, { unique: true });
+// ✅ Keep only this compound index (optional but useful)
 orderSchema.index({ userId: 1, createdAt: -1 });
 
 export const Order = model<IOrder>("Order", orderSchema);
