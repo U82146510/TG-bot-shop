@@ -1,38 +1,54 @@
-import {Schema,model,Types} from 'mongoose';
+import { Schema, model, Document } from "mongoose";
 
-interface IOrder extends Document{
-    user:Types.ObjectId,
-    items:{
-        productId:string;
-        modelName:string;
-        optionName:string;
-        quantity:number;
-        priceAtPurchase:number;
-    }[];
-    total:number;
-    status:'pending'|'processing'|'delivered';
-    shippingAddress: string;
-    createdAt:Date;
-    updatedAt:Date;
-};
+interface IOrderItem {
+  productId: string;
+  modelName: string;
+  optionName: string;
+  quantity: number;
+}
 
-const OrderSchema = new Schema<IOrder>({
-    user:{type:Schema.Types.ObjectId,ref:'User',required:true},
-    items:[
-        {
-            productId:{type:String,require:true},
-            modelName:{type:String,required:true},
-            optionName:{type:String,required:true},
-            quantity:{type:Number,required:true},
-            priceAtPurchase:{type:String,required:true}
-        }
-    ],
-    total:{type:Number,required:true},
-    status:{type:String,enum:['pending','processing','delivered'],default:'pending'},
-    shippingAddress:{type:String,required:true}
+interface IOrder extends Document {
+  userId: string;
+  orderId: string;
+  items: IOrderItem[];
+  shippingAddress: string;
+  total: number;
+  status: "pending" | "delivered" | "cancelled";
+  deliveredAt?: Date;
+  cancelledAt?: Date;
+  createdAt: Date;
+}
 
-},{
-    timestamps:true
-});
+const orderItemSchema = new Schema<IOrderItem>(
+  {
+    productId: { type: String, required: true },
+    modelName: { type: String, required: true },
+    optionName: { type: String, required: true },
+    quantity: { type: Number, required: true },
+  },
+  { _id: false }
+);
 
-export const Order = model<IOrder>('User',OrderSchema);
+const orderSchema = new Schema<IOrder>(
+  {
+    userId: { type: String, required: true },
+    orderId: { type: String, required: true, unique: true },
+    items: [orderItemSchema],
+    shippingAddress: { type: String, required: true },
+    total: { type: Number, required: true },
+    status: {
+      type: String,
+      enum: ["pending", "delivered", "cancelled"],
+      default: "pending",
+    },
+    deliveredAt: { type: Date },
+    cancelledAt: { type: Date },
+    createdAt: { type: Date, default: Date.now },
+  }
+);
+
+// Indexes for performance
+orderSchema.index({ orderId: 1 }, { unique: true });
+orderSchema.index({ userId: 1, createdAt: -1 });
+
+export const Order = model<IOrder>("Order", orderSchema);
