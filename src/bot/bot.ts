@@ -13,6 +13,7 @@ import {connect_db} from './config/atlas.ts';
 import {redis} from './utils/redis.ts';
 import {startXmrPaymentWatcher} from './services/xmrPaymentWatcher.ts';
 import {registerBalanceHandler} from './scenes/balance.ts';
+import {registerOrdersHandler} from './scenes/orders.ts';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -42,6 +43,7 @@ const start = async()=>{
         registerListingScene(bot);
         registerFAQScene(bot);
         registerCommonHandlers(bot);
+        registerOrdersHandler(bot);
         await bot.start();
     } catch (error) {
         logger.error(error);
