@@ -641,3 +641,10 @@
 {"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-17T13:13:07.931Z"}
 {"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-17T13:13:12.500Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-17T13:15:45.167Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-17T13:19:39.621Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-17T13:19:39.629Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-17T13:19:39.631Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-17T13:19:57.677Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-17T13:19:59.654Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-17T13:20:06.005Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-17T13:20:47.130Z"}

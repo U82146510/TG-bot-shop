@@ -6,11 +6,24 @@ import { User } from "../../models/User.ts";
 import {UserFlowState} from '../../models/UserFlowState.ts';
 import {Order} from '../../models/Order.ts';
 import {safeEditOrReply} from '../../utils/safeEdit.ts';
+import {redis} from '../../utils/redis.ts';
 
 export function registerCheckoutXmr(bot: Bot<Context>) {
   bot.callbackQuery("checkout_xmr", async (ctx) => {
     await ctx.answerCallbackQuery();
     const userId = String(ctx.from?.id);
+    const redisKey = `cart_msgs:${userId}`;
+    const messageIds = await redis.getList(redisKey);
+    for (const id of messageIds) {
+      try {
+        if (ctx.chat) {
+          await ctx.api.deleteMessage(ctx.chat.id, Number(id));
+        }
+      } catch (e) {
+        logger.debug(`Could not delete message ${id} for user ${userId}`);
+      }
+    }
+    await redis.delete(redisKey);
     
     
     try {
