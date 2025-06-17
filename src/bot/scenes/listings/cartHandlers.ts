@@ -1,6 +1,5 @@
 import {Bot,Context,InlineKeyboard} from 'grammy';
 import { Product } from "../../models/Products.ts";
-import { safeEditOrReply } from "../../utils/safeEdit.ts";
 import { logger } from "../../logger/logger.ts";
 import { redis } from "../../utils/redis.ts";
 import { UserState } from "../../models/UserState.ts";

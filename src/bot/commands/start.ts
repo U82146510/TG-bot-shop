@@ -5,6 +5,7 @@ import { logger } from '../logger/logger.ts';
 
 export function registerMainMenu(bot:Bot<Context>){
     bot.command("start",async(ctx:Context)=>{
+        console.log('test')
         const telegramId = ctx.from?.id;
         const username = ctx.from?.username;
         const firstName = ctx.from?.first_name ?? 'Anonymous';

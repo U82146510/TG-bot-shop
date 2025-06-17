@@ -1,14 +1,13 @@
 import { type IPayment, Payment } from "../models/Payment.ts";
 import { logger } from "../logger/logger.ts";
-import { UserCart } from "../models/Cart.ts";
-import { Product, type IProduct } from "../models/Products.ts";
+import { User } from "../models/User.ts";
 import { Bot, InlineKeyboard } from "grammy";
 
 export function startXmrPaymentWatcher(bot: Bot): void {
   setInterval(async () => {
-    const pendingPayments: IPayment[] = await Payment.find({ status: "pending" });
-    const expiryThreshold: Date = new Date(Date.now() - 30 * 60 * 1000); // 30 minutes
-    const cleanupThreshold: Date = new Date(Date.now() - 24 * 60 * 60 * 1000); // 24 hours
+    const pendingPayments = await Payment.find({ status: "pending" });
+    const expiryThreshold = new Date(Date.now() - 30 * 60 * 1000); // 30 minutes
+    const cleanupThreshold = new Date(Date.now() - 24 * 60 * 60 * 1000); // 24 hours
 
     for (const payment of pendingPayments) {
       try {
@@ -23,80 +22,57 @@ export function startXmrPaymentWatcher(bot: Bot): void {
           }),
         });
 
-        const data: any = await response.json();
+        const data = await response.json();
         const receivedPayments = data.result?.payments;
 
         if (Array.isArray(receivedPayments) && receivedPayments.length > 0) {
           const totalReceivedAtomic = receivedPayments.reduce((sum: number, p: any) => sum + Number(p.amount), 0);
-          const amountDueAtomic = Math.floor(payment.amount * 1e12); // Convert to atomic units (piconero)
+          const amountDueAtomic = Math.floor(payment.amount * 1e12);
 
           if (totalReceivedAtomic >= amountDueAtomic) {
+            // 1. Mark as confirmed
             payment.status = "confirmed";
             payment.confirmedAt = new Date();
             await payment.save();
 
-            logger.info(`✅ Payment confirmed for ${payment.userId}`);
+            // 2. Increment user balance
+            await User.updateOne(
+              { telegramId: Number(payment.userId) },
+              { $inc: { balance: payment.amount } }
+            );
 
+            logger.info(`✅ XMR top-up confirmed for user ${payment.userId} (${payment.amount} XMR)`);
+
+            // 3. Notify the user
             try {
-              const keyboard = new InlineKeyboard()
-                .text("🛍 Continue Shopping", "all_listings").row()
-                .text("📦 Track Order", `track_${payment.paymentId}`);
-
+              const keyboard = new InlineKeyboard().text("🏠 Back to Menu", "back_to_home");
               await bot.api.sendMessage(
-                payment.userId,
-                `✅ Payment confirmed for $${payment.amount.toFixed(2)}.\n\n🧾 *Order ID:* \`${payment.paymentId}\`\n\nYour order is now being processed.`,
-                {
-                  parse_mode: "Markdown",
-                  reply_markup: keyboard,
-                }
+                Number(payment.userId),
+                `✅ *Top-Up Successful!*\n\nYou’ve added *${payment.amount} XMR* to your balance.`,
+                { parse_mode: "Markdown", reply_markup: keyboard }
               );
             } catch (notifyErr) {
-              logger.warn(`⚠️ Failed to notify user ${payment.userId}:`, notifyErr);
-            }
-
-            const cart = await UserCart.findOne({ userId: payment.userId });
-            if (cart) {
-              for (const item of cart.items) {
-                const productDoc = await Product.findById(item.productId);
-                if (!productDoc) continue;
-
-                const model = productDoc.models.find((m) => m.name === item.modelName);
-                const option = model?.options.find((o) => o.name === item.optionName);
-                if (option) {
-                  option.quantity = Math.max(0, option.quantity - item.quantity);
-                }
-                await productDoc.save();
-              }
-              await UserCart.deleteOne({ userId: payment.userId });
+              logger.warn(`⚠️ Could not notify user ${payment.userId}:`, notifyErr);
             }
           }
         }
-      } catch (error) {
-        logger.error("❌ Error checking XMR payment", error);
+      } catch (err) {
+        logger.error("❌ Error during payment check:", err);
       }
     }
 
+    // Expire old pending payments
     await Payment.updateMany(
-      {
-        status: "pending",
-        createdAt: { $lt: expiryThreshold },
-      },
-      {
-        status: "expired"
-      }
+      { status: "pending", createdAt: { $lt: expiryThreshold } },
+      { $set: { status: "expired" } }
     );
 
+    // Delete expired and old confirmed payments
     await Payment.deleteMany({
       $or: [
-        {
-          status: "expired",
-          createdAt: { $lt: cleanupThreshold }
-        },
-        {
-          status: "confirmed",
-          confirmedAt: { $lt: cleanupThreshold }
-        }
+        { status: "expired", createdAt: { $lt: cleanupThreshold } },
+        { status: "confirmed", confirmedAt: { $lt: cleanupThreshold } }
       ]
     });
-  }, 60_000);
+  }, 60_000); // Every 60 seconds
 }

@@ -461,3 +461,75 @@
 {"level":"info","message":"Redis connecting...","timestamp":"2025-06-15T10:44:38.774Z"}
 {"level":"info","message":"Redis connected and ready","timestamp":"2025-06-15T10:44:38.777Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-15T11:10:04.907Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T10:29:57.023Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T10:29:57.030Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T10:29:57.032Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T10:30:32.963Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T10:32:01.748Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T10:32:01.756Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T10:32:01.757Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T10:33:18.799Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T10:33:22.709Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T10:33:22.717Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T10:33:22.725Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T10:39:59.257Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T10:42:27.258Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T10:42:27.265Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T10:42:27.267Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T18:04:10.869Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T18:04:10.966Z"}
+{"level":"info","message":"db reconnected","timestamp":"2025-06-16T18:04:10.966Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T20:25:26.751Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T20:40:00.128Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T20:40:00.139Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T20:40:00.141Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T20:40:34.472Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T20:40:37.103Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T20:40:37.111Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T20:40:37.113Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T20:41:26.831Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T20:41:28.698Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T20:41:28.713Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T20:41:28.716Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T20:42:11.062Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T20:42:12.803Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T20:42:12.811Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T20:42:12.813Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T20:45:08.273Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T20:46:58.857Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T20:46:58.881Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T20:46:58.882Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T20:48:06.621Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T20:48:08.308Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T20:48:08.316Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T20:48:08.318Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T20:50:12.783Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T20:50:15.323Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T20:50:15.330Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T20:50:15.331Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T20:52:57.893Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T20:52:59.945Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T20:52:59.953Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T20:52:59.954Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-16T20:53:29.159Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-16T20:53:30.383Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-16T20:53:36.635Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-16T20:54:19.195Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T20:57:44.265Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-16T20:57:46.797Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-16T20:57:46.805Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-16T20:57:46.807Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-16T20:58:02.141Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-16T20:58:03.314Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-16T20:58:10.591Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-16T20:58:17.407Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-16T20:58:18.406Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-16T20:58:22.944Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-16T20:58:24.744Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-16T20:58:28.429Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-16T20:58:29.635Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-16T20:58:31.563Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-16T20:58:37.807Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-16T20:58:39.935Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-16T20:58:57.272Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-16T21:00:12.967Z"}

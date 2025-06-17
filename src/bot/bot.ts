@@ -14,6 +14,7 @@ import {redis} from './utils/redis.ts';
 import {startXmrPaymentWatcher} from './services/xmrPaymentWatcher.ts';
 import {registerBalanceHandler} from './scenes/balance.ts';
 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -29,14 +30,13 @@ if(!token){
 
 const bot:Bot<Context,Api> = new Bot(token);
 
-
 const start = async()=>{
     try {
         await connect_db();
         await redis.connect();
+        registerMainMenu(bot);
         startXmrPaymentWatcher(bot);
         registerBalanceHandler(bot);
-        registerMainMenu(bot);
         registerAboutMenu(bot);
         registerReadWarning(bot);
         registerListingScene(bot);
