@@ -937,3 +937,11 @@
 {"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T23:29:36.727Z"}
 {"level":"debug","message":"Failed to delete old message 2025 for user 7580426932","timestamp":"2025-06-18T23:29:55.306Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-18T23:34:00.280Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T23:37:48.400Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T23:37:48.408Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T23:37:48.409Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:29:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:114:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-18T23:38:01.135Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.1, paymentId=e8cde3ac674c7d56","timestamp":"2025-06-18T23:40:25.751Z"}
+{"level":"info","message":"✅ XMR top-up confirmed for user 7580426932 (0.1 XMR)","timestamp":"2025-06-18T23:47:48.662Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=f4036ccfd8efc515","timestamp":"2025-06-18T23:54:24.321Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T23:56:13.337Z"}
