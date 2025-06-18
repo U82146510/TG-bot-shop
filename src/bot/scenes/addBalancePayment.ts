@@ -66,11 +66,3 @@ export async function handleTopUpXmr(ctx: Context, telegramId: string) {
     await ctx.reply("Something went wrong while generating your payment address.");
   }
 }
-
-// ✅ Optional: still register the /pay_balance command for fallback/manual trigger
-export function registerTopUpXmr(bot: Bot<Context>) {
-  bot.command("pay_balance", async (ctx) => {
-    const telegramId = String(ctx.from?.id);
-    await handleTopUpXmr(ctx, telegramId);
-  });
-}

@@ -7,6 +7,6 @@ export function getMainMenuKeyboard(): InlineKeyboard {
     .text("ℹ️ About", "about").row()
     .text("❓ FAQ", "faq").row()
     .text("⭐ Rating", "raiting").text("🔐 PGP", "gen_pgp").row()
-    .text("📦 Orders", "orders").text("📝 Wishlist", "whishlist").text("💰 Balance", "balance").row()
+    .text("📦 Orders", "orders").text("📝 Wishlist", "view_cart").text("💰 Balance", "balance").row()
     .text("📩 Contact", "contact").row();
 };

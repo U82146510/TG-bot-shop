@@ -653,3 +653,281 @@
 {"level":"info","message":"Redis connected and ready","timestamp":"2025-06-17T21:06:16.208Z"}
 {"level":"info","message":"New user registered: 665188558","timestamp":"2025-06-17T21:06:16.943Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-17T21:06:40.774Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:47:39.627Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:47:39.634Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:47:39.636Z"}
+{"level":"info","message":"User 665188558 navigated to model variants","timestamp":"2025-06-18T10:48:03.633Z"}
+{"level":"info","message":"User 665188558 opened variant details","timestamp":"2025-06-18T10:48:06.053Z"}
+{"level":"info","message":"User 665188558 navigated to model variants","timestamp":"2025-06-18T10:48:10.914Z"}
+{"level":"info","message":"User 665188558 navigated to model variants","timestamp":"2025-06-18T10:48:39.730Z"}
+{"level":"info","message":"User 665188558 opened variant details","timestamp":"2025-06-18T10:48:41.646Z"}
+{"level":"info","message":"User 665188558 navigated to model variants","timestamp":"2025-06-18T10:48:58.187Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T10:50:17.786Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:50:19.728Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:50:19.737Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:50:19.741Z"}
+{"level":"info","message":"New user registered: 6007219601","timestamp":"2025-06-18T10:50:20.462Z"}
+{"level":"info","message":"User 6007219601 navigated to model variants","timestamp":"2025-06-18T10:50:37.633Z"}
+{"level":"info","message":"User 6007219601 opened variant details","timestamp":"2025-06-18T10:50:39.807Z"}
+{"level":"info","message":"User 6007219601 navigated to model variants","timestamp":"2025-06-18T10:50:48.933Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T10:51:18.606Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:51:20.532Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:51:20.539Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:51:20.541Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T10:52:12.225Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:52:14.160Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:52:14.167Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:52:14.168Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T10:53:33.908Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:53:35.624Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:53:35.632Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:53:35.634Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T10:56:18.386Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:56:20.177Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:56:20.185Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:56:20.187Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T10:56:58.818Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:57:00.604Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:57:00.611Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:57:00.613Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T10:57:22.612Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:57:24.269Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:57:24.277Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:57:24.278Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T10:58:41.260Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:58:42.927Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:58:42.934Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:58:42.939Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T10:59:04.409Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T10:59:06.103Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T10:59:06.113Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T10:59:06.115Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T11:04:25.188Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:04:27.302Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:04:27.309Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:04:27.311Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T11:04:44.800Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:04:46.540Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:04:46.547Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:04:46.559Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:26:48.837Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:26:48.844Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:26:48.846Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:29:03.443Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:29:03.450Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:29:03.451Z"}
+{"level":"error","message":"its an error at the orders handler","timestamp":"2025-06-18T11:29:25.307Z"}
+{"level":"error","message":"its an error at the orders handler","timestamp":"2025-06-18T11:29:37.835Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T11:33:35.346Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:33:37.460Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:33:37.467Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:33:37.468Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T11:34:37.815Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:34:39.420Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:34:39.432Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:34:39.434Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T11:35:00.621Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:35:02.263Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:35:02.270Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:35:02.274Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T11:35:52.050Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:35:54.105Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:35:54.113Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:35:54.115Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T11:40:33.621Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:40:35.458Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:40:35.466Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:40:35.467Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T11:46:14.283Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T11:46:16.254Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T11:46:16.263Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T11:46:16.265Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T12:25:11.434Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T12:25:13.657Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T12:25:13.663Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T12:25:13.665Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T12:33:27.001Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T12:33:28.779Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T12:33:28.787Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T12:33:28.789Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T12:34:06.666Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T12:34:08.755Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T12:34:08.762Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T12:34:08.764Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T12:37:28.646Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T12:37:30.510Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T12:37:30.519Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T12:37:30.533Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T12:50:14.356Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T12:50:16.355Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T12:50:16.364Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T12:50:16.365Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T12:56:14.494Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T12:56:16.845Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T12:56:16.853Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T12:56:16.855Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T13:02:56.104Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T13:02:58.059Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T13:02:58.067Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T13:02:58.070Z"}
+{"level":"debug","message":"Failed to delete old message 1713 for user 7580426932","timestamp":"2025-06-18T13:03:08.273Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T13:03:32.640Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T13:03:59.549Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T13:03:59.557Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T13:03:59.558Z"}
+{"level":"debug","message":"Failed to delete old message 1728 for user 7580426932","timestamp":"2025-06-18T13:04:14.909Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T13:04:21.970Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T13:04:23.344Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-18T13:04:29.312Z"}
+{"level":"debug","message":"Failed to delete old message 1745 for user 7580426932","timestamp":"2025-06-18T13:05:12.798Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T20:22:26.846Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T20:22:29.920Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T20:22:29.927Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T20:22:29.929Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T20:33:25.605Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T20:35:28.639Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T20:35:28.647Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T20:35:28.648Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T20:35:35.129Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T20:35:37.707Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-18T20:35:44.813Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T20:55:58.648Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T21:11:51.320Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T21:11:51.331Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T21:11:51.333Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:12:32.081Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:12:33.099Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-18T21:12:40.256Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T21:15:16.939Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T21:15:19.676Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T21:15:19.687Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T21:15:19.689Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:15:47.124Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:15:48.632Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-18T21:15:55.772Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:21:59.568Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:22:01.234Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:22:06.934Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:22:08.708Z"}
+{"level":"info","message":"User 7580426932 triggered view_cart","timestamp":"2025-06-18T21:22:15.418Z"}
+{"level":"debug","message":"Failed to delete message 1771 from checkout_msgs:7580426932","timestamp":"2025-06-18T21:22:20.362Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T21:40:47.449Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T21:40:49.782Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T21:40:49.789Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T21:40:49.791Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:41:31.397Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:41:32.701Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:41:38.929Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:41:40.846Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T21:44:04.031Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T21:44:06.127Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T21:44:06.138Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T21:44:06.140Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:44:32.398Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:44:34.607Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:45:29.462Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:45:30.650Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:45:56.391Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:45:58.602Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:46:22.191Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:46:24.193Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:49:26.220Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:49:27.692Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:49:33.813Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:49:35.338Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:49:39.666Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:49:41.025Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:49:43.145Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:49:44.307Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:49:46.646Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:49:49.157Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:49:50.399Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T21:52:44.184Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T21:52:46.451Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T21:52:46.459Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T21:52:46.462Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T21:53:30.023Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T21:55:11.108Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T21:55:11.115Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T21:55:11.117Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T21:55:17.177Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T21:55:18.775Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:00:52.222Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:00:53.582Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:00:56.476Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:00:57.604Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:01:52.538Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:01:54.049Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:02:16.598Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:02:19.686Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:02:21.037Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:02:29.435Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:02:30.750Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:02:46.141Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:02:49.040Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:02:54.466Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:02:57.364Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:02:58.619Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:03:36.706Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:03:38.786Z"}
+{"level":"debug","message":"Failed to delete message 1885 from checkout_msgs:7580426932","timestamp":"2025-06-18T22:04:03.878Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:04:13.188Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:04:15.665Z"}
+{"level":"debug","message":"Failed to delete old message 1909 for user 7580426932","timestamp":"2025-06-18T22:05:25.688Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:05:30.601Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:05:31.800Z"}
+{"level":"debug","message":"Failed to delete message 1897 from checkout_msgs:7580426932","timestamp":"2025-06-18T22:05:36.660Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:21:15.247Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:21:16.438Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T22:35:12.263Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T22:35:14.786Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T22:35:14.794Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T22:35:14.796Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:38:57.366Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:38:58.501Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T22:41:17.680Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T22:41:19.909Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T22:41:19.918Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T22:41:19.919Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:41:35.769Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:41:37.211Z"}
+{"level":"debug","message":"Failed to delete old message 1950 for user 7580426932","timestamp":"2025-06-18T22:42:08.929Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:42:44.790Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T22:56:09.527Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T22:57:43.210Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T22:57:43.217Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T22:57:43.218Z"}
+{"level":"info","message":"New user registered: 1733992406","timestamp":"2025-06-18T22:58:58.123Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:59:00.307Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:59:16.546Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T22:59:17.543Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:59:24.390Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:59:49.752Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T22:59:55.654Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T23:00:41.417Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T23:00:58.509Z"}
+{"level":"debug","message":"Failed to delete old message 1982 for user 7580426932","timestamp":"2025-06-18T23:01:31.537Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T23:01:36.861Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-18T23:01:38.468Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T23:01:42.962Z"}
+{"level":"debug","message":"Failed to delete old message 2002 for user 7580426932","timestamp":"2025-06-18T23:02:17.638Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T23:02:46.439Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-18T23:07:00.733Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T23:09:29.463Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T23:19:48.261Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T23:19:48.269Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T23:19:48.271Z"}
+{"ctx":{"api":{"config":{},"raw":{},"token":"8006582070:AAGKrNZnj0ld8K_RDYkde8xkHA0IxzRKj1g"},"match":"back_to_home","me":{"can_connect_to_business":false,"can_join_groups":true,"can_read_all_group_messages":false,"first_name":"WispaBOT","has_main_web_app":false,"id":8006582070,"is_bot":true,"supports_inline_queries":false,"username":"U82146511_bot"},"update":{"callback_query":{"chat_instance":"2730295128514129651","data":"back_to_home","from":{"first_name":"MR. White","id":7580426932,"is_bot":false,"language_code":"en","username":"mr_white99999"},"id":"4887569653266623863","message":{"chat":{"first_name":"MR. White","id":7580426932,"type":"private","username":"mr_white99999"},"date":1750288020,"edit_date":1750288067,"entities":[{"length":17,"offset":3,"type":"bold"}],"from":{"first_name":"WispaBOT","id":8006582070,"is_bot":true,"username":"U82146511_bot"},"message_id":2010,"reply_markup":{"inline_keyboard":[[{"callback_data":"order_question","text":"My order has been cancelled"}],[{"callback_data":"request_track","text":"When and how can I request tracking?"}],[{"callback_data":"how_long_receive_order","text":"How long before I receive my order?"}],[{"callback_data":"my_address","text":"How do I send my address?"}],[{"callback_data":"back_to_home","text":"Back to Main Menu"}]]},"text":"🏠 Back to Main Menu\n\nSelect one of the options below to continue:"}},"update_id":887488248}},"error":{"description":"Bad Request: query is too old and response timeout expired or query ID is invalid","error_code":400,"method":"answerCallbackQuery","name":"GrammyError","ok":false,"parameters":{},"payload":{"callback_query_id":"4887569653266623863"}},"level":"error","message":"Telegram Error: GrammyError in middleware: Call to 'answerCallbackQuery' failed! (400: Bad Request: query is too old and response timeout expired or query ID is invalid)","name":"BotError","stack":"GrammyError: Call to 'answerCallbackQuery' failed! (400: Bad Request: query is too old and response timeout expired or query ID is invalid)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/common.ts:9:7\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-18T23:19:48.687Z"}
+{"ctx":{"api":{"config":{},"raw":{},"token":"8006582070:AAGKrNZnj0ld8K_RDYkde8xkHA0IxzRKj1g"},"match":"back_to_home","me":{"can_connect_to_business":false,"can_join_groups":true,"can_read_all_group_messages":false,"first_name":"WispaBOT","has_main_web_app":false,"id":8006582070,"is_bot":true,"supports_inline_queries":false,"username":"U82146511_bot"},"update":{"callback_query":{"chat_instance":"2730295128514129651","data":"back_to_home","from":{"first_name":"MR. White","id":7580426932,"is_bot":false,"language_code":"en","username":"mr_white99999"},"id":"4887569654086335077","message":{"chat":{"first_name":"MR. White","id":7580426932,"type":"private","username":"mr_white99999"},"date":1750288020,"edit_date":1750288067,"entities":[{"length":17,"offset":3,"type":"bold"}],"from":{"first_name":"WispaBOT","id":8006582070,"is_bot":true,"username":"U82146511_bot"},"message_id":2010,"reply_markup":{"inline_keyboard":[[{"callback_data":"order_question","text":"My order has been cancelled"}],[{"callback_data":"request_track","text":"When and how can I request tracking?"}],[{"callback_data":"how_long_receive_order","text":"How long before I receive my order?"}],[{"callback_data":"my_address","text":"How do I send my address?"}],[{"callback_data":"back_to_home","text":"Back to Main Menu"}]]},"text":"🏠 Back to Main Menu\n\nSelect one of the options below to continue:"}},"update_id":887488249}},"error":{"description":"Bad Request: query is too old and response timeout expired or query ID is invalid","error_code":400,"method":"answerCallbackQuery","name":"GrammyError","ok":false,"parameters":{},"payload":{"callback_query_id":"4887569654086335077"}},"level":"error","message":"Telegram Error: GrammyError in middleware: Call to 'answerCallbackQuery' failed! (400: Bad Request: query is too old and response timeout expired or query ID is invalid)","name":"BotError","stack":"GrammyError: Call to 'answerCallbackQuery' failed! (400: Bad Request: query is too old and response timeout expired or query ID is invalid)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/common.ts:9:7\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-18T23:19:48.794Z"}
+{"ctx":{"api":{"config":{},"raw":{},"token":"8006582070:AAGKrNZnj0ld8K_RDYkde8xkHA0IxzRKj1g"},"match":"request_track","me":{"can_connect_to_business":false,"can_join_groups":true,"can_read_all_group_messages":false,"first_name":"WispaBOT","has_main_web_app":false,"id":8006582070,"is_bot":true,"supports_inline_queries":false,"username":"U82146511_bot"},"update":{"callback_query":{"chat_instance":"2730295128514129651","data":"request_track","from":{"first_name":"MR. White","id":7580426932,"is_bot":false,"language_code":"en","username":"mr_white99999"},"id":"4887569653317017304","message":{"chat":{"first_name":"MR. White","id":7580426932,"type":"private","username":"mr_white99999"},"date":1750288020,"edit_date":1750288817,"entities":[{"length":17,"offset":3,"type":"bold"}],"from":{"first_name":"WispaBOT","id":8006582070,"is_bot":true,"username":"U82146511_bot"},"message_id":2010,"reply_markup":{"inline_keyboard":[[{"callback_data":"order_question","text":"My order has been cancelled"}],[{"callback_data":"request_track","text":"When and how can I request tracking?"}],[{"callback_data":"how_long_receive_order","text":"How long before I receive my order?"}],[{"callback_data":"my_address","text":"How do I send my address?"}],[{"callback_data":"back_to_home","text":"Back to Main Menu"}]]},"text":"🏠 Back to Main Menu\n\nSelect one of the options below to continue:"}},"update_id":887488256}},"error":{"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 453","error_code":400,"method":"editMessageText","name":"GrammyError","ok":false,"parameters":{},"payload":{"chat_id":7580426932,"message_id":2010,"parse_mode":"Markdown","reply_markup":{"inline_keyboard":[[{"callback_data":"faq_back","text":"🔙 Back to FAQ"}]]},"text":"📌 When and how can I request tracking?\n\n📮 Wispa Tracking Bot 📮\n\nTracking gets uploaded after ~30h since dispatch (usually around 6pm on the next day) ⏰\nOn Fridays we make an exception and offer same day tracking at 6pm for the weekend 📅\n\nWith our Wispa Tracking Bot, accessing your orders tracking information has never been easier, providing you with timely updates and peace of mind 🕒\n\nAccessing Your Order Status: Simply visit @wispa_trackbot to check the latest status of your order 💼"}},"level":"error","message":"Telegram Error: GrammyError in middleware: Call to 'editMessageText' failed! (400: Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 453)","name":"BotError","stack":"GrammyError: Call to 'editMessageText' failed! (400: Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 453)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async safeEditOrReply (file:///home/convict/Downloads/Tesseract/src/bot/utils/safeEdit.ts:9:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/faq/faqRequestTrack.ts:19:5\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13","timestamp":"2025-06-18T23:20:18.469Z"}
+{"ctx":{"api":{"config":{},"raw":{},"token":"8006582070:AAGKrNZnj0ld8K_RDYkde8xkHA0IxzRKj1g"},"match":"request_track","me":{"can_connect_to_business":false,"can_join_groups":true,"can_read_all_group_messages":false,"first_name":"WispaBOT","has_main_web_app":false,"id":8006582070,"is_bot":true,"supports_inline_queries":false,"username":"U82146511_bot"},"update":{"callback_query":{"chat_instance":"2730295128514129651","data":"request_track","from":{"first_name":"MR. White","id":7580426932,"is_bot":false,"language_code":"en","username":"mr_white99999"},"id":"4887569654231213213","message":{"chat":{"first_name":"MR. White","id":7580426932,"type":"private","username":"mr_white99999"},"date":1750288020,"edit_date":1750288817,"entities":[{"length":17,"offset":3,"type":"bold"}],"from":{"first_name":"WispaBOT","id":8006582070,"is_bot":true,"username":"U82146511_bot"},"message_id":2010,"reply_markup":{"inline_keyboard":[[{"callback_data":"order_question","text":"My order has been cancelled"}],[{"callback_data":"request_track","text":"When and how can I request tracking?"}],[{"callback_data":"how_long_receive_order","text":"How long before I receive my order?"}],[{"callback_data":"my_address","text":"How do I send my address?"}],[{"callback_data":"back_to_home","text":"Back to Main Menu"}]]},"text":"🏠 Back to Main Menu\n\nSelect one of the options below to continue:"}},"update_id":887488257}},"error":{"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 453","error_code":400,"method":"editMessageText","name":"GrammyError","ok":false,"parameters":{},"payload":{"chat_id":7580426932,"message_id":2010,"parse_mode":"Markdown","reply_markup":{"inline_keyboard":[[{"callback_data":"faq_back","text":"🔙 Back to FAQ"}]]},"text":"📌 When and how can I request tracking?\n\n📮 Wispa Tracking Bot 📮\n\nTracking gets uploaded after ~30h since dispatch (usually around 6pm on the next day) ⏰\nOn Fridays we make an exception and offer same day tracking at 6pm for the weekend 📅\n\nWith our Wispa Tracking Bot, accessing your orders tracking information has never been easier, providing you with timely updates and peace of mind 🕒\n\nAccessing Your Order Status: Simply visit @wispa_trackbot to check the latest status of your order 💼"}},"level":"error","message":"Telegram Error: GrammyError in middleware: Call to 'editMessageText' failed! (400: Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 453)","name":"BotError","stack":"GrammyError: Call to 'editMessageText' failed! (400: Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 453)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async safeEditOrReply (file:///home/convict/Downloads/Tesseract/src/bot/utils/safeEdit.ts:9:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/faq/faqRequestTrack.ts:19:5\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13","timestamp":"2025-06-18T23:20:20.003Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T23:20:26.133Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T23:20:56.923Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T23:20:56.935Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T23:20:56.938Z"}
+{"ctx":{"api":{"config":{},"raw":{},"token":"8006582070:AAGKrNZnj0ld8K_RDYkde8xkHA0IxzRKj1g"},"match":"request_track","me":{"can_connect_to_business":false,"can_join_groups":true,"can_read_all_group_messages":false,"first_name":"WispaBOT","has_main_web_app":false,"id":8006582070,"is_bot":true,"supports_inline_queries":false,"username":"U82146511_bot"},"update":{"callback_query":{"chat_instance":"2730295128514129651","data":"request_track","from":{"first_name":"MR. White","id":7580426932,"is_bot":false,"language_code":"en","username":"mr_white99999"},"id":"4887569652878355072","message":{"chat":{"first_name":"MR. White","id":7580426932,"type":"private","username":"mr_white99999"},"date":1750288020,"edit_date":1750288817,"entities":[{"length":17,"offset":3,"type":"bold"}],"from":{"first_name":"WispaBOT","id":8006582070,"is_bot":true,"username":"U82146511_bot"},"message_id":2010,"reply_markup":{"inline_keyboard":[[{"callback_data":"order_question","text":"My order has been cancelled"}],[{"callback_data":"request_track","text":"When and how can I request tracking?"}],[{"callback_data":"how_long_receive_order","text":"How long before I receive my order?"}],[{"callback_data":"my_address","text":"How do I send my address?"}],[{"callback_data":"back_to_home","text":"Back to Main Menu"}]]},"text":"🏠 Back to Main Menu\n\nSelect one of the options below to continue:"}},"update_id":887488258}},"error":{"description":"Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 453","error_code":400,"method":"editMessageText","name":"GrammyError","ok":false,"parameters":{},"payload":{"chat_id":7580426932,"message_id":2010,"parse_mode":"Markdown","reply_markup":{"inline_keyboard":[[{"callback_data":"faq_back","text":"🔙 Back to FAQ"}]]},"text":"📌 When and how can I request tracking?\n\n📮 Wispa Tracking Bot 📮\n\nTracking gets uploaded after ~30h since dispatch (usually around 6pm on the next day) ⏰\nOn Fridays we make an exception and offer same day tracking at 6pm for the weekend 📅\n\nWith our Wispa Tracking Bot, accessing your orders tracking information has never been easier, providing you with timely updates and peace of mind 🕒\n\nAccessing Your Order Status: Simply visit @wispa_trackbot to check the latest status of your order 💼"}},"level":"error","message":"Telegram Error: GrammyError in middleware: Call to 'editMessageText' failed! (400: Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 453)","name":"BotError","stack":"GrammyError: Call to 'editMessageText' failed! (400: Bad Request: can't parse entities: Can't find end of the entity starting at byte offset 453)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async safeEditOrReply (file:///home/convict/Downloads/Tesseract/src/bot/utils/safeEdit.ts:9:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/faq/faqRequestTrack.ts:19:5\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13","timestamp":"2025-06-18T23:21:05.401Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T23:27:27.133Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-18T23:27:29.070Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-18T23:27:29.082Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-18T23:27:29.084Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-18T23:28:20.085Z"}

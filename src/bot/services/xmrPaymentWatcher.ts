@@ -5,6 +5,7 @@ import { Bot, InlineKeyboard } from "grammy";
 
 export function startXmrPaymentWatcher(bot: Bot): void {
   setInterval(async () => {
+    console.log('payment checked')
     const pendingPayments = await Payment.find({ status: "pending" });
     const expiryThreshold = new Date(Date.now() - 30 * 60 * 1000); // 30 minutes
     const cleanupThreshold = new Date(Date.now() - 24 * 60 * 60 * 1000); // 24 hours
