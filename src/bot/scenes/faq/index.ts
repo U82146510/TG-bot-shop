@@ -18,5 +18,4 @@ export function registerFAQScene(bot:Bot<Context>){
         `❓ *FAQ Menu*\n\nChoose a question to see the answer:`,
         getFQAMenu())
   });
-
 }
