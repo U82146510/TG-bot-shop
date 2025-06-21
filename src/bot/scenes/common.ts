@@ -1,26 +1,28 @@
 import { Bot, Context } from "grammy";
 import { getMainMenuKeyboard } from "../keyboards/mainMenu.ts";
-import {safeEditOrReply} from '../utils/safeEdit.ts';
-import {UserFlowState} from '../models/UserFlowState.ts';
-import {deleteCachedMessages} from '../utils/cleanup.ts';
+import { safeEditOrReply } from "../utils/safeEdit.ts";
+import { UserFlowState } from "../models/UserFlowState.ts";
+import { deleteCachedMessages } from "../utils/cleanup.ts";
 
 export function registerCommonHandlers(bot: Bot<Context>) {
   bot.callbackQuery("back_to_home", async (ctx) => {
-      await ctx.answerCallbackQuery();
+    await ctx.answerCallbackQuery();
+    const userId = String(ctx.from?.id);
+    const flowState = await UserFlowState.findOne({ userId });
 
-      const userId = String(ctx.from?.id);
+    // 🧹 Delete cached messages for all relevant flows
+    await deleteCachedMessages(ctx, `checkout_msgs:${userId}`);
+    await deleteCachedMessages(ctx, `balance_msgs:${userId}`);
 
-      // 🧹 Clear checkout state if user had entered an address but didn't complete
-      const state = await UserFlowState.findOne({ userId });
-      if (state?.flow === "checkout") {
-        await UserFlowState.deleteOne({ userId });
-      }
-      await deleteCachedMessages(ctx, `checkout_msgs:${userId}`);
+    // 🧼 Optionally delete flow state if it's known and abandoned
+    if (["checkout", "add_balance"].includes(flowState?.flow || "")) {
+      await UserFlowState.deleteOne({ userId });
+    }
 
-      await safeEditOrReply(
-        ctx,
-        `🏠 *Back to Main Menu*\n\nSelect one of the options below to continue:`,
-        getMainMenuKeyboard()
-      );
+    await safeEditOrReply(
+      ctx,
+      `🏠 *Back to Main Menu*\n\nSelect one of the options below to continue:`,
+      getMainMenuKeyboard()
+    );
   });
 }
