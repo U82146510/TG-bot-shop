@@ -134,7 +134,7 @@ export function registerCartHandlers(bot: Bot<Context>) {
         total += price * item.quantity;
         }
 
-        const summaryMsg = await ctx.reply(`💰 Total amount to be paid: ${total} XMR, You can continue shopping .`, {
+        const summaryMsg = await ctx.reply(`💰 Total amount to be paid: ${total} XMR.`, {
             reply_markup: continueKeyboard,
         });
         newMsgIds.push(summaryMsg.message_id);

@@ -10,6 +10,7 @@ export function registerBalanceHandler(bot:Bot<Context>){
     bot.callbackQuery('balance',async(ctx:Context)=>{
         await ctx.answerCallbackQuery();
         const telegramId = ctx.from?.id;
+        const redisKey =`clear_balance${telegramId}`
         if(!telegramId) return;
         try {
             const user = await User.findOne({telegramId});
@@ -34,10 +35,18 @@ export function registerBalanceHandler(bot:Bot<Context>){
         await ctx.answerCallbackQuery();
         const telegramId = ctx.from?.id;
         const redisKey = `balance_msgs:${telegramId}`
-        
         if(!telegramId) return;
+
         const keyboard = new InlineKeyboard().text("❌ Cancel", "cancel_add_balance");
+
         try {
+
+            try {
+                await ctx.deleteMessage();
+            } catch (e) {
+                logger.debug(`Failed to delete balance message for user ${telegramId}`);
+            }
+
             const msg1 = await ctx.reply(`To add balance, please select an amount or enter a custom value.\n\n`,{
                 reply_markup:keyboard
             });
@@ -53,34 +62,70 @@ export function registerBalanceHandler(bot:Bot<Context>){
         }
     });
 
-    bot.callbackQuery('cancel_add_balance',async(ctx:Context)=>{
+    bot.callbackQuery('cancel_add_balance', async (ctx: Context) => {
         await ctx.answerCallbackQuery();
         const telegramId = ctx.from?.id;
-        if(!telegramId) return;
+        if (!telegramId) return;
+
+        const userId = String(telegramId);
+        const redisKey = `last_amount_msg:${userId}`;
+
+        // 🧹 Clear cached confirmation messages
+        await deleteCachedMessages(ctx,`clear_amount_accepted:${userId}`);
+        await deleteCachedMessages(ctx,`trak_pending_top_up${userId}`);
+        await deleteCachedMessages(ctx,`balance_msgs:${userId}`);
+        await deleteCachedMessages(ctx,`top_up${userId}`);
+        await deleteCachedMessages(ctx,`error_at_add_balance${userId}`);
+        // 🧼 Clear user flow state
+        await UserFlowState.findOneAndUpdate(
+            { userId },
+            { $unset: { flow: true, data: true } }
+        );
+
         try {
-            await UserFlowState.findOneAndUpdate({userId:String(telegramId)},{
-                $unset:{
-                    flow:true,data:true
-                }
-            });
-            const user = await User.findOne({telegramId});
-            if(!user) return ctx.editMessageText("User not found. Please start again with /start.");
+            const user = await User.findOne({ telegramId });
+            if (!user) {
+                return ctx.reply("User not found. Please start again with /start.");
+            }
+
             const keyboard = new InlineKeyboard()
-            .text('➕ Add Balance', 'add_balance')
-            .text("🔙 Back", "back_to_home");
-            await ctx.editMessageText(
-                `💰 Your current balance: ${user.balance.toFixed(2)} XMR`,
-                { reply_markup: keyboard });
+                .text('➕ Add Balance', 'add_balance')
+                .text("🔙 Back", "back_to_home");
+
+            const lastMsgId = await redis.get(redisKey);
+            if (lastMsgId) {
+                try {
+                    await ctx.api.editMessageText(
+                        ctx.chat!.id,
+                        Number(lastMsgId),
+                        `💰 Your current balance: ${user.balance.toFixed(2)} XMR`,
+                        { reply_markup: keyboard }
+                    );
+                } catch (e) {
+                    logger.warn("❌ Could not edit last amount message. Sending new one.");
+                    await ctx.reply(`💰 Your current balance: ${user.balance.toFixed(2)} XMR`, {
+                        reply_markup: keyboard
+                    });
+                }
+            } else {
+                await ctx.reply(`💰 Your current balance: ${user.balance.toFixed(2)} XMR`, {
+                    reply_markup: keyboard
+                });
+            }
+
+            await redis.delete(redisKey); // 🧹 clean up
+
         } catch (error) {
-            logger.error('error ad the cancel_add_balance',error);
+            logger.error('error at cancel_add_balance', error);
             await ctx.reply("⚠️ Something went wrong.");
         }
     });
 
+
    bot.on('message:text', async (ctx: Context, next) => {
         const telegramId = ctx.from?.id;
         if (!telegramId) return next();
-
+        const redisKey =`clear_balance${telegramId}`
         const flowState = await UserFlowState.findOne({ userId: String(telegramId) });
 
         // Only handle if user is in the add_balance flow
@@ -95,26 +140,35 @@ export function registerBalanceHandler(bot:Bot<Context>){
             }
 
             if (!/^(\d+|\d+\.\d{1,8}|\.\d{1,8})$/.test(input)) {
-            return ctx.reply("❌ Invalid format. Use up to 8 decimal places.", { reply_markup: cancelKeyboard });
+                await deleteCachedMessages(ctx,redisKey)
+                const msg = await ctx.reply("❌ Invalid format. Use up to 8 decimal places.", { reply_markup: cancelKeyboard });
+                redis.pushList(redisKey,[String(msg.message_id)])
+                return
             }
 
             const amount = parseFloat(input);
             if (isNaN(amount) || amount <= 0) {
-            return ctx.reply("❌ Invalid amount. Please enter a positive number (e.g. 0.5).", { reply_markup: cancelKeyboard });
+                const msg = await ctx.reply("❌ Invalid amount. Please enter a positive number (e.g. 0.5).", { reply_markup: cancelKeyboard });
+                redis.pushList(redisKey,[String(msg.message_id)])
+                return
             }
 
             if (amount > 1000) {
-            return ctx.reply("❌ Max top-up amount is 1000 XMR.", { reply_markup: cancelKeyboard });
+                await deleteCachedMessages(ctx,redisKey)
+                const msg = await ctx.reply("❌ Max top-up amount is 1000 XMR.", { reply_markup: cancelKeyboard });
+                redis.pushList(redisKey,[String(msg.message_id)])
+                return
             }
-
+            await deleteCachedMessages(ctx, `balance_msgs:${telegramId}`); 
             await UserFlowState.findOneAndUpdate(
             { userId: String(telegramId) },
             { $set: { 'data.amount': amount } }
             );
-
-            await ctx.reply(`✅ Amount accepted: ${amount} XMR\nGenerating payment address...`, {
-            reply_markup: cancelKeyboard,
+            const redisK = `clear_amount_accepted:${telegramId}`
+            const msg = await ctx.reply(`✅ Amount accepted: ${amount} XMR\nGenerating payment address...`, {
+                reply_markup: cancelKeyboard,
             });
+            await redis.pushList(redisK, [String(msg.message_id)]);
 
             await handleTopUpXmr(ctx, String(telegramId));
 
@@ -122,6 +176,6 @@ export function registerBalanceHandler(bot:Bot<Context>){
             logger.error('Error while handling XMR amount input', error);
             await ctx.reply("⚠️ Something went wrong while processing your amount.");
         }
-        });
+    });
 
 };

@@ -11,8 +11,10 @@ export function registerCommonHandlers(bot: Bot<Context>) {
     const flowState = await UserFlowState.findOne({ userId });
 
     // 🧹 Delete cached messages for all relevant flows
-    await deleteCachedMessages(ctx, `checkout_msgs:${userId}`);
-    await deleteCachedMessages(ctx, `balance_msgs:${userId}`);
+    await deleteCachedMessages(ctx,`checkout_msgs:${userId}`);
+    await deleteCachedMessages(ctx,`balance_msgs:${userId}`);
+    await deleteCachedMessages(ctx,`clear_amount_accepted:${userId}`);
+    await deleteCachedMessages(ctx,`top_up${userId}`);
 
     // 🧼 Optionally delete flow state if it's known and abandoned
     if (["checkout", "add_balance"].includes(flowState?.flow || "")) {

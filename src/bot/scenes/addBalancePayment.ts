@@ -21,10 +21,13 @@ export async function handleTopUpXmr(ctx: Context, telegramId: string) {
     // Check if a pending top-up already exists
     const existing = await Payment.findOne({ userId: telegramId, status: "pending" });
     if (existing) {
-        return await ctx.reply(
-            `⚠️ You already have a pending top-up.\n\n🆔 Payment ID: \`${existing.paymentId}\`\n💳 Address: \`${existing.integratedAddress}\``,
-            { parse_mode: "Markdown" }
-        );
+      const redisK = `trak_pending_top_up${telegramId}`
+      const msg =  await ctx.reply(
+          `⚠️ You already have a pending top-up.\n\n🆔 Payment ID: \`${existing.paymentId}\`\n💳 Address: \`${existing.integratedAddress}\``,
+          { reply_markup:keyboard }
+      );
+      await redis.pushList(redisK,[String(msg.message_id)])
+      return;
     }
 
 
@@ -54,17 +57,20 @@ export async function handleTopUpXmr(ctx: Context, telegramId: string) {
       createdAt: new Date()
     });
     logger.info(`✅ XMR top-up generated: userId=${telegramId}, amount=${amount}, paymentId=${payment_id}`);
-    await ctx.reply(
+    const redisTopUp = `top_up${telegramId}` 
+    const topUp =  await ctx.reply(
       `💳 *Top-Up Payment*\n\nSend *${amount} XMR* to:\n\`${integrated_address}\`\n\n🆔 Payment ID: \`${payment_id}\`\n\nYour balance will be updated after confirmation.`,
       { parse_mode: "Markdown",reply_markup:keyboard }
     );
-
+    await redis.pushList(redisTopUp,[String(topUp.message_id)]);
     await UserFlowState.findOneAndUpdate(
       { userId: telegramId },
       { $unset: { flow: true, data: true } }
     );
   } catch (err) {
     logger.error("❌ Failed to generate top-up address", err);
-    await ctx.reply("Something went wrong while generating your payment address.");
+    const redisError = `error_at_add_balance${telegramId}`
+    const error_msg = await ctx.reply("Something went wrong while generating your payment address.");
+    await redis.pushList(redisError,[String(error_msg.message_id)])
   }
 }

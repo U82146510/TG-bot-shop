@@ -1087,3 +1087,273 @@
 {"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T05:24:28.429Z"}
 {"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T05:24:28.431Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-22T05:25:15.914Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T05:28:58.921Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T05:28:58.942Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T05:28:58.945Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T05:29:29.494Z"}
+{"level":"debug","message":"Failed to delete old message 2414 for user 7580426932","timestamp":"2025-06-22T05:29:45.088Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:31:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:119:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-22T05:30:12.879Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:31:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:119:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-22T05:50:48.748Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T06:46:42.627Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T06:46:45.297Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T06:46:45.309Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T06:46:45.311Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=1e623838c976d359","timestamp":"2025-06-22T06:47:04.701Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:01:58.709Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:02:01.321Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:02:01.330Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:02:01.331Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:05:47.032Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:05:49.385Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:05:49.392Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:05:49.394Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=8f1157544277db61","timestamp":"2025-06-22T07:06:17.381Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:06:47.875Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:06:50.499Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:06:50.507Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:06:50.508Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:08:33.467Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:08:35.501Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:08:35.508Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:08:35.510Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:17:34.755Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:17:36.711Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:17:36.720Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:17:36.721Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:18:48.756Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:18:51.103Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:18:51.111Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:18:51.113Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:22:48.271Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:22:50.214Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:22:50.221Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:22:50.223Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:25:13.771Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:25:15.657Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:25:15.664Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:25:15.666Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:25:44.527Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:25:56.105Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:25:56.112Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:25:56.114Z"}
+{"level":"debug","message":"Failed to delete message 2486 from balance_display:7580426932","timestamp":"2025-06-22T07:26:17.770Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:26:36.440Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:26:41.463Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:26:41.471Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:26:41.473Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:34:34.283Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:34:36.725Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:34:36.734Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:34:36.736Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:35:18.926Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:35:20.942Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:35:20.949Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:35:20.950Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:37:35.080Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:37:37.016Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:37:37.024Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:37:37.032Z"}
+{"level":"debug","message":"Failed to delete message 2517 from balance_display:7580426932","timestamp":"2025-06-22T07:38:05.786Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T07:43:09.313Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T07:43:11.558Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T07:43:11.566Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T07:43:11.567Z"}
+{"level":"debug","message":"Failed to delete message 2522 from balance_display:7580426932","timestamp":"2025-06-22T07:43:28.643Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=67ddf9c2d83ec372","timestamp":"2025-06-22T07:43:46.587Z"}
+{"error":{"code":"ECONNRESET","errno":"ECONNRESET","message":"request to https://api.telegram.org/bot8006582070:AAGKrNZnj0ld8K_RDYkde8xkHA0IxzRKj1g/sendMessage failed, reason: socket hang up","type":"system"},"level":"error","message":"❌ Failed to generate top-up address Network request for 'sendMessage' failed!","name":"HttpError","stack":"HttpError: Network request for 'sendMessage' failed!\n    at /home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:85:15\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async ApiClient.call (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:54:29)\n    at async ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:93:22)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:58:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:127:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-22T11:59:38.421Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T11:59:41.120Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T11:59:41.127Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T11:59:41.128Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T12:04:03.620Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T12:04:06.462Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T12:04:06.470Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T12:04:06.479Z"}
+{"level":"debug","message":"Failed to delete message 2539 from balance_display:7580426932","timestamp":"2025-06-22T12:04:26.703Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T12:09:30.210Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T12:09:32.472Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T12:09:32.481Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T12:09:32.483Z"}
+{"level":"debug","message":"Failed to delete message 2557 from orders_msgs:7580426932","timestamp":"2025-06-22T12:11:17.219Z"}
+{"level":"debug","message":"Failed to delete old message 2571 for user 7580426932","timestamp":"2025-06-22T12:11:21.346Z"}
+{"level":"debug","message":"Failed to delete message 2584 from orders_msgs:7580426932","timestamp":"2025-06-22T12:12:12.310Z"}
+{"level":"debug","message":"Failed to delete old message 2598 for user 7580426932","timestamp":"2025-06-22T12:12:15.674Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T12:14:23.024Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T12:14:24.254Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T12:14:28.378Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T12:14:29.912Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T12:14:33.145Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T12:14:34.163Z"}
+{"level":"debug","message":"Failed to delete message 2605 from orders_msgs:7580426932","timestamp":"2025-06-22T12:14:45.040Z"}
+{"level":"debug","message":"Failed to delete message 2621 from orders_msgs:7580426932","timestamp":"2025-06-22T12:15:21.844Z"}
+{"level":"debug","message":"Failed to delete old message 2636 for user 7580426932","timestamp":"2025-06-22T12:15:25.756Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T12:15:30.466Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T12:17:28.112Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T12:17:30.433Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T12:17:30.440Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T12:17:30.442Z"}
+{"level":"debug","message":"Failed to delete message 2646 from orders_msgs:7580426932","timestamp":"2025-06-22T12:17:30.880Z"}
+{"level":"debug","message":"No message to delete when entering orders view for user 7580426932","timestamp":"2025-06-22T12:17:32.331Z"}
+{"level":"debug","message":"Failed to delete old message 2676 for user 7580426932","timestamp":"2025-06-22T12:17:42.740Z"}
+{"level":"debug","message":"Failed to delete old message 2692 for user 7580426932","timestamp":"2025-06-22T12:18:40.230Z"}
+{"level":"debug","message":"Failed to delete message 2697 from orders_msgs:7580426932","timestamp":"2025-06-22T12:18:59.343Z"}
+{"level":"debug","message":"Failed to delete old message 2712 for user 7580426932","timestamp":"2025-06-22T12:19:03.449Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T13:09:58.170Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T13:12:50.917Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T13:12:50.926Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T13:12:50.928Z"}
+{"level":"debug","message":"Failed to delete message 2715 from orders_msgs:7580426932","timestamp":"2025-06-22T13:13:38.415Z"}
+{"level":"debug","message":"Failed to delete old message 2717 for user 7580426932","timestamp":"2025-06-22T13:13:42.109Z"}
+{"level":"debug","message":"Failed to delete message 2732 from orders_msgs:7580426932","timestamp":"2025-06-22T13:14:32.186Z"}
+{"level":"debug","message":"Failed to delete old message 2733 for user 7580426932","timestamp":"2025-06-22T13:14:36.261Z"}
+{"level":"debug","message":"Failed to delete message 2748 from orders_msgs:7580426932","timestamp":"2025-06-22T13:14:48.834Z"}
+{"level":"debug","message":"Failed to delete old message 2749 for user 7580426932","timestamp":"2025-06-22T13:14:51.957Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T13:18:38.591Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T13:18:41.282Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T13:18:41.289Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T13:18:41.291Z"}
+{"level":"debug","message":"Failed to delete message 2764 from orders_msgs:7580426932","timestamp":"2025-06-22T13:18:50.275Z"}
+{"level":"debug","message":"Failed to delete message 2765 from main_menu_msgs:7580426932","timestamp":"2025-06-22T13:18:53.483Z"}
+{"level":"debug","message":"Failed to delete message 2780 from orders_msgs:7580426932","timestamp":"2025-06-22T13:18:54.531Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:19:02.531Z"}
+{"level":"debug","message":"Failed to delete message 2783 from main_menu_msgs:7580426932","timestamp":"2025-06-22T13:19:07.445Z"}
+{"level":"debug","message":"Failed to delete message 2786 from main_menu_msgs:7580426932","timestamp":"2025-06-22T13:19:17.187Z"}
+{"level":"debug","message":"Failed to delete message 2801 from orders_msgs:7580426932","timestamp":"2025-06-22T13:19:18.292Z"}
+{"level":"debug","message":"Failed to delete message 2802 from main_menu_msgs:7580426932","timestamp":"2025-06-22T13:27:03.865Z"}
+{"level":"debug","message":"Failed to delete message 2817 from orders_msgs:7580426932","timestamp":"2025-06-22T13:27:04.812Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:27:08.452Z"}
+{"level":"debug","message":"Failed to delete message 2818 from main_menu_msgs:7580426932","timestamp":"2025-06-22T13:27:14.639Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=b77b2ffba8ac19c5","timestamp":"2025-06-22T13:27:42.079Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T13:36:11.779Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T13:36:14.685Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T13:36:14.693Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T13:36:14.694Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:36:59.220Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T13:37:00.272Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:10.693Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:13.421Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T13:38:14.294Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:16.629Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T13:38:17.808Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:19.843Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T13:38:21.309Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:22.374Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:24.523Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T13:38:26.060Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:27.178Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:28.840Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T13:38:29.750Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:34.683Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T13:38:46.603Z"}
+{"level":"debug","message":"Failed to delete old message 2865 for user 7580426932","timestamp":"2025-06-22T13:40:18.995Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T13:54:03.936Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T13:54:05.989Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T13:54:06.000Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T13:54:06.002Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:01:38.093Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:01:42.569Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:01:42.584Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:01:42.586Z"}
+{"description":"Bad Request: message can't be edited","error_code":400,"level":"warn","message":"Could not edit message – maybe already edited or too old Call to 'editMessageText' failed! (400: Bad Request: message can't be edited)","method":"editMessageText","name":"GrammyError","ok":false,"parameters":{},"payload":{"chat_id":7580426932,"message_id":2890,"reply_markup":{"inline_keyboard":[[{"callback_data":"cancel_add_balance","text":"❌ Cancel"}]]},"text":"✅ Amount accepted: 0.01 XMR\nGenerating payment address..."},"stack":"GrammyError: Call to 'editMessageText' failed! (400: Bad Request: message can't be edited)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:133:17\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-22T14:02:16.443Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:06:43.382Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:06:45.440Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:06:45.449Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:06:45.451Z"}
+{"level":"debug","message":"Failed to delete message 2876 from balance_msgs:7580426932","timestamp":"2025-06-22T14:06:51.988Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=13d259d880ceaeda","timestamp":"2025-06-22T14:07:01.394Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:09:22.197Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:09:24.478Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:09:24.485Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:09:24.487Z"}
+{"description":"Bad Request: message to edit not found","error_code":400,"level":"error","message":"error ad the cancel_add_balance Call to 'editMessageText' failed! (400: Bad Request: message to edit not found)","method":"editMessageText","name":"GrammyError","ok":false,"parameters":{},"payload":{"chat_id":7580426932,"message_id":2900,"reply_markup":{"inline_keyboard":[[{"callback_data":"add_balance","text":"➕ Add Balance"},{"callback_data":"back_to_home","text":"🔙 Back"}]]},"text":"💰 Your current balance: 94.01 XMR"},"stack":"GrammyError: Call to 'editMessageText' failed! (400: Bad Request: message to edit not found)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:82:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-22T14:09:53.365Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:10:23.771Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:10:26.505Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:10:26.513Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:10:26.514Z"}
+{"description":"Bad Request: message to edit not found","error_code":400,"level":"error","message":"error ad the cancel_add_balance Call to 'editMessageText' failed! (400: Bad Request: message to edit not found)","method":"editMessageText","name":"GrammyError","ok":false,"parameters":{},"payload":{"chat_id":7580426932,"message_id":2907,"reply_markup":{"inline_keyboard":[[{"callback_data":"add_balance","text":"➕ Add Balance"},{"callback_data":"back_to_home","text":"🔙 Back"}]]},"text":"💰 Your current balance: 94.01 XMR"},"stack":"GrammyError: Call to 'editMessageText' failed! (400: Bad Request: message to edit not found)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:82:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-22T14:10:49.486Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:20:40.378Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:20:42.594Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:20:42.612Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:20:42.614Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:25:40.570Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:25:42.483Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:25:42.491Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:25:42.492Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=1e2fc8565c5585da","timestamp":"2025-06-22T14:26:11.925Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:26:56.092Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:26:58.236Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:26:58.252Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:26:58.254Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=26ff708d7f57d317","timestamp":"2025-06-22T14:27:25.906Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:28:39.177Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:28:41.065Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:28:41.095Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:28:41.097Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:32:03.332Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:32:05.405Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:32:05.412Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:32:05.414Z"}
+{"level":"debug","message":"Failed to delete message 2947 from trak_pending_top_up7580426932","timestamp":"2025-06-22T14:33:04.682Z"}
+{"level":"debug","message":"Failed to delete message 2951 from trak_pending_top_up7580426932","timestamp":"2025-06-22T14:33:04.741Z"}
+{"level":"debug","message":"Failed to delete old message 2972 for user 7580426932","timestamp":"2025-06-22T14:33:12.701Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T14:34:30.311Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T14:34:32.245Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T14:34:32.253Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T14:34:32.255Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T14:35:26.760Z"}
+{"level":"debug","message":"Failed to delete message 2981 from trak_pending_top_up7580426932","timestamp":"2025-06-22T14:35:35.870Z"}
+{"level":"debug","message":"Failed to delete old message 3002 for user 7580426932","timestamp":"2025-06-22T14:35:46.008Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T14:35:49.805Z"}
+{"level":"debug","message":"Failed to delete old message 3035 for user 7580426932","timestamp":"2025-06-22T14:42:08.750Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T14:42:41.801Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T14:53:30.518Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T14:53:32.025Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T15:04:16.509Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T15:04:19.471Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T15:04:20.708Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T15:05:54.855Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T15:07:07.248Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T16:08:05.404Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T16:08:06.489Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T16:08:12.697Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-22T16:08:14.058Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T16:08:17.352Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=71422fe3bfcce695","timestamp":"2025-06-22T16:45:21.687Z"}
+{"level":"debug","message":"Failed to delete message 3015 from trak_pending_top_up7580426932","timestamp":"2025-06-22T16:48:28.652Z"}
+{"level":"debug","message":"Failed to delete message 3019 from trak_pending_top_up7580426932","timestamp":"2025-06-22T16:48:28.715Z"}
+{"level":"debug","message":"Failed to delete message 3050 from trak_pending_top_up7580426932","timestamp":"2025-06-22T16:48:28.778Z"}
+{"level":"info","message":"✅ XMR top-up confirmed for user 7580426932 (0.01 XMR)","timestamp":"2025-06-22T16:50:33.778Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T20:26:00.570Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T20:26:02.609Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T20:26:02.624Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T20:26:02.626Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=9f90455d1f76dc92","timestamp":"2025-06-22T20:26:18.314Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T20:27:49.747Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T20:27:52.068Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T20:27:52.076Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T20:27:52.077Z"}
+{"level":"debug","message":"Failed to delete message 3084 from trak_pending_top_up7580426932","timestamp":"2025-06-22T20:27:55.423Z"}
+{"level":"debug","message":"Failed to delete message [object Object] from top_up7580426932","timestamp":"2025-06-22T20:27:55.481Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=dd85707f3891a699","timestamp":"2025-06-22T20:44:08.879Z"}
+{"level":"debug","message":"Failed to delete message [object Object] from top_up7580426932","timestamp":"2025-06-22T20:44:12.050Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=ee92d7a9e29b153c","timestamp":"2025-06-22T20:45:04.815Z"}
+{"level":"debug","message":"Failed to delete message 3107 from trak_pending_top_up7580426932","timestamp":"2025-06-22T20:45:08.965Z"}
+{"level":"debug","message":"Failed to delete message [object Object] from top_up7580426932","timestamp":"2025-06-22T20:45:09.025Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T20:54:19.222Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T20:54:21.845Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T20:54:21.854Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T20:54:21.858Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=c1fd01b86b677bc0","timestamp":"2025-06-22T20:54:55.295Z"}
+{"level":"debug","message":"Failed to delete message 3123 from trak_pending_top_up7580426932","timestamp":"2025-06-22T20:55:16.750Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=92ee8c7f218ea999","timestamp":"2025-06-22T20:56:16.087Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-22T20:56:31.866Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T21:02:57.045Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T21:03:32.117Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T21:03:32.124Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T21:03:32.126Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:34:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:172:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-22T21:03:38.706Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T21:05:56.598Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-22T21:05:58.805Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-22T21:05:58.813Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-22T21:05:58.815Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:34:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:173:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-06-22T21:07:13.295Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-22T21:07:23.746Z"}
