@@ -11,8 +11,6 @@ export function registerBalanceHandler(bot:Bot<Context>){
         await ctx.answerCallbackQuery();
         const telegramId = ctx.from?.id;
         if(!telegramId) return;
-        const redisKey = `balance_msgs:${telegramId}`
-        await deleteCachedMessages(ctx, redisKey);
         try {
             const user = await User.findOne({telegramId});
             if(!user) return ctx.answerCallbackQuery({ text: 'User not found.' });
@@ -59,9 +57,7 @@ export function registerBalanceHandler(bot:Bot<Context>){
         await ctx.answerCallbackQuery();
         const telegramId = ctx.from?.id;
         if(!telegramId) return;
-        const redisKey = `balance_msgs:${telegramId}`
         try {
-            await deleteCachedMessages(ctx, redisKey);
             await UserFlowState.findOneAndUpdate({userId:String(telegramId)},{
                 $unset:{
                     flow:true,data:true
@@ -77,15 +73,14 @@ export function registerBalanceHandler(bot:Bot<Context>){
                 { reply_markup: keyboard });
         } catch (error) {
             logger.error('error ad the cancel_add_balance',error);
-            const msg = await ctx.reply("⚠️ Something went wrong.");
-            redis.pushList(redisKey,[String(msg.message_id)])
+            await ctx.reply("⚠️ Something went wrong.");
         }
     });
 
    bot.on('message:text', async (ctx: Context, next) => {
         const telegramId = ctx.from?.id;
         if (!telegramId) return next();
-        const redisKey = `balance_msgs:${telegramId}`
+
         const flowState = await UserFlowState.findOne({ userId: String(telegramId) });
 
         // Only handle if user is in the add_balance flow
@@ -96,28 +91,20 @@ export function registerBalanceHandler(bot:Bot<Context>){
         try {
             const input = ctx.message?.text?.trim();
             if (!input) {
-                const msg = await ctx.reply('Please enter the amount:', { reply_markup: cancelKeyboard });
-                await redis.pushList(redisKey,[String(msg.message_id)])
-                return
+            return ctx.reply('Please enter the amount:', { reply_markup: cancelKeyboard });
             }
 
             if (!/^(\d+|\d+\.\d{1,8}|\.\d{1,8})$/.test(input)) {
-                const msg = await ctx.reply("❌ Invalid format. Use up to 8 decimal places.", { reply_markup: cancelKeyboard });
-                await redis.pushList(redisKey,[String(msg.message_id)])
-                return
+            return ctx.reply("❌ Invalid format. Use up to 8 decimal places.", { reply_markup: cancelKeyboard });
             }
 
             const amount = parseFloat(input);
             if (isNaN(amount) || amount <= 0) {
-                const msg = await ctx.reply("❌ Invalid amount. Please enter a positive number (e.g. 0.5).", { reply_markup: cancelKeyboard });
-                await redis.pushList(redisKey,[String(msg.message_id)])
-                return
+            return ctx.reply("❌ Invalid amount. Please enter a positive number (e.g. 0.5).", { reply_markup: cancelKeyboard });
             }
 
             if (amount > 1000) {
-                const msg = await ctx.reply("❌ Max top-up amount is 1000 XMR.", { reply_markup: cancelKeyboard });
-                await redis.pushList(redisKey,[String(msg.message_id)])
-                return
+            return ctx.reply("❌ Max top-up amount is 1000 XMR.", { reply_markup: cancelKeyboard });
             }
 
             await UserFlowState.findOneAndUpdate(
@@ -125,17 +112,15 @@ export function registerBalanceHandler(bot:Bot<Context>){
             { $set: { 'data.amount': amount } }
             );
 
-            const msg = await ctx.reply(`✅ Amount accepted: ${amount} XMR\nGenerating payment address...`, {
+            await ctx.reply(`✅ Amount accepted: ${amount} XMR\nGenerating payment address...`, {
             reply_markup: cancelKeyboard,
             });
-            await redis.pushList(redisKey,[String(msg.message_id)])
-            
+
             await handleTopUpXmr(ctx, String(telegramId));
 
         } catch (error) {
             logger.error('Error while handling XMR amount input', error);
-            const msg = await ctx.reply("⚠️ Something went wrong while processing your amount.");
-            await redis.pushList(redisKey,[String(msg.message_id)])
+            await ctx.reply("⚠️ Something went wrong while processing your amount.");
         }
         });
 

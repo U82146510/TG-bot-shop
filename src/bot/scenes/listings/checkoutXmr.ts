@@ -75,7 +75,12 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
     }
 
     if (user.balance < total) {
-      const msg = await ctx.reply(`❌ Insufficient balance. You need ${total.toFixed(2)} XMR.`);
+      const cancelKeyboard = new InlineKeyboard()
+      .text("🔙 Back to Listings", "all_listings")
+      .text("Add Balance","balance").row()
+      const msg = await ctx.reply(`❌ Insufficient balance. You need ${total.toFixed(2)} XMR.`,{
+        reply_markup:cancelKeyboard
+      });
       checkoutMessageIds.push(msg.message_id);
       await redis.pushList(redisCheckoutKey, checkoutMessageIds.map(String), 600);
       return;
