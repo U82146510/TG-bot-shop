@@ -28,7 +28,7 @@ export function registerMainMenu(bot:Bot<Context>){
             logger.error('error at the start menu',error)         
         }
        
-        await ctx.reply(`Welcome @${ctx.from?.username||"Anonym"} to Tesseract bot`,{
+        await ctx.reply(`Welcome @${ctx.from?.username||"Anonym"} to TopDog bot`,{
             reply_markup:getMainMenuKeyboard()
         })
     })
