@@ -1,4 +1,5 @@
-import {Document,Schema,model} from "mongoose";
+import {Document,Schema,Types,model} from "mongoose";
+
 
 interface VariantOption {
     name:string;
@@ -6,6 +7,7 @@ interface VariantOption {
     quantity:number;
     image:string;
     description:string;
+    review:Types.ObjectId[];
 };
 
 interface Variants {
@@ -24,6 +26,7 @@ const variantOptionSchema = new Schema<VariantOption>({
   quantity: { type: Number, default: 0 },
   image: { type: String },
   description: { type: String },
+  review: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
 });
 
 const productModelSchema = new Schema<Variants>({
