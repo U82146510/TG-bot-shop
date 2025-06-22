@@ -123,7 +123,18 @@ export function registerCartHandlers(bot: Bot<Context>) {
         }
         continueKeyboard.text("✅ Buy Now", "checkout_xmr");
 
-        const summaryMsg = await ctx.reply("🧾 You can continue shopping or update your cart.", {
+        // Count the total to pay:
+
+        let total = 0;
+        for (const item of cart.items) {
+        const product = await Product.findById(item.productId).lean();
+        const model = product?.models.find((m) => m.name === item.modelName);
+        const option = model?.options.find((o) => o.name === item.optionName);
+        const price = option?.price ?? 0;
+        total += price * item.quantity;
+        }
+
+        const summaryMsg = await ctx.reply(`💰 Total to pay: ${total} XMR, You can continue shopping .`, {
             reply_markup: continueKeyboard,
         });
         newMsgIds.push(summaryMsg.message_id);
