@@ -14,7 +14,9 @@ export async function handleTopUpXmr(ctx: Context, telegramId: string) {
     const amount = flowState?.data?.amount;
 
     if (!amount || typeof amount !== "number") {
-      await ctx.reply("❌ No amount found. Please restart the top-up.");
+      const redisNoAmount = `noAmount${telegramId}`;
+      const noAmount = await ctx.reply("❌ No amount found. Please restart the top-up.");
+      await redis.pushList(redisNoAmount,[String(noAmount.message_id)])
       return;
     }
     
@@ -45,7 +47,10 @@ export async function handleTopUpXmr(ctx: Context, telegramId: string) {
     const { integrated_address, payment_id } = data.result;
     if (!data?.result?.integrated_address || !data?.result?.payment_id) {
         logger.error("❌ RPC call succeeded but missing fields", data);
-        return ctx.reply("❌ Payment server responded unexpectedly. Please try again later.");
+        const redisDataErro=`dataError${telegramId}`;
+        const dataErro = await ctx.reply("❌ Payment server responded unexpectedly. Please try again later.");
+        await redis.pushList(redisDataErro,[String(dataErro.message_id)])
+        return
     }
 
     await Payment.create({

@@ -76,6 +76,8 @@ export function registerBalanceHandler(bot:Bot<Context>){
         await deleteCachedMessages(ctx,`balance_msgs:${userId}`);
         await deleteCachedMessages(ctx,`top_up${userId}`);
         await deleteCachedMessages(ctx,`error_at_add_balance${userId}`);
+        await deleteCachedMessages(ctx,`noAmount${userId}`);
+        await deleteCachedMessages(ctx,`dataError${userId}`)
         // 🧼 Clear user flow state
         await UserFlowState.findOneAndUpdate(
             { userId },
