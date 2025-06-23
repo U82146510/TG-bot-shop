@@ -2,6 +2,7 @@ import {Document,Schema,Types,model} from "mongoose";
 
 
 interface VariantOption {
+    [x: string]: any;
     name:string;
     price:number;
     quantity:number;

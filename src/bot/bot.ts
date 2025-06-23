@@ -14,7 +14,7 @@ import {redis} from './utils/redis.ts';
 import {startXmrPaymentWatcher} from './services/xmrPaymentWatcher.ts';
 import {registerBalanceHandler} from './scenes/balance.ts';
 import {registerOrdersHandler} from './scenes/orders.ts';
-
+import {registerReviewHandler} from './scenes/itemReview.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -38,6 +38,7 @@ const start = async()=>{
         registerMainMenu(bot);
         startXmrPaymentWatcher(bot);
         registerBalanceHandler(bot);
+        registerReviewHandler(bot)
         registerAboutMenu(bot);
         registerReadWarning(bot);
         registerListingScene(bot);
