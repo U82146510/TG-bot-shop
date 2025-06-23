@@ -68,7 +68,13 @@ export function registerReviewHandler(bot:Bot){
                 logger.error('variant is not found')
             }
             const review = await Review.find({_id:{$in:variant?.review}});
-
+            
+            await UserFlowState.findOneAndUpdate({userId:String(userId)},{
+                $set:{
+                    flow:'await_comment',
+                    data:id
+                }
+            },{ upsert: true})
             const keyboard = new InlineKeyboard().text("🔙 Back", "review").row();
             const redisKey =`comment_${userId}`;
             const msg = await ctx.reply('Enter your comment:',{reply_markup:keyboard});
@@ -80,11 +86,13 @@ export function registerReviewHandler(bot:Bot){
     });
 
     const inputSchema = z.string().max(500).transform(val => val.trim().toLowerCase());
-    bot.on('message:text',async(ctx:Context)=>{
+    bot.on('message:text',async(ctx:Context,next)=>{
         const userId = ctx.from?.id;
         if(!userId) return;
         await deleteCachedMessages(ctx,`comment_${userId}`);
         try {
+            const flowState = await UserFlowState.findOne({ userId: String(userId) });
+            if (!flowState || flowState.flow !== 'await_comment') return next();
             const input = ctx.message?.text;
             const parsed = inputSchema.safeParse(input);
             if(!parsed.success){
@@ -94,7 +102,19 @@ export function registerReviewHandler(bot:Bot){
             const comment = await Review.create({
                 comment:parsed.data
             });
-            console.log(comment.id)
+            
+            await Product.findByIdAndUpdate({
+                'models.options._id':comment.id // do not forget to replace it
+            },{
+                $push:{
+                    'models.$[].options.$[opt].review': comment.id
+                }
+            },{
+                arrayFilters: [
+                    { 'opt._id': comment.id } // do not forget to replace it
+                ]
+            })
+
             ctx.reply('commend added');
         } catch (error) {
             logger.error(error)

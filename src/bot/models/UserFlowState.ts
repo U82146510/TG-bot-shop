@@ -2,7 +2,7 @@ import {Schema,Document,model} from 'mongoose';
 
 interface IUserFlowState extends Document{
     userId:string;
-    flow:'add_balance'|'checkout'|'support'|'awaiting_address';
+    flow:'add_balance'|'checkout'|'support'|'awaiting_address'|'await_comment';
     data?:any;
     updatedAt:Date
 };
