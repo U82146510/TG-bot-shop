@@ -72,10 +72,14 @@ export function registerReviewHandler(bot:Bot){
             const keyboard = new InlineKeyboard()
             const reviews = await Review.find({_id:{$in:variant?.review}});
 
-            for(const arg of reviews){
-                ctx.reply(`${arg.comment}`)
-            }
+            const redisKey =`comment_${userId}`;
 
+            const messageIds: string[] = [];
+            for(const arg of reviews){
+                const msg = await ctx.reply(`${arg.comment}`);
+                messageIds.push(String(msg.message_id));
+            }
+            redis.pushList(redisKey,messageIds);
             // aici trebu de sters the flowstate in caz ca el apasa back
             await UserFlowState.findOneAndUpdate({userId:String(userId)},{
                 $set:{
@@ -86,7 +90,7 @@ export function registerReviewHandler(bot:Bot){
 
             keyboard.text("🔙 Back", "review").row();
 
-            const redisKey =`comment_${userId}`;
+            
             const msg = await ctx.reply('Enter your comment:',{reply_markup:keyboard});
             redis.pushList(redisKey,[String(msg.message_id)]);
         } catch (error) {
