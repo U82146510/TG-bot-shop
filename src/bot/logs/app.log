@@ -1605,3 +1605,24 @@
 {"level":"debug","message":"Failed to delete message 3325 from comment_7580426932","timestamp":"2025-06-24T18:44:05.902Z"}
 {"level":"debug","message":"Failed to delete message 3333 from comment_7580426932","timestamp":"2025-06-24T18:44:05.961Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-24T18:44:58.036Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-24T20:44:59.601Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-24T20:44:59.608Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-24T20:44:59.610Z"}
+{"level":"debug","message":"Failed to delete message 3348 from comment_7580426932","timestamp":"2025-06-24T20:45:55.426Z"}
+{"level":"debug","message":"No message to delete when entering orders view for user 7580426932","timestamp":"2025-06-24T20:46:00.512Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-24T20:47:39.296Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-24T20:47:41.237Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-24T20:47:41.247Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-24T20:47:41.249Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-24T20:49:13.115Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-24T20:49:14.930Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-24T20:49:14.939Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-24T20:49:14.940Z"}
+{"level":"debug","message":"No message to delete when entering review menu for user 7580426932","timestamp":"2025-06-24T20:49:17.091Z"}
+{"level":"debug","message":"No message to delete when entering review menu for user 7580426932","timestamp":"2025-06-24T20:49:29.284Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-24T20:49:33.993Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-24T20:53:49.429Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-24T20:53:49.439Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-24T20:53:49.442Z"}
+{"level":"debug","message":"No message to delete when entering review menu for user 7580426932","timestamp":"2025-06-24T20:54:16.872Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-24T20:54:29.086Z"}

@@ -1,10 +1,15 @@
-import {Document,Schema,model} from "mongoose";
+import { Document, Schema, model } from "mongoose";
 
-interface IReview extends Document{
-    comment:string;
-};
+interface IReview extends Document {
+    comment: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
 
-const reviewShema = new Schema<IReview>({
-    comment:{type:String}
+const reviewSchema = new Schema<IReview>({
+    comment: { type: String }
+}, {
+    timestamps: true // 👈 enables createdAt and updatedAt
 });
-export const Review = model<IReview>('Review', reviewShema);
+
+export const Review = model<IReview>('Review', reviewSchema);
