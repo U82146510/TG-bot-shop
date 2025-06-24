@@ -29,11 +29,17 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
       });
       checkoutMessageIds.push(msg1.message_id);
       await redis.pushList(redisCheckoutKey, checkoutMessageIds.map(String), 600);
-      await UserFlowState.findOneAndUpdate({ userId }, {
-        $set: { flow: 'awaiting_address' }
-      }, { upsert: true });
+
+      // ✅ Ensure `data` is an object so `data.shippingAddress` won't throw error later
+      await UserFlowState.findOneAndUpdate(
+        { userId },
+        { $set: { flow: 'awaiting_address', data: {} } },
+        { upsert: true }
+      );
+
       return;
-    }
+  }
+
 
     const cart = await UserCart.findOne({ userId });
     if (!cart || cart.items.length === 0) {

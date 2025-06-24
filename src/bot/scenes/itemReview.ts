@@ -10,7 +10,7 @@ import mongoose from 'mongoose';
 
 export function registerReviewHandler(bot: Bot) {
 
-  // 🔍 Main review menu (select a product variant to leave a comment)
+
   bot.callbackQuery('review', async (ctx: Context) => {
     await ctx.answerCallbackQuery();
     const userId = ctx.from?.id;
@@ -53,7 +53,7 @@ export function registerReviewHandler(bot: Bot) {
     }
   });
 
-  // 🗨️ Comments section for selected variant
+
   bot.callbackQuery(/^comments_([a-f0-9]{24})$/, async (ctx: Context) => {
     const userId = ctx.from?.id;
     if (!userId) return;
@@ -113,7 +113,7 @@ export function registerReviewHandler(bot: Bot) {
     }
   });
 
-  // 🧾 Handle new comment messages
+
   bot.on('message:text', async (ctx: Context, next) => {
     const userId = ctx.from?.id;
     if (!userId) return;
