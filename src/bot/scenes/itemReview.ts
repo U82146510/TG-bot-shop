@@ -15,7 +15,8 @@ export function registerReviewHandler(bot:Bot){
         await ctx.answerCallbackQuery();
         const userId = ctx.from?.id;
         if(!userId) return;
-
+        await deleteCachedMessages(ctx,`msg_item_review${userId}`);
+        await deleteCachedMessages(ctx,`input_msg${userId}`);
         try {
               await ctx.deleteMessage(); // delete triggering button msg (if any)
         } catch (e) {
@@ -71,15 +72,13 @@ export function registerReviewHandler(bot:Bot){
             }
             const keyboard = new InlineKeyboard()
             const reviews = await Review.find({_id:{$in:variant?.review}});
-
-            const redisKey =`comment_${userId}`;
-
-            const messageIds: string[] = [];
+            const arr_db:string[] = [];
+            const redisKeyMsg = `msg_item_review${userId}`;
             for(const arg of reviews){
                 const msg = await ctx.reply(`${arg.comment}`);
-                messageIds.push(String(msg.message_id));
+                arr_db.push(String(msg.message_id));
             }
-            redis.pushList(redisKey,messageIds);
+            redis.pushList(redisKeyMsg,arr_db)
             // aici trebu de sters the flowstate in caz ca el apasa back
             await UserFlowState.findOneAndUpdate({userId:String(userId)},{
                 $set:{
@@ -90,7 +89,7 @@ export function registerReviewHandler(bot:Bot){
 
             keyboard.text("🔙 Back", "review").row();
 
-            
+            const redisKey =`comment_${userId}`;
             const msg = await ctx.reply('Enter your comment:',{reply_markup:keyboard});
             redis.pushList(redisKey,[String(msg.message_id)]);
         } catch (error) {
@@ -121,18 +120,25 @@ export function registerReviewHandler(bot:Bot){
             });
             const variantId = new mongoose.Types.ObjectId(flowState.data);
             await Product.findOneAndUpdate({
-                'models.options._id':variantId // do not forget to replace it
+                'models.options._id':variantId 
             },{
                 $push:{
                     'models.$[].options.$[opt].review': comment.id
                 }
             },{
                 arrayFilters: [
-                    { 'opt._id': variantId } // do not forget to replace it
+                    { 'opt._id': variantId }
                 ]
             })
             await UserFlowState.deleteOne({ userId: String(userId) });
-            await ctx.reply('comment added');
+            await deleteCachedMessages(ctx,`msg_item_review${userId}`);
+            const redisKey = `input_msg${userId}`
+            const keyboard = new InlineKeyboard().text("🔙 Back", "review").row();
+            const msg = await ctx.reply('comment added',{
+                reply_markup:keyboard
+            });
+            redis.pushList(redisKey,[String(msg.message_id)]);
+
         } catch (error) {
             logger.error(error)
         }

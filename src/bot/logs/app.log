@@ -1572,3 +1572,36 @@
 {"level":"info","message":"Redis connecting...","timestamp":"2025-06-23T21:56:09.349Z"}
 {"level":"info","message":"Redis connected and ready","timestamp":"2025-06-23T21:56:09.351Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-23T21:58:46.269Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-24T14:08:55.003Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-24T14:08:55.010Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-24T14:08:55.012Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-24T14:09:23.849Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-24T14:09:25.618Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-24T14:09:25.625Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-24T14:09:25.626Z"}
+{"level":"debug","message":"Failed to delete message 3265 from cart_msgs:7580426932","timestamp":"2025-06-24T14:10:40.650Z"}
+{"level":"debug","message":"Failed to delete message 3266 from cart_msgs:7580426932","timestamp":"2025-06-24T14:10:40.713Z"}
+{"level":"debug","message":"Failed to delete message 3267 from cart_msgs:7580426932","timestamp":"2025-06-24T14:10:40.776Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-24T14:13:50.487Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-24T14:13:50.494Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-24T14:13:50.496Z"}
+{"level":"debug","message":"Failed to delete old message 3293 for user 7580426932","timestamp":"2025-06-24T14:14:28.712Z"}
+{"level":"debug","message":"Failed to delete message 3268 from cart_msgs:7580426932","timestamp":"2025-06-24T14:14:30.932Z"}
+{"level":"debug","message":"Failed to delete message 3269 from cart_msgs:7580426932","timestamp":"2025-06-24T14:14:30.994Z"}
+{"level":"debug","message":"Failed to delete message 3270 from cart_msgs:7580426932","timestamp":"2025-06-24T14:14:31.054Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-24T14:36:47.548Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-24T14:36:49.492Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-24T14:36:49.500Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-24T14:36:49.501Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-24T18:43:30.614Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-24T18:43:30.625Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-24T18:43:30.626Z"}
+{"level":"debug","message":"Failed to delete message 3262 from comment_7580426932","timestamp":"2025-06-24T18:44:05.541Z"}
+{"level":"debug","message":"Failed to delete message 3275 from comment_7580426932","timestamp":"2025-06-24T18:44:05.602Z"}
+{"level":"debug","message":"Failed to delete message 3299 from comment_7580426932","timestamp":"2025-06-24T18:44:05.662Z"}
+{"level":"debug","message":"Failed to delete message 3304 from comment_7580426932","timestamp":"2025-06-24T18:44:05.722Z"}
+{"level":"debug","message":"Failed to delete message 3311 from comment_7580426932","timestamp":"2025-06-24T18:44:05.782Z"}
+{"level":"debug","message":"Failed to delete message 3318 from comment_7580426932","timestamp":"2025-06-24T18:44:05.841Z"}
+{"level":"debug","message":"Failed to delete message 3325 from comment_7580426932","timestamp":"2025-06-24T18:44:05.902Z"}
+{"level":"debug","message":"Failed to delete message 3333 from comment_7580426932","timestamp":"2025-06-24T18:44:05.961Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-24T18:44:58.036Z"}
