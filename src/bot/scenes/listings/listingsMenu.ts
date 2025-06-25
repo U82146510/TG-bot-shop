@@ -7,6 +7,6 @@ export async function getListingsMenu():Promise<InlineKeyboard>{
     for (const product of products) {
         keyboard.text(product.name, `product_${product._id}`).row();
     }
-    keyboard.text("Back","back_to_home").text("Price List","price_list").text("Balance","balance").row()
+    keyboard.text("Back","back_to_home").text("Balance","balance").row()
     return keyboard
 };
