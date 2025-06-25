@@ -22,6 +22,6 @@ export function getMainMenuKeyboard(): InlineKeyboard {
     .text("💰 Balance", "balance").row()
 
     // Contact & community
-    .text("📩 Contact", "contact")
+    .url("📩 Contact", "https://t.me/mr_white99999")
     .url("👥 Community", "https://t.me/+gwqw0iz5shhhODcy").row();
 }
