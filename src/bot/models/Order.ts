@@ -12,6 +12,10 @@ interface IOrder extends Document {
   orderId: string;
   items: IOrderItem[];
   shippingAddress: string;
+  delivery: {
+    type: "tracked" | "not_tracked" | "special_stealth" | "top_stealth";
+    price: number;
+  };
   total: number;
   status: "pending" | "delivered" | "cancelled";
   deliveredAt?: Date;
@@ -35,6 +39,14 @@ const orderSchema = new Schema<IOrder>(
     orderId: { type: String, required: true, unique: true }, // ✅ this alone defines the unique index
     items: [orderItemSchema],
     shippingAddress: { type: String, required: true },
+    delivery:{
+      type:{
+        type:String,
+        enum:["tracked", "not_tracked", "special_stealth", "top_stealth"],
+        required:true,
+    },
+      price:{type:Number,require:true}
+    },
     total: { type: Number, required: true },
     status: {
       type: String,
@@ -47,7 +59,7 @@ const orderSchema = new Schema<IOrder>(
   }
 );
 
-// ✅ Keep only this compound index (optional but useful)
+
 orderSchema.index({ userId: 1, createdAt: -1 });
 
 export const Order = model<IOrder>("Order", orderSchema);

@@ -7,6 +7,7 @@ import { Order } from '../../models/Order.ts';
 import { safeEditOrReply } from '../../utils/safeEdit.ts';
 import { redis } from '../../utils/redis.ts';
 import { deleteCachedMessages } from '../../utils/cleanup.ts';
+import { Decimal } from 'decimal.js';
 
 export function registerCheckoutXmr(bot: Bot<Context>) {
   bot.callbackQuery("checkout_xmr", async (ctx) => {
@@ -21,6 +22,7 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
 
     const flowState = await UserFlowState.findOne({ userId });
     const shippingAddress = flowState?.data.shippingAddress;
+    const delivery = flowState?.data.delivery;
     if (!shippingAddress) {
       const cancelKeyboard = new InlineKeyboard().text("❌ Cancel", "cancel_add_balance");
       const msg1 = await ctx.reply("📦 Please enter your *shipping address* to continue with checkout:", {
@@ -30,7 +32,7 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
       checkoutMessageIds.push(msg1.message_id);
       await redis.pushList(redisCheckoutKey, checkoutMessageIds.map(String), 600);
 
-      // ✅ Ensure `data` is an object so `data.shippingAddress` won't throw error later
+   
       await UserFlowState.findOneAndUpdate(
         { userId },
         { $set: { flow: 'awaiting_address', data: {} } },
@@ -38,8 +40,23 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
       );
 
       return;
-  }
+    }
 
+    if(!delivery){
+        const keyboard = new InlineKeyboard()
+          .text("📦 Tracked (£14)", "delivery_tracked").row()
+          .text("📭 Not Tracked (£5)", "delivery_not_tracked").row()
+          .text("🕵️ Special Stealth (£50)", "delivery_special_stealth").row()
+          .text("👑 Top Stealth (£200)", "delivery_top_stealth").row()
+          .text("❌ Cancel", "cancel_add_balance");
+        const msg = await ctx.reply("🚚 Please select a *delivery method*:", {
+          parse_mode: "Markdown",
+          reply_markup: keyboard
+        });
+        checkoutMessageIds.push(msg.message_id);
+        await redis.pushList(redisCheckoutKey, checkoutMessageIds.map(String), 600);
+        return;
+    }
 
     const cart = await UserCart.findOne({ userId });
     if (!cart || cart.items.length === 0) {
@@ -49,7 +66,7 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
       return;
     }
 
-    let total = 0;
+    let total = new Decimal(delivery.price);
     for (const item of cart.items) {
       const product = await Product.findById(item.productId).lean();
       const model = product?.models.find((m) => m.name === item.modelName);
@@ -60,8 +77,8 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
         await redis.pushList(redisCheckoutKey, checkoutMessageIds.map(String), 600);
         return;
       }
-      const price = option?.price ?? 0;
-      total += price * item.quantity;
+      const price = new Decimal(option?.price ?? 0);
+      total = total.plus(price.times(item.quantity));
     }
 
     const telegramId = ctx.from?.id;
@@ -80,7 +97,7 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
       return;
     }
 
-    if (user.balance < total) {
+    if (user.balance < total.toNumber()) {
       const cancelKeyboard = new InlineKeyboard()
       .text("🔙 Back to Listings", "all_listings")
       .text("Add Balance","balance").row()
@@ -106,13 +123,31 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
     }
 
     for (const item of cart.items) {
-      const productDoc = await Product.findById(item.productId);
-      if (!productDoc) continue;
-      const model = productDoc.models.find((m) => m.name === item.modelName);
-      const option = model?.options.find((o) => o.name === item.optionName);
-      if (!model || !option) continue;
-      option.quantity = Math.max(0, option.quantity - item.quantity);
-      await productDoc.save();
+      const updated = await Product.updateOne(
+        {
+          _id: item.productId,
+          "models.name": item.modelName,
+          "models.options.name": item.optionName,
+          "models.options.quantity": { $gte: item.quantity }
+        },
+        {
+          $inc: { "models.$[m].options.$[o].quantity": -item.quantity }
+        },
+        {
+          arrayFilters: [
+            { "m.name": item.modelName },
+            { "o.name": item.optionName }
+          ]
+        }
+      );
+
+       if (updated.modifiedCount === 0) {
+        const msg = await ctx.reply("❌ Product just went out of stock or insufficient quantity.");
+        checkoutMessageIds.push(msg.message_id);
+        await redis.pushList(redisCheckoutKey, checkoutMessageIds.map(String), 600);
+        return;
+      }
+
     }
 
     await UserCart.deleteOne({ userId });
@@ -130,6 +165,7 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
         quantity: item.quantity,
       })),
       shippingAddress,
+      delivery,
       total,
       status: "pending",
     });
@@ -159,9 +195,48 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
     await deleteCachedMessages(ctx, redisCheckoutKey);
     await UserFlowState.deleteOne({ userId });
     const keyboard = new InlineKeyboard().text("🔙 Back to Menu", "back_to_home");
-    const msg = await safeEditOrReply(ctx, "❌ Checkout canceled. Your address was not saved.", keyboard);
+    await safeEditOrReply(ctx, "❌ Checkout canceled. Your address was not saved.", keyboard);
   });
 
+
+  const deliveryOptions = {
+    delivery_tracked: { type: "tracked", price: 14 },
+    delivery_not_tracked: { type: "not_tracked", price: 5 },
+    delivery_special_stealth: { type: "special_stealth", price: 50 },
+    delivery_top_stealth: { type: "top_stealth", price: 200 },
+  };
+
+  for(const [callback,{type,price}] of Object.entries(deliveryOptions)){
+    bot.callbackQuery(callback,async(ctx:Context)=>{
+      try {
+        await ctx.answerCallbackQuery();
+        const userId = String(ctx.from?.id)
+        const redisCheckoutKey = `checkout_msgs:${userId}`;
+        await deleteCachedMessages(ctx, redisCheckoutKey);
+        await UserFlowState.findOneAndUpdate({userId},{
+          $set:{
+            "data.delivery":{type,price},
+            flow:"checkout"
+          }
+        })
+        const msg = await ctx.reply(`✅ Delivery method selected: *${type.replace('_', ' ')}* (£${price})`, {
+          parse_mode: "Markdown"
+        });
+        const keyboard = new InlineKeyboard()
+          .text("🔙 Continue Shopping", "all_listings")
+          .text("✅ Buy Now", "checkout_xmr").row()
+          .text("❌ Cancel", "cancel_checkout");
+
+        const msg2 = await ctx.reply("🧾 You can now proceed to checkout:", {
+          reply_markup: keyboard
+        });
+
+        await redis.pushList(redisCheckoutKey, [String(msg.message_id), String(msg2.message_id)], 600);
+      } catch (error) {
+        
+      }
+    })
+  }
 
 
   bot.callbackQuery("cancel_checkout", async (ctx) => {
@@ -208,13 +283,18 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
     }
 
     const msg1 = await ctx.reply(`✅ Address saved:\n\n📍 ${escapeMarkdown(address)}`, { parse_mode: "Markdown" });
-    const keyboard = new InlineKeyboard()
-      .text("🔙 Continue Shopping", "all_listings")
-      .text("✅ Buy Now", "checkout_xmr")
-      .row()
+     const keyboard = new InlineKeyboard()
+      .text("📦 Tracked (£14)", "delivery_tracked").row()
+      .text("📭 Not Tracked (£5)", "delivery_not_tracked").row()
+      .text("🕵️ Special Stealth (£50)", "delivery_special_stealth").row()
+      .text("👑 Top Stealth (£200)", "delivery_top_stealth").row()
       .text("❌ Cancel", "cancel_checkout");
 
-    const msg2 = await ctx.reply("🧾 You can now proceed to checkout:", { reply_markup: keyboard });
+    const msg2 = await ctx.reply("🚚 Please select a *delivery method*:", {
+      parse_mode: "Markdown",
+      reply_markup: keyboard
+    });
+
     await redis.pushList(redisCheckoutKey, [String(msg1.message_id), String(msg2.message_id)], 600);
   });
 }
