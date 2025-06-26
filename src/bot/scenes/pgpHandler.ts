@@ -1,4 +1,4 @@
-import { InlineKeyboard, Bot, Context, InputFile } from "grammy";
+import { Bot, Context, InputFile } from "grammy";
 import { logger } from "../logger/logger.ts";
 import path from "path";
 import { fileURLToPath } from "url";

@@ -16,6 +16,7 @@ import {registerBalanceHandler} from './scenes/balance.ts';
 import {registerOrdersHandler} from './scenes/orders.ts';
 import {registerReviewHandler} from './scenes/itemReview.ts';
 import {registerPgpHandler} from './scenes/pgpHandler.ts';
+import {startAdminPanel} from '../adminPanel/app.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,6 +48,7 @@ const start = async()=>{
         registerCommonHandlers(bot);
         registerOrdersHandler(bot);
         registerPgpHandler(bot);
+        await startAdminPanel();
         await bot.start();
     } catch (error) {
         logger.error(error);

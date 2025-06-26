@@ -55,7 +55,7 @@ const orderSchema = new Schema<IOrder>(
     },
     deliveredAt: { type: Date },
     cancelledAt: { type: Date },
-    createdAt: { type: Date, default: Date.now, expires: 2592000 },
+    createdAt: { type: Date, default: Date.now},
   }
 );
 
