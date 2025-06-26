@@ -3,20 +3,22 @@ import { Product } from "../../models/Products.ts";
 import { safeEditOrReply } from "../../utils/safeEdit.ts";
 import { logger } from "../../logger/logger.ts";
 import { redis } from "../../utils/redis.ts";
+import {deleteCachedMessages} from '../../utils/cleanup.ts';
+import { id } from 'zod/v4/locales';
 
 export function registerProductSelection(bot:Bot<Context>){
     bot.callbackQuery(/^product_(.+)$/, async (ctx) => {
-    await ctx.answerCallbackQuery();
-    const productId = ctx.match?.[1];
-    const product = await Product.findById(productId).lean();
-    if (!product || !product.models?.length) {
-        return ctx.reply("⚠️ No models available for this category.");
-    }
-    const keyboard = new InlineKeyboard();
-    for (const model of product.models) {
-        keyboard.text(model.name, `model_${product._id}_${model.name}`).row();
-    }
-    keyboard.text("🔙 Back", "all_listings");
+        await ctx.answerCallbackQuery();
+        const productId = ctx.match?.[1];
+        const product = await Product.findById(productId).lean();
+        if (!product || !product.models?.length) {
+            return ctx.reply("⚠️ No models available for this category.");
+        }
+        const keyboard = new InlineKeyboard();
+        for (const model of product.models) {
+            keyboard.text(model.name, `model_${product._id}_${model.name}`).row();
+        }
+        keyboard.text("🔙 Back", "all_listings");
         await safeEditOrReply(ctx, `📦 *${product.name} Models*`, keyboard);
     });
 
@@ -24,17 +26,8 @@ export function registerProductSelection(bot:Bot<Context>){
         await ctx.answerCallbackQuery();
         const userId = String(ctx.from?.id);
         const redisKey = `cart_msgs:${userId}`;
-
         logger.info(`User ${userId} navigated to model variants`);
-
-        const ids = await redis.getList(redisKey);
-        for (const id of ids) {
-            try {
-                await ctx.api.deleteMessage(ctx.chat!.id, Number(id));
-            } catch {}
-        }
-        await redis.delete(redisKey);
-
+        await deleteCachedMessages(ctx,redisKey);
         const [_, productId, modelName] = ctx.match ?? [];
         const product = await Product.findById(productId).lean();
         const model = product?.models.find((m) => m.name === modelName);

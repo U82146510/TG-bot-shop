@@ -13,7 +13,6 @@ export function registerListingScene(bot: Bot<Context>): void {
 
         const userId = String(ctx.from?.id);
 
-        // ⛔ Cleanup if user previously entered address but didn't finish checkout
         const state = await UserFlowState.findOne({ userId });
         if (state?.flow === "checkout") {
             await UserFlowState.deleteOne({ userId });

@@ -46,40 +46,40 @@ export function registerVariantSelection(bot:Bot<Context>){
       });
 
     bot.callbackQuery(/^qty_(inc|dec)_(.+)_(.+)_(.+)_(\d+)$/, async (ctx) => {
-    await ctx.answerCallbackQuery();
-    const [_, action, productId, modelName, optionName, qtyStr] = ctx.match ?? [];
-    let quantity = parseInt(qtyStr);
-    const product = await Product.findById(productId).lean();
-    const model = product?.models.find((m) => m.name === modelName);
-    const option = model?.options.find((o) => o.name === optionName);
-    if (!option) return ctx.reply("⚠️ Option not found.");
+      await ctx.answerCallbackQuery();
+      const [_, action, productId, modelName, optionName, qtyStr] = ctx.match ?? [];
+      let quantity = parseInt(qtyStr);
+      const product = await Product.findById(productId).lean();
+      const model = product?.models.find((m) => m.name === modelName);
+      const option = model?.options.find((o) => o.name === optionName);
+      if (!option) return ctx.reply("⚠️ Option not found.");
 
-    if (action === "inc") {
-      if (quantity + 1 > option.quantity) {
-        return ctx.reply(`⚠️ Only ${option.quantity} available.`);
+      if (action === "inc") {
+        if (quantity + 1 > option.quantity) {
+          return ctx.reply(`⚠️ Only ${option.quantity} available.`);
+        }
+        quantity++;
       }
-      quantity++;
-    }
 
-    if (action === "dec") {
-      quantity = Math.max(1, quantity - 1);
-    }
+      if (action === "dec") {
+        quantity = Math.max(1, quantity - 1);
+      }
 
-    await UserState.findOneAndUpdate(
-      { userId: String(ctx.from?.id) },
-      { productId, modelName },
-      { upsert: true }
-    );
+      await UserState.findOneAndUpdate(
+        { userId: String(ctx.from?.id) },
+        { productId, modelName },
+        { upsert: true }
+      );
 
-    const msg = `🧩 *${option.name}*\n\n💰 Price: $${option.price}\n📦 Available: ${option.quantity}\n📝 ${option.description || "No description."}`;
-    const keyboard = new InlineKeyboard()
-      .text("➖", `qty_dec_${productId}_${modelName}_${optionName}_${quantity}`)
-      .text(String(quantity), `qty_current_${productId}_${modelName}_${optionName}_${quantity}`)
-      .text("➕", `qty_inc_${productId}_${modelName}_${optionName}_${quantity}`).row()
-      .text("🛒 Add to Basket", `add_${productId}_${modelName}_${optionName}_${quantity}`).row()
-      .text("🛒 View Cart", `view_cart`).row()
-      .text("🔙 Back", `model_${productId}_${modelName}`);
+      const msg = `🧩 *${option.name}*\n\n💰 Price: $${option.price}\n📦 Available: ${option.quantity}\n📝 ${option.description || "No description."}`;
+      const keyboard = new InlineKeyboard()
+        .text("➖", `qty_dec_${productId}_${modelName}_${optionName}_${quantity}`)
+        .text(String(quantity), `qty_current_${productId}_${modelName}_${optionName}_${quantity}`)
+        .text("➕", `qty_inc_${productId}_${modelName}_${optionName}_${quantity}`).row()
+        .text("🛒 Add to Basket", `add_${productId}_${modelName}_${optionName}_${quantity}`).row()
+        .text("🛒 View Cart", `view_cart`).row()
+        .text("🔙 Back", `model_${productId}_${modelName}`);
 
-    await safeEditOrReply(ctx, msg, keyboard);
+      await safeEditOrReply(ctx, msg, keyboard);
   });
 }
