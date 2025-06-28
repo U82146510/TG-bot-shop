@@ -6,7 +6,6 @@ interface VariantOption {
     name:string;
     price:number;
     quantity:number;
-    image:string;
     description:string;
     review:Types.ObjectId[];
 };
@@ -25,7 +24,6 @@ const variantOptionSchema = new Schema<VariantOption>({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   quantity: { type: Number, default: 0 },
-  image: { type: String },
   description: { type: String },
   review: [{ type: Schema.Types.ObjectId, ref: 'Review' }],
 });
