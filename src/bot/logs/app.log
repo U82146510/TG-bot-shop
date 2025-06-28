@@ -2266,3 +2266,13 @@
 {"level":"info","message":"Redis connected and ready","timestamp":"2025-06-28T19:28:07.377Z"}
 {"level":"info","message":"Server is ON","timestamp":"2025-06-28T19:28:07.387Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-28T19:28:27.797Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-28T19:29:38.446Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-28T19:29:38.460Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-28T19:29:38.462Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-06-28T19:29:38.474Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-28T19:30:55.499Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-28T19:30:57.651Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-28T19:30:57.658Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-28T19:30:57.660Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-06-28T19:30:57.670Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-28T19:35:09.605Z"}
