@@ -21,7 +21,7 @@ export interface IProduct extends Document{
 };
 
 const variantOptionSchema = new Schema<VariantOption>({
-  name: { type: String, required: true },
+  name: { type: String, required: true,unique:true },
   price: { type: Number, required: true },
   quantity: { type: Number, default: 0 },
   description: { type: String },
