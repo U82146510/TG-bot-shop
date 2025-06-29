@@ -74,10 +74,10 @@ export function registerReviewHandler(bot: Bot) {
       return;
     }
 
-    const reviews = await Review.find({ _id: { $in: variant.review } });
+    const reviews = await Review.find({ _id: { $in: variant.review },post:true });
     const backKeyboard = new InlineKeyboard().text("🔙 Back to Variants", "review").row();
 
-    // Show reviews if they exist
+    
     if (reviews.length === 0) {
       const redisKeyMsg = `msg_item_review${userId}`;
       const msg = await ctx.reply('📭 No comments yet. Be the first to add one!');
@@ -103,9 +103,12 @@ export function registerReviewHandler(bot: Bot) {
     }
 
     // Save state for input
-    await UserFlowState.findOneAndUpdate(
+    await UserFlowState.findOneAndUpdate(  // here i need to add the Variant name
       { userId: String(userId) },
-      { $set: { flow: 'await_comment', data: id } },
+      { $set: { flow: 'await_comment', data: {
+        variantId: id,
+        variantName: variant.name
+      } } },
       { upsert: true }
     );
 
@@ -141,10 +144,10 @@ export function registerReviewHandler(bot: Bot) {
         logger.error('Invalid comment input');
         return;
       }
+      const variantName = flowState.data.variantName; 
+      const comment = await Review.create({ comment: parsed.data,variantName }); // here i should push the variant name too
 
-      const comment = await Review.create({ comment: parsed.data });
-
-      const variantId = new mongoose.Types.ObjectId(flowState.data);
+      const variantId = new mongoose.Types.ObjectId(flowState.data.variantId);
       await Product.findOneAndUpdate({
         'models.options._id': variantId
       }, {
