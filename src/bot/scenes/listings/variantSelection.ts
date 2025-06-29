@@ -23,8 +23,12 @@ export function registerVariantSelection(bot:Bot<Context>){
         const model = product?.models.find((m) => m.name === modelName);
         const option = model?.options.find((o) => o.name === optionName);
         if (!option) {
+          const keyboard = new InlineKeyboard().text("🔙 Back", `back_to_home`)
+          const redisKey = `delete_option_key${userId}`
           logger.warn(`Option not found: ${optionName} for user ${userId}`);
-          return ctx.reply("⚠️ Option not found.");
+          const msg = ctx.reply("⚠️ Option not found.",{reply_markup:keyboard});
+          redis.pushList(redisKey,[String((await msg).message_id)])
+          return;
         }
     
         await UserState.findOneAndUpdate(
@@ -47,12 +51,21 @@ export function registerVariantSelection(bot:Bot<Context>){
 
     bot.callbackQuery(/^qty_(inc|dec)_(.+)_(.+)_(.+)_(\d+)$/, async (ctx) => {
       await ctx.answerCallbackQuery();
+      const userId = ctx.from.id;
+      if(!userId) return;
       const [_, action, productId, modelName, optionName, qtyStr] = ctx.match ?? [];
       let quantity = parseInt(qtyStr);
       const product = await Product.findById(productId).lean();
       const model = product?.models.find((m) => m.name === modelName);
       const option = model?.options.find((o) => o.name === optionName);
-      if (!option) return ctx.reply("⚠️ Option not found.");
+      if (!option) {
+          const keyboard = new InlineKeyboard().text("🔙 Back", `back_to_home`)
+          const redisKey = `delete_option_key${userId}`
+          logger.warn(`Option not found: ${optionName} for user ${userId}`);
+          const msg = ctx.reply("⚠️ Option not found.",{reply_markup:keyboard});
+          redis.pushList(redisKey,[String((await msg).message_id)])
+          return;
+      }
 
       if (action === "inc") {
         if (quantity + 1 > option.quantity) {

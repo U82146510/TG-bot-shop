@@ -20,8 +20,10 @@ export function registerCartHandlers(bot: Bot<Context>) {
         const model = product?.models.find((m) => m.name === modelName);
         const option = model?.options.find((o) => o.name === optionName);
         if (!option) {
-            const msg = await ctx.reply("⚠️ Option not found.");
-            await redis.pushList(redisCheckoutKey, [String(msg.message_id)], 600);
+            const keyboard = new InlineKeyboard().text("🔙 Back", `back_to_home`)
+            const redisKey = `delete_option_key${userId}`
+            const msg = ctx.reply("⚠️ Option not found.",{reply_markup:keyboard});
+            redis.pushList(redisKey,[String((await msg).message_id)])
             return;
         }
 
@@ -148,7 +150,7 @@ export function registerCartHandlers(bot: Bot<Context>) {
         await ctx.answerCallbackQuery();
         const [_, action, itemId] = ctx.match ?? [];
         const userId = String(ctx.from?.id);
-
+        
         const redisKey = `cart_msgs:${userId}`;
         await deleteCachedMessages(ctx, redisKey);
 
@@ -162,8 +164,10 @@ export function registerCartHandlers(bot: Bot<Context>) {
         const model = product?.models.find((m) => m.name === item.modelName);
         const option = model?.options.find((o) => o.name === item.optionName);
         if (!option) {
-            const msg = await ctx.reply("⚠️ Option not found.");
-            await redis.pushList(redisKey, [String(msg.message_id)], 600);
+            const keyboard = new InlineKeyboard().text("🔙 Back", `back_to_home`)
+            const redisKey = `delete_option_key${userId}`
+            const msg = ctx.reply("⚠️ Option not found.",{reply_markup:keyboard});
+            redis.pushList(redisKey,[String((await msg).message_id)])
             return;
         }
 

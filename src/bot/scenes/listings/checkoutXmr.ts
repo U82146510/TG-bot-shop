@@ -72,9 +72,14 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
       const model = product?.models.find((m) => m.name === item.modelName);
       const option = model?.options.find((o) => o.name === item.optionName);
       if (!product || !model || !option) {
-        const errorMsg = await ctx.reply("❌ Product or option not found. Please update your cart.");
+        const keyboard = new InlineKeyboard().text("❌ Back", "back_to_home");
+        const errorMsg = await ctx.reply("❌ Product or option not found. Please update your cart.",{
+          reply_markup:keyboard
+        });
         checkoutMessageIds.push(errorMsg.message_id);
         await redis.pushList(redisCheckoutKey, checkoutMessageIds.map(String), 600);
+        await UserCart.deleteOne({ userId });
+        await UserFlowState.deleteOne({ userId });
         return;
       }
       const price = new Decimal(option?.price ?? 0);
