@@ -2555,3 +2555,50 @@
 {"level":"info","message":"Redis connected and ready","timestamp":"2025-06-29T14:23:24.117Z"}
 {"level":"info","message":"Server is ON","timestamp":"2025-06-29T14:23:24.129Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-06-29T14:23:34.603Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-29T14:36:46.744Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-29T14:36:46.752Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-29T14:36:46.753Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-06-29T14:36:46.768Z"}
+{"level":"debug","message":"Failed to delete message 4122 from comment_7580426932","timestamp":"2025-06-29T14:41:02.932Z"}
+{"level":"debug","message":"Failed to delete message 4125 from comment_7580426932","timestamp":"2025-06-29T14:41:02.989Z"}
+{"level":"debug","message":"Failed to delete message 4128 from comment_7580426932","timestamp":"2025-06-29T14:41:03.046Z"}
+{"level":"debug","message":"Failed to delete message 4131 from comment_7580426932","timestamp":"2025-06-29T14:41:03.101Z"}
+{"level":"debug","message":"Failed to delete message 4134 from comment_7580426932","timestamp":"2025-06-29T14:41:03.157Z"}
+{"level":"debug","message":"No message to delete when entering review menu for user 7580426932","timestamp":"2025-06-29T14:41:05.682Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-06-29T14:41:40.615Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-06-29T14:41:41.663Z"}
+{"level":"debug","message":"Failed to delete message 4142 from comment_7580426932","timestamp":"2025-06-29T14:42:09.933Z"}
+{"level":"debug","message":"Failed to delete message 4145 from comment_7580426932","timestamp":"2025-06-29T14:42:09.982Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-29T14:49:42.815Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-30T07:22:52.143Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-30T07:22:52.156Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-30T07:22:52.158Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-06-30T07:22:52.167Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-30T07:28:28.765Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-30T07:28:30.571Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-30T07:28:30.579Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-30T07:28:30.581Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-06-30T07:28:30.592Z"}
+{"level":"debug","message":"Failed to delete old message 4162 for user 7580426932","timestamp":"2025-06-30T07:30:07.481Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-30T07:32:14.747Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-30T07:32:16.709Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-30T07:32:16.719Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-30T07:32:16.722Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-06-30T07:32:16.734Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-30T07:33:33.034Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-30T07:33:35.177Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-30T07:33:35.184Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-30T07:33:35.186Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-06-30T07:33:35.199Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-30T07:34:31.347Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-30T07:34:33.324Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-30T07:34:33.333Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-30T07:34:33.335Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-06-30T07:34:33.348Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-30T07:35:36.914Z"}
+{"level":"info","message":"db connected","timestamp":"2025-06-30T07:35:39.092Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-06-30T07:35:39.101Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-06-30T07:35:39.102Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-06-30T07:35:39.112Z"}
+{"description":"Unauthorized","error_code":401,"level":"error","method":"getUpdates","name":"GrammyError","ok":false,"parameters":{},"payload":{"offset":887490376,"timeout":30},"timestamp":"2025-06-30T13:35:03.855Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-06-30T13:54:06.746Z"}

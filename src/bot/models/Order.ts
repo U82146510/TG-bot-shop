@@ -1,4 +1,5 @@
 import { Schema, model, Document } from "mongoose";
+import { required } from "zod/v4-mini";
 
 interface IOrderItem {
   productId: string;
@@ -36,7 +37,7 @@ const orderItemSchema = new Schema<IOrderItem>(
 const orderSchema = new Schema<IOrder>(
   {
     userId: { type: String, required: true },
-    orderId: { type: String, required: true, unique: true }, // ✅ this alone defines the unique index
+    orderId: { type: String, required: true, unique: true },
     items: [orderItemSchema],
     shippingAddress: { type: String, required: true },
     delivery:{
@@ -45,7 +46,7 @@ const orderSchema = new Schema<IOrder>(
         enum:["tracked", "not_tracked", "special_stealth", "top_stealth"],
         required:true,
     },
-      price:{type:Number,require:true}
+      price:{type:Number,required:true}
     },
     total: { type: Number, required: true },
     status: {
