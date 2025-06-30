@@ -18,7 +18,7 @@ const orderSchema = z.object({
 });
 
 
-export const orderHandler = async(req:Request,res:Response,next:NextFunction)=>{
+export const getOrder = async(req:Request,res:Response,next:NextFunction)=>{
     const parsed = orderSchema.safeParse(req.query);
     if(!parsed.success){
         res.status(400).json({error:'Dont try to do any stupid inputs'});
@@ -48,5 +48,57 @@ export const orderHandler = async(req:Request,res:Response,next:NextFunction)=>{
         });
     } catch (error) {
         logger.error(error);
+        res.status(500).json({error:'Error at the getOrder route'})
     }
+};
+
+
+
+export const editOrder = async(req:Request,res:Response,next:NextFunction)=>{
+  const parsed = orderSchema.safeParse(req.query)
+  try {
+    if(!parsed.success){
+      res.status(400).json({error:'wrong input at edit Order'});
+      return;
+    }
+    
+    const {page,limit,status,orderId,userId} = parsed.data;
+    const filter: Record<string, any> = {};
+    if (orderId) filter.orderId = orderId;
+    const order = await Order.findOneAndUpdate(filter,{
+      $set:{
+        status:status
+      }
+    },{new:true});
+    if(!order){
+      res.status(404).json({message:'there is nothing to update'});
+      return;
+    }
+    res.status(201).json({message:`updated`});
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({error:'Error at the editOrder route'})
+  }
+};
+
+
+
+export const deleteOrder = async(req:Request,res:Response,next:NextFunction)=>{
+  const parsed = orderSchema.safeParse(req.query);
+  try {
+    if(!parsed.success){
+      res.status(400).json({error:'wrong input at delete Order'});
+      return;
+    }
+    const {page,limit,status,orderId,userId} = parsed.data;
+    const order = await Order.findOneAndDelete({orderId});
+    if(!order){
+      res.status(404).json({message:'there is nothing to delete'});
+      return;
+    }
+    res.status(200).json({message:`Order ${orderId} deleted`});
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({error:'Error at the getOrder route'})
+  }
 };

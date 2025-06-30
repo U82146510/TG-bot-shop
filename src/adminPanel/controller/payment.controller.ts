@@ -1,6 +1,5 @@
 import {type Request,type Response,type NextFunction} from 'express';
 import { logger } from '../../bot/logger/logger.ts';
-import { Order } from '../../bot/models/Order.ts';
 import { Payment } from '../../bot/models/Payment.ts';
 import {z} from 'zod';
 
