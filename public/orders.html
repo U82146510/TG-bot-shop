@@ -10,26 +10,69 @@
     label { display: block; margin-top: 5px; }
     input, button { margin-top: 5px; padding: 5px; width: 100%; }
     pre { white-space: pre-wrap; word-wrap: break-word; }
+    nav {
+        margin-bottom: 20px;
+    }
+    nav a {
+        margin-right: 10px;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+    nav a:hover {
+        text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
-  <h1>Admin Control Panel</h1>
+    <h1>Admin Control Panel</h1>
 
+    <nav>
+        <a href="/users.html">Users</a>
+        <a href="/orders.html">Orders</a>
+        <a href="/products.html">Products</a>
+        <a href="/reviews.html">Reviews</a>
+        <a href="/models.html">Models</a>
+        <a href="/payments.html">Payments</a>
+    </nav>
+
+
+    
   <!-- USERS -->
-  <h2>Users</h2>
-  <form id="get-users-form">
-    <label>Username:</label>
-    <input name="username" required>
-    <button type="submit">Fetch User</button>
+  <h2>Orders</h2>
+  <form id="get-orders-form">
+    <label>Status:</label>
+    <select name="status" required>
+        <option value="">-- Select Status --</option>
+        <option value="pending">Pending</option>
+        <option value="delivered">Delivered</option>
+        <option value="cancelled">Cancelled</option>
+    </select>
+    <label>User ID(Optional):</label>
+    <input name="userId">
+    <label>Oder ID(Optional):</label>
+    <input name="orderId">
+    <button type="submit">Fetch Orders</button>
+  </form>
+
+  <form id="delete-orders-form">
+    <label>Order ID:</label>
+    <input name="orderId" required>
+    <button type="submit">Delete Orders</button>
   </form>
   
-  <form id="create-user-form">
-    <label>Name:</label>
-    <input name="username" required>
-    <label>Balance:</label>
-    <input name="balance" required>
-    <button type="submit">Update User</button>
+  <form id="edit-orders-form">
+    <label>Oder ID:</label>
+    <input name="orderId" required>
+    <label>Status:</label>
+    <select name="status" required>
+        <option value="">-- Select Status --</option>
+        <option value="pending">Pending</option>
+        <option value="delivered">Delivered</option>
+        <option value="cancelled">Cancelled</option>
+    </select>
+    <button type="submit">Edit Orders</button>
   </form>
 
   <div class="output">
@@ -38,9 +81,42 @@
   </div>
 
   <script>
-    const getUser = document.getElementById('get-users-form');
-    const updateUser = document.getElementById('create-user-form');
+    const getUser = document.getElementById('get-orders-form');
+    const delUser = document.getElementById('delete-orders-form');
+    const updateUser = document.getElementById('edit-orders-form');
     const output = document.getElementById('user-output');
+
+    delUser.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+        const username = new FormData(delUser).get('username');
+
+        if (!username) {
+            output.textContent = 'Please enter a username';
+            return;
+        }
+
+        try {
+            const res = await fetch(`/admin/users/${encodeURIComponent(username)}`,{
+                method:"DELETE"
+            });
+            const contentType = res.headers.get('content-type');
+            if(!res.ok){
+                const text = await res.text();
+                output.textContent = `Error ${res.status}: ${text}`;
+                return;
+            }
+
+            if (contentType && contentType.includes('application/json')) {
+                const data = await res.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } else {
+                const text = await res.text();
+                output.textContent = text;
+            }
+        } catch (error) {
+            output.textContent = `Error: ${error.message}`;
+        }
+    })
 
     getUser.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -73,7 +149,7 @@
         
     });
 
-    
+
     updateUser.addEventListener('submit',async(e)=>{
         e.preventDefault();
         const formData = new FormData(updateUser);
