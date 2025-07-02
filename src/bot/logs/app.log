@@ -129,3 +129,17 @@
 {"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.01, paymentId=2a64ebe525d9faa1","timestamp":"2025-07-02T13:51:09.225Z"}
 {"level":"info","message":"✅ XMR top-up confirmed for user 7580426932 (0.01 XMR)","timestamp":"2025-07-02T13:57:40.022Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-07-02T14:19:49.450Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-02T14:47:16.192Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-02T14:47:16.216Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-02T14:47:16.218Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-02T14:47:16.231Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-02T16:11:59.139Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-02T16:12:17.456Z"}
+{"level":"info","message":"db reconnected","timestamp":"2025-07-02T16:12:17.458Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-02T19:19:32.751Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-02T19:19:34.781Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-02T19:19:34.789Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-02T19:19:34.791Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-02T19:19:34.802Z"}
+{"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.03, paymentId=5082242b225c5210","timestamp":"2025-07-02T19:21:19.211Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-02T20:12:45.396Z"}
