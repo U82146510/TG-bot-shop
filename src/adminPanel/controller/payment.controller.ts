@@ -5,17 +5,23 @@ import {z} from 'zod';
 
 
 const paymentSchema = z.object({
-    page: z.string().default('1').transform(Number).refine(p => p >= 1, {
-        message: "Page must be at least 1"
-    }),
-    limit: z.string().default('10').transform(Number).refine(l => l > 0 && l <= 100, {
-        message: "Limit must be between 1 and 100"
-    }),
-    userId:z.string().optional(),
-    paymentId:z.string().optional(),
-    status:z.enum(['pending' , 'confirmed' , 'expired']).optional(),
+  page: z.string().default('1').transform(Number).refine(p => p >= 1, {
+    message: "Page must be at least 1"
+  }),
+  limit: z.string().default('10').transform(Number).refine(l => l > 0 && l <= 100, {
+    message: "Limit must be between 1 and 100"
+  }),
+  userId: z.string()
+    .regex(/^\d{5,32}$/, "User ID must be 5 to 32 digits")
+    .optional(),
 
+  paymentId: z.string()
+    .regex(/^[a-f0-9]{6,32}$/i, "Payment ID must be a 6 to 32 character hexadecimal string")
+    .optional(),
+
+  status: z.enum(['pending', 'confirmed', 'expired']).optional(),
 });
+
 
 export const paymentHandler = async(req:Request,res:Response,next:NextFunction)=>{
     const cleanQuery = Object.fromEntries(
@@ -45,5 +51,7 @@ export const paymentHandler = async(req:Request,res:Response,next:NextFunction)=
         res.status(200).json({message:payments});
     } catch (error) {
         logger.error(error);
+        res.status(500).json({ error: 'Server error while retrieving payments.' });
+        return;
     }
 };

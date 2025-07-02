@@ -11,7 +11,7 @@ interface IUser extends Document{
 
 const UserSchema = new Schema<IUser>({
     telegramId:{type:Number,required:true,unique:true},
-    username:{type:String,unique:true,sparse:true},
+    username: { type: String, unique: true, sparse: true, lowercase: true },
     firstName:{type:String,required:true},
     balance:{type:Number,default:0},
     registeredAt:{type:Date,default:Date.now},

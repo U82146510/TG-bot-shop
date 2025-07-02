@@ -37,7 +37,8 @@ const usernameParamSchema = z.object({
     .regex(
       /^[a-zA-Z0-9_]+$/,
       "Username can only contain letters, numbers, and underscores"
-    ),
+    )
+    .transform(val => val.toLowerCase()),
 });
 
 export const editUser = async (req: Request, res: Response, next: NextFunction) => {
