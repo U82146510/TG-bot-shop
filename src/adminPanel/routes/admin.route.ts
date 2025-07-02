@@ -17,8 +17,8 @@ adminRoute.patch('/review',editReview);
 
 // Order related routes
 adminRoute.get('/orders',getOrder);
-adminRoute.patch('/orders',editOrder);
-adminRoute.delete('/orders',deleteOrder);
+adminRoute.patch('/orders/:orderId', editOrder);
+adminRoute.delete('/orders/:orderId',deleteOrder);
 
 // Payment related routes
 adminRoute.get('/payments',paymentHandler);
