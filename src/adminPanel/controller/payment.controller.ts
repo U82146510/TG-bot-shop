@@ -13,12 +13,16 @@ const paymentSchema = z.object({
     }),
     userId:z.string().optional(),
     paymentId:z.string().optional(),
-    status:z.enum(["pending", "delivered", "cancelled"]).optional(),
+    status:z.enum(['pending' , 'confirmed' , 'expired']).optional(),
 
 });
 
 export const paymentHandler = async(req:Request,res:Response,next:NextFunction)=>{
-    const parsed = paymentSchema.safeParse(req.query);
+    const cleanQuery = Object.fromEntries(
+        Object.entries(req.query).filter(([_, value]) => value !== '')
+    );
+
+    const parsed = paymentSchema.safeParse(cleanQuery);
 
     if(!parsed.success){
         res.status(400).json({error:'Dont try to do stupid inpus at payment route'});
@@ -35,7 +39,7 @@ export const paymentHandler = async(req:Request,res:Response,next:NextFunction)=
     try {
         const payments = await Payment.find(filter).skip(skip).limit(limit);
         if(payments.length===0){
-            res.status(400).json({msg:'Payment DB is empty'});
+            res.status(404).json({msg:'Payment DB is empty'});
             return;
         }
         res.status(200).json({message:payments});

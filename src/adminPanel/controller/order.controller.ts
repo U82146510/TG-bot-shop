@@ -7,19 +7,21 @@ import {z} from 'zod';
 
 
 const orderSchema = z.object({
-  page: z.string().default('1').transform(Number).refine(p => p >= 1, {
-    message: "Page must be at least 1"
-  }),
-  limit: z.string().default('10').transform(Number).refine(l => l > 0 && l <= 100, {
-    message: "Limit must be between 1 and 100"
-  }),
-  status:z.enum(["pending", "delivered", "cancelled"]).optional(),
-  userId:z.string().optional(),
-  orderId: z
-  .string()
-  .regex(/^\d{14}$/, "Order ID must be a 14-digit number")
-  .optional()
+  page: z.string().default('1')
+    .transform(val => Number(val))
+    .refine(val => !isNaN(val) && val >= 1, {
+      message: "Page must be a number greater than or equal to 1"
+    }),
+  limit: z.string().default('10')
+    .transform(val => Number(val))
+    .refine(val => !isNaN(val) && val > 0 && val <= 100, {
+      message: "Limit must be a number between 1 and 100"
+    }),
+  status: z.enum(["pending", "delivered", "cancelled"]).optional(),
+  userId: z.string().optional(),
+  orderId: z.string().regex(/^\d{14}$/, "Order ID must be a 14-digit number").optional()
 });
+
 
 
 export const getOrder = async(req:Request,res:Response,next:NextFunction)=>{
@@ -30,7 +32,7 @@ export const getOrder = async(req:Request,res:Response,next:NextFunction)=>{
     const parsed = orderSchema.safeParse(cleanQuery);
 
     if(!parsed.success){
-        res.status(400).json({error:'Dont try to do any stupid inputs'});
+        res.status(400).json({ error: 'Invalid query parameters' });
         return;
     } 
 
@@ -74,11 +76,11 @@ export const editOrder = async (req: Request, res: Response, next: NextFunction)
   const bodyValidation = editOrderBodySchema.safeParse(req.body);
 
   if (!paramValidation.success) {
-    res.status(400).json({ error: "Invalid order ID" });
+    res.status(400).json({ error: "Order ID must be a valid 14-digit number" });
     return
   }
   if (!bodyValidation.success) {
-    res.status(400).json({ error: "Invalid status value" });
+    res.status(400).json({ error: "Status must be one of: pending, delivered, or cancelled" });
     return
   }
 
@@ -111,13 +113,13 @@ export const deleteOrder = async(req:Request,res:Response,next:NextFunction)=>{
   const parsed = orderIdParamSchema.safeParse(req.params);
   try {
     if(!parsed.success){
-      res.status(400).json({error:'wrong input at delete Order'});
+      res.status(400).json({ error: 'Invalid order ID format for deletion' });
       return;
     }
     const {orderId} = parsed.data;
     const order = await Order.findOneAndDelete({orderId});
     if(!order){
-      res.status(404).json({message:'there is nothing to delete'});
+      res.status(404).json({ message: 'Order not found or already deleted' });
       return;
     }
     res.status(200).json({message:`Order ${orderId} deleted`});

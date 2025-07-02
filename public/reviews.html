@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Control Panel</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    h2 { margin-top: 30px; }
+    form, .output { margin-bottom: 20px; padding: 10px; border: 1px solid #000; }
+    label { display: block; margin-top: 5px; }
+    input, button { margin-top: 5px; padding: 5px; width: 100%; }
+    pre { white-space: pre-wrap; word-wrap: break-word; }
+    nav {
+        margin-bottom: 20px;
+    }
+    nav a {
+        margin-right: 10px;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+    nav a:hover {
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+    <h1>Admin Control Panel</h1>
+
+    <nav>
+        <a href="/users.html">Users</a>
+        <a href="/orders.html">Orders</a>
+        <a href="/products.html">Products</a>
+        <a href="/reviews.html">Reviews</a>
+        <a href="/models.html">Models</a>
+        <a href="/payments.html">Payments</a>
+    </nav>
+
+
+    
+  <!-- USERS -->
+  <h2>Reviews</h2>
+  <form id="get-reviews-form">
+    <label>New Reviews:</label>
+    <button type="submit">Fetch Pending reviews.</button>
+  </form>
+
+  <form id="delete-reviews-form">
+    <label>Review ID:</label>
+    <input name="id" required>
+    <button type="submit">Delete review.</button>
+  </form>
+  
+  <form id="edit-reviews-form">
+    <label>Review ID:</label>
+    <input name="id" required>
+    <button type="submit">Approve review.</button>
+  </form>
+
+  <div class="output">
+    <h3>Response</h3>
+    <pre id="user-output">No data yet...</pre>
+  </div>
+
+  <script>
+    const getReview = document.getElementById('get-reviews-form');
+    const delReview = document.getElementById('delete-reviews-form');
+    const updateReview = document.getElementById('edit-reviews-form');
+    const output = document.getElementById('user-output');
+
+    getReview.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+        try {
+            const res = await fetch(`/admin/review`);
+            const contentType = res.headers.get('content-type');
+            if(!res.ok){
+                const text = await res.text();
+                output.textContent = `Error ${res.status}: ${text}`;
+                return;
+            }
+
+            if (contentType && contentType.includes('application/json')) {
+                const data = await res.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } else {
+                const text = await res.text();
+                output.textContent = text;
+            }
+        } catch (error) {
+            output.textContent = `Error: ${error.message}`;
+        }
+    });
+
+    delReview.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = new FormData(delReview).get('id');
+
+        if (!id) {
+            output.textContent = 'Please enter a id';
+            return;
+        }
+
+        try {
+            const res = await fetch(`/admin/review/${encodeURIComponent(id)}`,{
+                method:'DELETE'
+            });
+            const contentType = res.headers.get('content-type');
+            if(!res.ok){
+                const text = await res.text();
+                output.textContent = `Error ${res.status}: ${text}`;
+                return;
+            }
+
+            if (contentType && contentType.includes('application/json')) {
+                const data = await res.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } else {
+                const text = await res.text();
+                output.textContent = text;
+            }
+        } catch (error) {
+            output.textContent = `Error: ${error.message}`;
+        }
+        
+    });
+
+    updateReview.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(updateReview);
+        const id = formData.get('id');
+        
+        if (!id) {
+            output.textContent = 'Please enter an ID';
+            return;
+        }
+        try {
+            const res = await fetch(`/admin/review/${encodeURIComponent(id)}`, {
+                method: "PATCH",
+                headers: { 'Content-Type': 'application/json' }
+            });
+
+            const contentType = res.headers.get('content-type');
+
+            if (!res.ok) {
+                const text = await res.text();
+                output.textContent = `Error ${res.status}: ${text}`;
+                return;
+            }
+
+            if (contentType && contentType.includes('application/json')) {
+                const data = await res.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } else {
+                const text = await res.text();
+                output.textContent = text;
+            }
+        } catch (error) {
+            output.textContent = `Error: ${error.message}`;
+        }
+    });
+
+
+  </script>
+
+</body>
+</html>

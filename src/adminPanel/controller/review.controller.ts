@@ -8,7 +8,7 @@ import mongoose from 'mongoose';
 
 
 const idSchema = z.object({
-    id:z.string().min(1)
+    id: z.string().regex(/^[a-f\d]{24}$/i, 'Invalid review ID format')
 });
 
 export const getReviews = async(req:Request,res:Response,next:NextFunction)=>{
@@ -25,8 +25,8 @@ export const getReviews = async(req:Request,res:Response,next:NextFunction)=>{
     }
 };
 
-export const delteReview = async(req:Request,res:Response,next:NextFunction)=>{
-    const parsed = idSchema.safeParse(req.query);
+export const deleteReview = async(req:Request,res:Response,next:NextFunction)=>{
+    const parsed = idSchema.safeParse(req.params);
     try {
         if(!parsed.success){
             res.status(400).json({error:'Invalid review ID format'});
@@ -34,13 +34,13 @@ export const delteReview = async(req:Request,res:Response,next:NextFunction)=>{
         }
         const {id} = parsed.data;
         const reviewId = new mongoose.Types.ObjectId(id);
-        const review = await Review.findOneAndDelete({_id:reviewId});
+        const review = await Review.findOneAndDelete({ _id: reviewId });
         if(!review){
             res.status(404).json({message:'No review found with the provided ID'});
             return;
         }
 
-        res.status(201).json({message:`Successfully removed comment for ${review.variantName} variant`})
+        res.status(200).json({ message: `Successfully removed comment for ${review.variantName} variant` });
     } catch (error) {
         logger.error(error)
         res.status(500).json({error:'Failed to delete review'});
@@ -48,7 +48,7 @@ export const delteReview = async(req:Request,res:Response,next:NextFunction)=>{
 };
 
 export const editReview = async(req:Request,res:Response,next:NextFunction)=>{
-    const parsed = idSchema.safeParse(req.query);
+    const parsed = idSchema.safeParse(req.params);
     try {
         if(!parsed.success){
             res.status(400).json({error:'Invalid review ID format'});

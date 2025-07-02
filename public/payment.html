@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Control Panel</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    h2 { margin-top: 30px; }
+    form, .output { margin-bottom: 20px; padding: 10px; border: 1px solid #000; }
+    label { display: block; margin-top: 5px; }
+    input, button { margin-top: 5px; padding: 5px; width: 100%; }
+    pre { white-space: pre-wrap; word-wrap: break-word; }
+    nav {
+        margin-bottom: 20px;
+    }
+    nav a {
+        margin-right: 10px;
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+    }
+    nav a:hover {
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+    <h1>Admin Control Panel</h1>
+
+    <nav>
+        <a href="/users.html">Users</a>
+        <a href="/orders.html">Orders</a>
+        <a href="/products.html">Products</a>
+        <a href="/reviews.html">Reviews</a>
+        <a href="/models.html">Models</a>
+        <a href="/payments.html">Payments</a>
+    </nav>
+
+
+    
+  <!-- USERS -->
+  <h2>Payment</h2>
+  <form id="get-payment-form">
+    <label>Status:</label>
+    <select name="status" required>
+        <option value="">-- Select Status --</option>
+        <option value="pending">pending</option>
+        <option value="confirmed">confirmed</option>
+        <option value="expired">expired</option>
+    </select>
+
+    <label>userId(Optional):</label>
+    <input name="userId">
+
+    <label>paymentId(Optional):</label>
+    <input name="paymentId">
+
+    <label>Page (Default is 1):</label>
+    <input name="page" type="number" min="1" placeholder="1">
+
+    <label>Limit (Default is 10):</label>
+    <input name="limit" type="number" min="1" max="100" placeholder="10">
+
+
+    <button type="submit">Fetch Payment</button>
+  </form>
+
+
+  <div class="output">
+    <h3>Response</h3>
+    <pre id="user-output">No data yet...</pre>
+  </div>
+
+  <script>
+    const payment = document.getElementById('get-payment-form');
+    const output = document.getElementById('user-output');
+
+    payment.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+
+        const formData = new FormData(payment);
+        const dataFormat = new URLSearchParams(formData)
+
+        try {
+            const res = await fetch(`/admin/payment?${dataFormat}`);
+            const contentType = res.headers.get('content-type');
+            if(!res.ok){
+                const text = await res.text();
+                output.textContent = `Error ${res.status}: ${text}`;
+                return;
+            }
+
+            if (contentType && contentType.includes('application/json')) {
+                const data = await res.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } else {
+                const text = await res.text();
+                output.textContent = text;
+            }
+        } catch (error) {
+            output.textContent = `Error: ${error.message}`;
+        }
+    })
+
+
+  </script>
+
+</body>
+</html>
