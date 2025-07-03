@@ -284,3 +284,8 @@
 {"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-03T21:49:37.027Z"}
 {"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-03T21:49:40.683Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-07-03T21:49:50.190Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T22:16:37.327Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T22:16:37.337Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T22:16:37.338Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T22:16:37.350Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T22:21:13.743Z"}
