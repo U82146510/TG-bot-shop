@@ -17,9 +17,9 @@ const addVariantSchema = z.object({
   product: z.string().min(1).transform((str) => str.toLowerCase()),
   variant: z.object({
     name: z.string().min(1).transform((str) => str.toLowerCase()),
-    price: z.coerce.number().gt(0),
-    quantity: z.coerce.number(),
-    description: z.string()
+    price: z.coerce.number().gt(0).optional(),
+    quantity: z.coerce.number().optional(),
+    description: z.string().optional()
   })
 });
 
@@ -35,9 +35,12 @@ export const editProduct = async (req: Request, res: Response, next: NextFunctio
     }
 
     const updateData = Object.entries(parsedBody.data.variant).reduce((acc, [key, val]) => {
-      acc[`models.$[modelElem].options.$[optionElem].${key}`] = val;
+      if (val !== undefined) {
+        acc[`models.$[modelElem].options.$[optionElem].${key}`] = val;
+      }
       return acc;
     }, {} as Record<string, any>);
+
 
     const editProduct = await Product.findOneAndUpdate(
       {

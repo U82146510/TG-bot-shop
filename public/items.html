@@ -81,6 +81,22 @@
         <button type="submit">Get Item</button>
     </form>
 
+    <form id="up-items-form">
+        <label>Model Name:</label>
+        <input name="model" required>
+        <label>Product Name:</label>
+        <input name="product" required>
+        <label>Variant Name:</label>
+        <input name="variant" required>
+        <label>Price:</label>
+        <input name="price" >
+        <label>Quantity:</label>
+        <input name="quantity" >
+        <label>Description:</label>
+        <textarea name="description" rows="8" cols="80"></textarea>
+        <button type="submit">Update Item</button>
+    </form>
+
   <div class="output">
     <h3>Response</h3>
     <pre id="user-output">No data yet...</pre>
@@ -90,7 +106,61 @@
     const addItem = document.getElementById('add-items-form');
     const deleteItem = document.getElementById('del-items-form');
     const getItem = document.getElementById('get-items-form');
+    const updateItem = document.getElementById('up-items-form');
     const output = document.getElementById('user-output');
+
+    updateItem.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(updateItem);
+        const model = formData.get('model');
+        const product = formData.get('product');
+        const variant = formData.get('variant');
+        const price = formData.get('price');
+        const quantity = formData.get('quantity');
+        const description = formData.get('description');
+
+        if (!model || !product || !variant) {
+        output.textContent = 'Model, product, and variant are required';
+        return;
+        }
+
+        const payload = {
+        model,
+        product,
+        variant: {
+            name: variant
+        }
+        };
+
+        if (price) payload.variant.price = price;
+        if (quantity) payload.variant.quantity = quantity;
+        if (description) payload.variant.description = description;
+
+        try {
+            const res = await fetch('/admin/product', {
+                method: 'PATCH', // ✅ Use PATCH
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const contentType = res.headers.get('content-type');
+            if (!res.ok) {
+                const text = await res.text();
+                output.textContent = `Error ${res.status}: ${text}`;
+                return;
+            }
+
+            if (contentType && contentType.includes('application/json')) {
+                const data = await res.json();
+                output.textContent = JSON.stringify(data, null, 2);
+            } else {
+                const text = await res.text();
+                output.textContent = text;
+            }
+        } catch (error) {
+         output.textContent = `Error: ${error.message}`;
+        }
+  });
 
     getItem.addEventListener('submit',async(e)=>{
         e.preventDefault();
