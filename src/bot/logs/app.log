@@ -143,3 +143,129 @@
 {"level":"info","message":"Server is ON","timestamp":"2025-07-02T19:19:34.802Z"}
 {"level":"info","message":"✅ XMR top-up generated: userId=7580426932, amount=0.03, paymentId=5082242b225c5210","timestamp":"2025-07-02T19:21:19.211Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-07-02T20:12:45.396Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-02T20:27:32.328Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-02T20:27:32.336Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-02T20:27:32.338Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-02T20:27:32.348Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-02T20:44:45.368Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-02T20:44:47.276Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-02T20:44:47.283Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-02T20:44:47.285Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-02T20:44:47.294Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-02T20:47:24.491Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-02T20:47:26.673Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-02T20:47:26.681Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-02T20:47:26.683Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-02T20:47:26.693Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-02T20:47:58.422Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-02T20:47:59.711Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-02T20:48:07.869Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T10:24:35.900Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T10:24:37.835Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T10:24:37.844Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T10:24:37.846Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T10:24:37.861Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T10:27:08.218Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T10:27:09.996Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T10:27:10.013Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T10:27:10.015Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T10:27:10.056Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T10:38:47.781Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T10:38:49.746Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T10:38:49.754Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T10:38:49.755Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T10:38:49.765Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T10:39:21.072Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T10:40:25.992Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T10:40:26.000Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T10:40:26.002Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T10:40:26.017Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-03T10:43:10.395Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-03T10:43:11.269Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-03T10:43:12.796Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T10:48:21.988Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T11:07:08.633Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T11:07:08.643Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T11:07:08.644Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T11:07:08.654Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T11:29:58.459Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T11:30:01.320Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T11:30:01.336Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T11:30:01.338Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T11:30:01.349Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T12:07:25.296Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T12:07:27.201Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T12:07:27.209Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T12:07:27.216Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T12:07:27.226Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T12:11:17.226Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T12:11:19.061Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T12:11:19.069Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T12:11:19.070Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T12:11:19.079Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T12:11:59.837Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T12:12:01.817Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T12:12:01.826Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T12:12:01.828Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T12:12:01.838Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-03T12:17:32.639Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-03T12:17:36.774Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-03T12:17:39.592Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T12:19:15.678Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T12:19:17.615Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T12:19:17.623Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T12:19:17.625Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T12:19:17.636Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-03T12:19:33.066Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T19:05:52.785Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T19:05:52.877Z"}
+{"level":"info","message":"db reconnected","timestamp":"2025-07-03T19:05:52.877Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-03T20:02:32.550Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T20:03:53.011Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T20:03:55.216Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T20:03:55.223Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T20:03:55.225Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T20:03:55.237Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T20:05:10.282Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T20:05:12.136Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T20:05:12.147Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T20:05:12.148Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T20:05:12.162Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T20:23:26.075Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T20:23:28.123Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T20:23:28.132Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T20:23:28.134Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T20:23:28.144Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T20:50:05.546Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T20:50:08.730Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T20:50:08.737Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T20:50:08.739Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T20:50:08.748Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T20:55:15.473Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T20:59:12.146Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T20:59:12.155Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T20:59:12.156Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T20:59:12.166Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-03T21:00:01.103Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-03T21:00:54.552Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T21:02:07.064Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T21:02:09.009Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T21:02:09.017Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T21:02:09.018Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T21:02:09.028Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T21:08:34.656Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T21:08:36.535Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T21:08:36.543Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T21:08:36.545Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T21:08:36.557Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T21:15:29.431Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T21:15:31.299Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T21:15:31.317Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T21:15:31.320Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T21:15:31.330Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T21:16:06.677Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-03T21:16:08.465Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-03T21:16:08.474Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-03T21:16:08.477Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-03T21:16:08.487Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-03T21:38:47.520Z"}

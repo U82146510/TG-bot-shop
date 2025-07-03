@@ -2,9 +2,8 @@ import {Bot,Context,InlineKeyboard} from 'grammy';
 import { Product } from "../../models/Products.ts";
 import { safeEditOrReply } from "../../utils/safeEdit.ts";
 import { logger } from "../../logger/logger.ts";
-import { redis } from "../../utils/redis.ts";
 import {deleteCachedMessages} from '../../utils/cleanup.ts';
-import { id } from 'zod/v4/locales';
+
 
 export function registerProductSelection(bot:Bot<Context>){
     bot.callbackQuery(/^product_(.+)$/, async (ctx) => {

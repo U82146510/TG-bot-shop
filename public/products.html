@@ -39,50 +39,35 @@
 
 
     
-  <!-- USERS -->
-  <h2>Orders</h2>
-    <form id="get-orders-form">
-        <label>Status:</label>
-        <select name="status" required>
-            <option value="">-- Select Status --</option>
-            <option value="pending">Pending</option>
-            <option value="delivered">Delivered</option>
-            <option value="cancelled">Cancelled</option>
-        </select>
+  <!-- Product -->
+  <h2>Product</h2>
 
-        <label>User ID (Optional):</label>
-        <input name="userId">
-
-        <label>Order ID (Optional):</label>
-        <input name="orderId">
-
-        <label>Page (Default is 1):</label>
-        <input name="page" type="number" min="1" placeholder="1">
-
-        <label>Limit (Default is 10):</label>
-        <input name="limit" type="number" min="1" max="100" placeholder="10">
-
-        <button type="submit">Fetch Orders</button>
+    <form id="create-model-form">
+        <label>Model Name:</label>
+        <input name="model" required>
+        <label>Product Name:</label>
+        <input name="product" required>
+        <label>Variant Name:</label>
+        <input name="variant" required>
+        <label>Price:</label>
+        <input name="price" required>
+        <label>Quantity:</label>
+        <input name="quantity" required>
+        <label>Description:</label>
+        <textarea name="description" required rows="8" cols="80"></textarea>
+        <button type="submit">Upload Model</button>
     </form>
 
-
-    <form id="delete-orders-form">
-        <label>Order ID:</label>
-        <input name="orderId" required>
-        <button type="submit">Delete Orders</button>
+    <form id="delete-model-form">
+        <label>Model Name:</label>
+        <input name="model" required>
+        <button type="submit">Delete Model</button>
     </form>
-    
-    <form id="edit-orders-form">
-        <label>Oder ID:</label>
-        <input name="orderId" required>
-        <label>Status:</label>
-        <select name="status" required>
-            <option value="">-- Select Status --</option>
-            <option value="pending">Pending</option>
-            <option value="delivered">Delivered</option>
-            <option value="cancelled">Cancelled</option>
-        </select>
-        <button type="submit">Update Orders</button>
+
+    <form id="get-model-form">
+        <label>Model Name:</label>
+        <input name="model" required>
+        <button type="submit">Get Model</button>
     </form>
 
   <div class="output">
@@ -91,38 +76,20 @@
   </div>
 
   <script>
-    const getOrders = document.getElementById('get-orders-form');
-    const delOrders = document.getElementById('delete-orders-form');
-    const updateOrders = document.getElementById('edit-orders-form');
+    const addProduct = document.getElementById('create-model-form');
+    const deleteProduct = document.getElementById('delete-model-form');
+    const getProduct = document.getElementById('get-model-form');
     const output = document.getElementById('user-output');
 
-    getOrders.addEventListener('submit',async(e)=>{
+    getProduct.addEventListener('submit',async(e)=>{
         e.preventDefault();
-        const formOrders = new FormData(getOrders)
-        const status = formOrders.get('status');
-        const orderId = formOrders.get('orderId');
-        const userId = formOrders.get('userId');
-        const page = formOrders.get('page');
-        const limit = formOrders.get('limit')
-        if (!status) {
-            output.textContent = 'Please select Order status';
+        const model = new FormData(getProduct).get('model');
+        if (!model) {
+            output.textContent = 'Please enter a model';
             return;
         }
-        console.log(status,
-            page,
-            limit,
-            userId,
-            orderId)
-        const params = new URLSearchParams({
-            status,
-            page,
-            limit,
-            userId,
-            orderId
-        }).toString();
-
         try {
-            const res = await fetch(`/admin/orders?${params}`);
+            const res = await fetch(`/admin/model/${encodeURIComponent(model)}`);
             const contentType = res.headers.get('content-type');
             if(!res.ok){
                 const text = await res.text();
@@ -140,19 +107,18 @@
         } catch (error) {
             output.textContent = `Error: ${error.message}`;
         }
-    })
 
-    delOrders.addEventListener('submit', async (e) => {
+    });
+
+    deleteProduct.addEventListener('submit',async(e)=>{
         e.preventDefault();
-        const orderId = new FormData(delOrders).get('orderId');
-
-        if (!orderId) {
-            output.textContent = 'Please enter a orderId';
+        const model = new FormData(deleteProduct).get('model');
+        if (!model) {
+            output.textContent = 'Please enter a model';
             return;
         }
-
         try {
-            const res = await fetch(`/admin/orders/${orderId}`,{
+            const res = await fetch(`/admin/model/${encodeURIComponent(model)}`,{
                 method:"DELETE"
             });
             const contentType = res.headers.get('content-type');
@@ -172,38 +138,46 @@
         } catch (error) {
             output.textContent = `Error: ${error.message}`;
         }
-        
+
     });
-
-
-    updateOrders.addEventListener('submit',async(e)=>{
+    addProduct.addEventListener('submit',async(e)=>{
         e.preventDefault();
-        const formData = new FormData(updateOrders);
-        const orderId = formData.get('orderId');
-        const status = formData.get('status');
-        if(!orderId){
-            output.textContent = 'Please enter a orderId';
-            return;
-        }
-        if(!status){
-            output.textContent = 'Please enter a status';
-            return;
-        }
+        const formData = new FormData(addProduct);
+        const model = formData.get('model');
+        const product = formData.get('product');
+        const variant = formData.get('variant');
+        const price = formData.get('price');
+        const quantity = formData.get('quantity');
+        const description = formData.get('description');
 
         try {
-
-            const res = await fetch(`/admin/orders/${orderId}`,{
-                method:'PATCH',
-                headers:{'Content-Type': 'application/json'},
-                body:JSON.stringify({status})
+            const res = await fetch(`/admin/model`,{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({
+                    name:model,
+                    models:[
+                        {
+                            name:product,
+                            options:[
+                                {
+                                    name:variant,
+                                    price:price,
+                                    quantity:quantity,
+                                    description:description
+                                }
+                            ]
+                        }
+                    ]
+                })
             });
-
             const contentType = res.headers.get('content-type');
             if(!res.ok){
                 const text = await res.text();
                 output.textContent = `Error ${res.status}: ${text}`;
                 return;
             }
+
             if (contentType && contentType.includes('application/json')) {
                 const data = await res.json();
                 output.textContent = JSON.stringify(data, null, 2);
@@ -211,13 +185,12 @@
                 const text = await res.text();
                 output.textContent = text;
             }
-            
         } catch (error) {
             output.textContent = `Error: ${error.message}`;
         }
-        
-
     });
+
+  
 
   </script>
 

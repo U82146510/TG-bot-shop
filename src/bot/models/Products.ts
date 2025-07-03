@@ -21,7 +21,7 @@ export interface IProduct extends Document{
 };
 
 const variantOptionSchema = new Schema<VariantOption>({
-  name: { type: String, required: true,unique:true },
+  name: { type: String, required: true,lowercase:true},
   price: { type: Number, required: true },
   quantity: { type: Number, default: 0 },
   description: { type: String },
@@ -29,12 +29,12 @@ const variantOptionSchema = new Schema<VariantOption>({
 });
 
 const productModelSchema = new Schema<Variants>({
-  name: { type: String, required: true },
+  name: { type: String, required: true,lowercase:true},
   options: [variantOptionSchema],
 });
 
 const productSchema = new Schema<IProduct>({
-  name: { type: String, required: true, unique: true },
+  name: { type: String, required: true, unique: true,lowercase:true },
   models: [productModelSchema],
 });
 

@@ -1,4 +1,4 @@
-import { Bot, Context, InputFile, InlineKeyboard } from "grammy";
+import { Bot, Context} from "grammy";
 import { logger } from "../../logger/logger.ts";
 import { registerProductSelection } from "./productSelection.ts";
 import { registerVariantSelection } from "./variantSelection.ts";

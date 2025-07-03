@@ -4,58 +4,103 @@ import { Product } from '../../bot/models/Products.ts';
 import {z} from 'zod';
 
 
+
 const variantActionSchema = z.object({
-  model: z.string().min(1),
-  option: z.string().min(1),
-  variant: z.string().min(1)
+  model: z.string().min(1).transform((val) => val.toLowerCase()),
+  option: z.string().min(1).transform((val) => val.toLowerCase()),
+  variant: z.string().min(1).transform((val) => val.toLowerCase())
 });
 
 
 const addVariantSchema = z.object({
-  product: z.string().min(1),
-  model: z.string().min(1)
+  model: z.string().min(1).transform((str) => str.toLowerCase()),
+  product: z.string().min(1).transform((str) => str.toLowerCase()),
+  variant: z.object({
+    name: z.string().min(1).transform((str) => str.toLowerCase()),
+    price: z.coerce.number().gt(0),
+    quantity: z.coerce.number(),
+    description: z.string()
+  })
 });
 
-const variantSchema = z.object({
-  name: z.string(),
-  price: z.number(),
-  quantity: z.number(),
-  description: z.string()
-});
 
+export const editProduct = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+  
+    const parsedBody = addVariantSchema.safeParse(req.body);
+
+    if (!parsedBody.success) {
+      res.status(400).json({ error: 'Finish pushing some bullshit data into a product edit' });
+      return;
+    }
+
+    const updateData = Object.entries(parsedBody.data.variant).reduce((acc, [key, val]) => {
+      acc[`models.$[modelElem].options.$[optionElem].${key}`] = val;
+      return acc;
+    }, {} as Record<string, any>);
+
+    const editProduct = await Product.findOneAndUpdate(
+      {
+        name: parsedBody.data.model,
+        'models.name': parsedBody.data.product,
+        'models.options.name': parsedBody.data.variant.name
+      },
+      {
+        $set: updateData
+      },
+      {
+        arrayFilters: [
+          { 'modelElem.name': parsedBody.data.product },
+          { 'optionElem.name':parsedBody.data.variant.name }
+        ],
+        new: true
+      }
+    );
+
+    if (!editProduct) {
+      res.status(404).json({ error: 'Product not found' });
+      return;
+    }
+
+    res.status(200).json({message:`Updated ${parsedBody.data.variant.name} successfully`});
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ error: 'Internal server error at editProduct' });
+  }
+};
 
 export const addProduct = async(req:Request,res:Response,next:NextFunction)=>{
     try {
-        const queryParsed = addVariantSchema.safeParse(req.query);
-        const bodyParsed = variantSchema.safeParse(req.body);
-        if(!queryParsed.success || !bodyParsed.success){
+        const bodyParsed = addVariantSchema.safeParse(req.body);
+        if(!bodyParsed.success){
             res.status(400).json({error:'invalid input at adding Variants'});
             return;
         }
-        const {product,model} = queryParsed.data;
+        const {product,model} = bodyParsed.data;
 
            const existingVariant = await Product.findOne({
             name: product,
             'models.name': model,
-            'models.options.name': bodyParsed.data.name
+            'models.options.name': bodyParsed.data.variant.name
         });
 
         if (existingVariant) {
             res.status(409).json({ error: 'Variant with this name already exists for this model' });
             return;
         }
-
+        console.log(bodyParsed.data)
         const variant = await Product.findOneAndUpdate(
-            {name:product,'models.name':model},{
-                $push:{'models.$.options':bodyParsed.data}
+            {name:model,'models.name':product},{
+                $push:{'models.$.options':bodyParsed.data.variant}
             },{
-                new:true
-            });
+              new:true
+        });
+
         if(!variant){
             res.status(404).json({error:'Product or model not found'});
             return;
         }
-        res.status(201).json({message:`Variant ${variant.name} added`});
+        res.status(201).json({ message: `Variant added`, variant: bodyParsed.data.variant });
     } catch (error) {
         logger.error(error);
         res.status(500).json({ error: 'Internal server error at addVariant' });
@@ -65,6 +110,7 @@ export const addProduct = async(req:Request,res:Response,next:NextFunction)=>{
 
 export const getProduct = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const parsed = variantActionSchema.safeParse(req.query);
+    console.log(parsed.data)
     try{
         if(!parsed.success){
             res.status(400).json({error:'Keep away your cheap stupid inputs from get product'});
@@ -103,85 +149,45 @@ export const getProduct = async (req: Request, res: Response, next: NextFunction
     }
 };
 
-const variantUpdateSchema = z.object({
-  price: z.number().min(0).optional(),
-  quantity: z.number().min(0).optional(),
-  description: z.string().max(500).optional()
-}).strict();
 
 
 
-export const editProduct = async (req: Request, res: Response, next: NextFunction) => {
+
+
+export const deleteProduct = async (req: Request, res: Response, next: NextFunction) => {
+  const parsed = variantActionSchema.safeParse(req.body);
   try {
-    const parsedQuery = variantActionSchema.safeParse(req.query);
-    const parsedBody = variantUpdateSchema.safeParse(req.body);
-
-    if (!parsedBody.success || !parsedQuery.success) {
-      res.status(400).json({ error: 'Finish pushing some bullshit data into a product edit' });
+    if (!parsed.success) {
+      res.status(400).json({ error: 'Invalid input at deleteProduct' });
       return;
     }
 
-    const { model, option, variant } = parsedQuery.data;
-
-    const updateData = Object.entries(parsedBody.data).reduce((acc, [key, val]) => {
-      acc[`models.$[modelElem].options.$[optionElem].${key}`] = val;
-      return acc;
-    }, {} as Record<string, any>);
-
-    const product = await Product.findOneAndUpdate(
-      {
-        name: model,
-        'models.name': option,
-        'models.options.name': variant
-      },
-      {
-        $set: updateData
-      },
-      {
-        arrayFilters: [
-          { 'modelElem.name': option },
-          { 'optionElem.name': variant }
-        ],
-        new: true
-      }
-    );
+    const { model, option, variant } = parsed.data;
+    const product = await Product.findOne({ name: model });
 
     if (!product) {
       res.status(404).json({ error: 'Product not found' });
       return;
     }
 
-    res.status(200).json({message:`Updated ${variant} successfully`});
-  } catch (error) {
-    logger.error(error);
-    res.status(500).json({ error: 'Internal server error at editProduct' });
-  }
-};
+    const targetModel = product.models.find((m) => m.name === option);
+    if (!targetModel) {
+      res.status(404).json({ error: 'Option not found' });
+      return;
+    }
 
-export const deleteProduct = async(req:Request,res:Response,next:NextFunction)=>{
-  const parsed = variantActionSchema.safeParse(req.query);
-  try {
-      if(!parsed.success){
-            res.status(400).json({error:'Keep away your cheap stupid inputs from get product'});
-            return;
-      }
-      const {model,option,variant} = parsed.data;
-      const product = await Product.findOneAndUpdate(
-        {name:model,"models.name":option},
-        {
-        $pull:{
-          "models.$.options":{name:variant}
-        }
-      },{
-        new:true
-      });
-      if(!product){
-        res.status(404).json({error:'there is no product to be deleted'});
-        return;
-      }
-      res.status(200).json({message:`Product ${variant} deleted`});
+    const initialLen = targetModel.options.length;
+    targetModel.options = targetModel.options.filter((opt) => opt.name !== variant);
+
+    if (targetModel.options.length === initialLen) {
+      res.status(404).json({ error: 'Variant not found' });
+      return;
+    }
+
+    await product.save();
+    res.status(200).json({ message: `Variant ${variant} deleted` });
   } catch (error) {
     logger.error(error);
-    res.status(500).json({ error: 'Internal server error at editProduct' });
+    res.status(500).json({ error: 'Internal server error at deleteProduct' });
   }
 };

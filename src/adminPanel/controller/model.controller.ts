@@ -11,7 +11,7 @@ const modelParamsSchema = z.object({
 
 export const deleteModel = async(req:Request,res:Response,next:NextFunction)=>{
     try {
-        const parsed = modelParamsSchema.safeParse(req.query);
+        const parsed = modelParamsSchema.safeParse(req.params);
         if(!parsed.success){
             res.status(400).json({error:'again you small dick? stop inserting wrong inputs'})
             return;
@@ -43,8 +43,8 @@ const uploadModelSchema = z.object({
       options: z.array( 
         z.object({
           name: z.string(),
-          price: z.number(),
-          quantity: z.number(),
+          price: z.coerce.number(),
+          quantity: z.coerce.number(),
           description: z.string(),
         })
       )
@@ -55,6 +55,7 @@ const uploadModelSchema = z.object({
 
 export const uploadModel = async(req:Request,res:Response,next:NextFunction)=>{
     try {
+        console.log(req.body)
         const parsed = uploadModelSchema.safeParse(req.body);
         if(!parsed.success){
             res.status(400).json({error:'You tried to upload incomplet data'});
@@ -81,7 +82,7 @@ const getModelParamsSchema = z.object({
 });
 
 export const getModel = async(req:Request,res:Response,next:NextFunction)=>{
-  const parsed = getModelParamsSchema.safeParse(req.query);
+  const parsed = getModelParamsSchema.safeParse(req.params);
   try {
     if(!parsed.success){
       res.status(400).json({error:'wrong input'});
