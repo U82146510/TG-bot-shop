@@ -89,7 +89,7 @@
     }
 
     try {
-      const res = await fetch('/auth/login', {
+      const res = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, pinCode })
@@ -107,7 +107,7 @@
         const data = await res.json();
         loginOutput.textContent = 'Login successful. Redirecting...';
         setTimeout(() => {
-          window.location.href = '/users.html';
+          window.location.href = '/admin/users.html';
         }, 1000);
       } else {
         const text = await res.text();

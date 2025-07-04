@@ -5,11 +5,13 @@ import { getProduct, editProduct, addProduct, deleteProduct } from "../controlle
 import { deleteModel, uploadModel, getModel } from "../controller/model.controller.ts";
 import { paymentHandler } from "../controller/payment.controller.ts";
 import { getReviews, deleteReview, editReview } from "../controller/review.controller.ts";
-import { protectRoute } from "../middleware/protectRoute.ts";
+import { logOut } from "../controller/logout.controller.ts";
 
 export const adminRoute: Router = Router();
 
-adminRoute.use(protectRoute); // Protects all routes below
+//LogOut related routes
+
+adminRoute.post('/logout',logOut);
 
 // Review related routes
 adminRoute.get("/review", getReviews);

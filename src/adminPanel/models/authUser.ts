@@ -1,6 +1,8 @@
 import { Document,model,Schema,Types } from "mongoose";
 import bcrypt from "bcryptjs";
 import { logger } from "../../bot/logger/logger.ts";
+import { Query } from "mongoose";
+
 
 interface IauthUser extends Document{
     email:string;
@@ -39,7 +41,6 @@ userSchema.pre<IauthUser>('save', async function (next) {
     } 
   }
 });
-
 
 
 userSchema.methods.comparePasswords = async function(password:string):Promise<boolean> {

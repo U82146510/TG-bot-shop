@@ -29,13 +29,15 @@
     <h1>Admin Control Panel</h1>
 
     <nav>
-        <a href="/users.html">Users</a>
-        <a href="/orders.html">Orders</a>
-        <a href="/products.html">Products</a>
-        <a href="/items.html">Items</a>
-        <a href="/reviews.html">Reviews</a>
-        <a href="/payments.html">Payments</a>
-        <a href="/signup.html">Create User</a>
+        <a href="/admin/users.html">Users</a>
+        <a href="/admin/orders.html">Orders</a>
+        <a href="/admin/products.html">Products</a>
+        <a href="/admin/items.html">Items</a>
+        <a href="/admin/reviews.html">Reviews</a>
+        <a href="/admin/payments.html">Payments</a>
+        <a href="/admin/signup.html">Create User</a>
+        <button id="logout-btn" style="margin-left: 10px; padding: 4px 10px; width: auto; font-size: 0.9em;">Logout</button>
+
     </nav>
 
 
@@ -194,6 +196,26 @@
   
 
   </script>
-
+     <script>
+        const logoutBtn = document.getElementById('logout-btn');
+        logoutBtn.addEventListener('click',async()=>{
+            try {
+                const res = await fetch('/admin/logout',{
+                    method:"POST",
+                    headers:{"Content-Type":"application/json"}
+                });
+                if(res.ok){
+                    const data = await res.json();
+                    alert('Logged out successfully');
+                    window.location.href = '/index.html';
+                }else{
+                    alert(`Logout failed: ${data.error || 'Unknown error'}`);
+                }
+                
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        })
+    </script>
 </body>
 </html>

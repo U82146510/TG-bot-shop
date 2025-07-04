@@ -1,7 +1,6 @@
 import { Router } from "express";
-import {signup} from '../controller/signup.controller.ts';
-import { protectRoute } from "../middleware/protectRoute.ts";
+import {signup,updatePassword} from '../controller/signup.controller.ts';
 export const signupRoute:Router = Router();
 
-signupRoute.use(protectRoute);
 signupRoute.post('/signup',signup);
+signupRoute.patch('/update',updatePassword);
