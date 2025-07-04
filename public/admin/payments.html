@@ -11,52 +11,49 @@
     input, button { margin-top: 5px; padding: 5px; width: 100%; }
     pre { white-space: pre-wrap; word-wrap: break-word; }
     nav {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
     }
     nav a {
-        margin-right: 10px;
-        text-decoration: none;
-        color: black;
-        font-weight: bold;
+      margin-right: 10px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
     }
     nav a:hover {
-        text-decoration: underline;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-    <h1>Admin Control Panel</h1>
+  <h1>Admin Control Panel</h1>
 
-    <nav>
-        <a href="/admin/users.html">Users</a>
-        <a href="/admin/orders.html">Orders</a>
-        <a href="/admin/products.html">Products</a>
-        <a href="/admin/items.html">Items</a>
-        <a href="/admin/reviews.html">Reviews</a>
-        <a href="/admin/payments.html">Payments</a>
-        <a href="/admin/signup.html">Create User</a>
-        <button id="logout-btn" style="margin-left: 10px; padding: 4px 10px; width: auto; font-size: 0.9em;">Logout</button>
+  <nav>
+    <a href="/admin/users.html">Users</a>
+    <a href="/admin/orders.html">Orders</a>
+    <a href="/admin/products.html">Products</a>
+    <a href="/admin/items.html">Items</a>
+    <a href="/admin/reviews.html">Reviews</a>
+    <a href="/admin/payments.html">Payments</a>
+    <a href="/admin/signup.html">Create User</a>
+    <button id="logout-btn" style="margin-left: 10px; padding: 4px 10px; width: auto; font-size: 0.9em;">Logout</button>
+  </nav>
 
-    </nav>
-
-
-    
-  <!-- USERS -->
   <h2>Payment</h2>
+
   <form id="get-payment-form">
     <label>Status:</label>
     <select name="status" required>
-        <option value="">-- Select Status --</option>
-        <option value="pending">pending</option>
-        <option value="confirmed">confirmed</option>
-        <option value="expired">expired</option>
+      <option value="">-- Select Status --</option>
+      <option value="pending">pending</option>
+      <option value="confirmed">confirmed</option>
+      <option value="expired">expired</option>
     </select>
 
-    <label>userId(Optional):</label>
+    <label>User ID (Optional):</label>
     <input name="userId">
 
-    <label>paymentId(Optional):</label>
+    <label>Payment ID (Optional):</label>
     <input name="paymentId">
 
     <label>Page (Default is 1):</label>
@@ -65,69 +62,15 @@
     <label>Limit (Default is 10):</label>
     <input name="limit" type="number" min="1" max="100" placeholder="10">
 
-
     <button type="submit">Fetch Payment</button>
   </form>
-
 
   <div class="output">
     <h3>Response</h3>
     <pre id="user-output">No data yet...</pre>
   </div>
 
-  <script>
-    const payment = document.getElementById('get-payment-form');
-    const output = document.getElementById('user-output');
-
-    payment.addEventListener('submit',async(e)=>{
-        e.preventDefault();
-
-        const formData = new FormData(payment);
-        const dataFormat = new URLSearchParams(formData)
-
-        try {
-            const res = await fetch(`/admin/payment?${dataFormat}`);
-            const contentType = res.headers.get('content-type');
-            if(!res.ok){
-                const text = await res.text();
-                output.textContent = `Error ${res.status}: ${text}`;
-                return;
-            }
-
-            if (contentType && contentType.includes('application/json')) {
-                const data = await res.json();
-                output.textContent = JSON.stringify(data, null, 2);
-            } else {
-                const text = await res.text();
-                output.textContent = text;
-            }
-        } catch (error) {
-            output.textContent = `Error: ${error.message}`;
-        }
-    })
-
-
-  </script>
-   <script>
-        const logoutBtn = document.getElementById('logout-btn');
-        logoutBtn.addEventListener('click',async()=>{
-            try {
-                const res = await fetch('/admin/logout',{
-                    method:"POST",
-                    headers:{"Content-Type":"application/json"}
-                });
-                if(res.ok){
-                    const data = await res.json();
-                    alert('Logged out successfully');
-                    window.location.href = '/index.html';
-                }else{
-                    alert(`Logout failed: ${data.error || 'Unknown error'}`);
-                }
-                
-            } catch (error) {
-                alert(`Error: ${error.message}`);
-            }
-        })
-    </script>
+  <!-- ✅ Link the protected JS file -->
+  <script src="/admin/js/payments.js"></script>
 </body>
 </html>

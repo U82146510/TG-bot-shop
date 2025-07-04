@@ -26,223 +26,64 @@
 </head>
 <body>
 
-    <h1>Admin Control Panel</h1>
+  <h1>Admin Control Panel</h1>
 
-    <nav>
-        <a href="/admin/users.html">Users</a>
-        <a href="/admin/orders.html">Orders</a>
-        <a href="/admin/products.html">Products</a>
-        <a href="/admin/items.html">Items</a>
-        <a href="/admin/reviews.html">Reviews</a>
-        <a href="/admin/payments.html">Payments</a>
-        <a href="/admin/signup.html">Create User</a>
-        <button id="logout-btn" style="margin-left: 10px; padding: 4px 10px; width: auto; font-size: 0.9em;">Logout</button>
+  <nav>
+    <a href="/admin/users.html">Users</a>
+    <a href="/admin/orders.html">Orders</a>
+    <a href="/admin/products.html">Products</a>
+    <a href="/admin/items.html">Items</a>
+    <a href="/admin/reviews.html">Reviews</a>
+    <a href="/admin/payments.html">Payments</a>
+    <a href="/admin/signup.html">Create User</a>
+    <button id="logout-btn" style="margin-left: 10px; padding: 4px 10px; width: auto; font-size: 0.9em;">Logout</button>
+  </nav>
 
-    </nav>
-
-
-    
-  <!-- USERS -->
   <h2>Orders</h2>
-    <form id="get-orders-form">
-        <label>Status:</label>
-        <select name="status" required>
-            <option value="">-- Select Status --</option>
-            <option value="pending">Pending</option>
-            <option value="delivered">Delivered</option>
-            <option value="cancelled">Cancelled</option>
-        </select>
+  <form id="get-orders-form">
+    <label>Status:</label>
+    <select name="status" required>
+      <option value="">-- Select Status --</option>
+      <option value="pending">Pending</option>
+      <option value="delivered">Delivered</option>
+      <option value="cancelled">Cancelled</option>
+    </select>
+    <label>User ID (Optional):</label>
+    <input name="userId">
+    <label>Order ID (Optional):</label>
+    <input name="orderId">
+    <label>Page (Default is 1):</label>
+    <input name="page" type="number" min="1" placeholder="1">
+    <label>Limit (Default is 10):</label>
+    <input name="limit" type="number" min="1" max="100" placeholder="10">
+    <button type="submit">Fetch Orders</button>
+  </form>
 
-        <label>User ID (Optional):</label>
-        <input name="userId">
-
-        <label>Order ID (Optional):</label>
-        <input name="orderId">
-
-        <label>Page (Default is 1):</label>
-        <input name="page" type="number" min="1" placeholder="1">
-
-        <label>Limit (Default is 10):</label>
-        <input name="limit" type="number" min="1" max="100" placeholder="10">
-
-        <button type="submit">Fetch Orders</button>
-    </form>
-
-
-    <form id="delete-orders-form">
-        <label>Order ID:</label>
-        <input name="orderId" required>
-        <button type="submit">Delete Orders</button>
-    </form>
-    
-    <form id="edit-orders-form">
-        <label>Oder ID:</label>
-        <input name="orderId" required>
-        <label>Status:</label>
-        <select name="status" required>
-            <option value="">-- Select Status --</option>
-            <option value="pending">Pending</option>
-            <option value="delivered">Delivered</option>
-            <option value="cancelled">Cancelled</option>
-        </select>
-        <button type="submit">Update Orders</button>
-    </form>
+  <form id="delete-orders-form">
+    <label>Order ID:</label>
+    <input name="orderId" required>
+    <button type="submit">Delete Orders</button>
+  </form>
+  
+  <form id="edit-orders-form">
+    <label>Order ID:</label>
+    <input name="orderId" required>
+    <label>Status:</label>
+    <select name="status" required>
+      <option value="">-- Select Status --</option>
+      <option value="pending">Pending</option>
+      <option value="delivered">Delivered</option>
+      <option value="cancelled">Cancelled</option>
+    </select>
+    <button type="submit">Update Orders</button>
+  </form>
 
   <div class="output">
     <h3>Response</h3>
     <pre id="user-output">No data yet...</pre>
   </div>
 
-  <script>
-    const getOrders = document.getElementById('get-orders-form');
-    const delOrders = document.getElementById('delete-orders-form');
-    const updateOrders = document.getElementById('edit-orders-form');
-    const output = document.getElementById('user-output');
-
-    getOrders.addEventListener('submit',async(e)=>{
-        e.preventDefault();
-        const formOrders = new FormData(getOrders)
-        const status = formOrders.get('status');
-        const orderId = formOrders.get('orderId');
-        const userId = formOrders.get('userId');
-        const page = formOrders.get('page');
-        const limit = formOrders.get('limit')
-        if (!status) {
-            output.textContent = 'Please select Order status';
-            return;
-        }
-        console.log(status,
-            page,
-            limit,
-            userId,
-            orderId)
-        const params = new URLSearchParams({
-            status,
-            page,
-            limit,
-            userId,
-            orderId
-        }).toString();
-
-        try {
-            const res = await fetch(`/admin/orders?${params}`);
-            const contentType = res.headers.get('content-type');
-            if(!res.ok){
-                const text = await res.text();
-                output.textContent = `Error ${res.status}: ${text}`;
-                return;
-            }
-
-            if (contentType && contentType.includes('application/json')) {
-                const data = await res.json();
-                output.textContent = JSON.stringify(data, null, 2);
-            } else {
-                const text = await res.text();
-                output.textContent = text;
-            }
-        } catch (error) {
-            output.textContent = `Error: ${error.message}`;
-        }
-    })
-
-    delOrders.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const orderId = new FormData(delOrders).get('orderId');
-
-        if (!orderId) {
-            output.textContent = 'Please enter a orderId';
-            return;
-        }
-
-        try {
-            const res = await fetch(`/admin/orders/${orderId}`,{
-                method:"DELETE"
-            });
-            const contentType = res.headers.get('content-type');
-            if(!res.ok){
-                const text = await res.text();
-                output.textContent = `Error ${res.status}: ${text}`;
-                return;
-            }
-
-            if (contentType && contentType.includes('application/json')) {
-                const data = await res.json();
-                output.textContent = JSON.stringify(data, null, 2);
-            } else {
-                const text = await res.text();
-                output.textContent = text;
-            }
-        } catch (error) {
-            output.textContent = `Error: ${error.message}`;
-        }
-        
-    });
-
-
-    updateOrders.addEventListener('submit',async(e)=>{
-        e.preventDefault();
-        const formData = new FormData(updateOrders);
-        const orderId = formData.get('orderId');
-        const status = formData.get('status');
-        if(!orderId){
-            output.textContent = 'Please enter a orderId';
-            return;
-        }
-        if(!status){
-            output.textContent = 'Please enter a status';
-            return;
-        }
-
-        try {
-
-            const res = await fetch(`/admin/orders/${orderId}`,{
-                method:'PATCH',
-                headers:{'Content-Type': 'application/json'},
-                body:JSON.stringify({status})
-            });
-
-            const contentType = res.headers.get('content-type');
-            if(!res.ok){
-                const text = await res.text();
-                output.textContent = `Error ${res.status}: ${text}`;
-                return;
-            }
-            if (contentType && contentType.includes('application/json')) {
-                const data = await res.json();
-                output.textContent = JSON.stringify(data, null, 2);
-            } else {
-                const text = await res.text();
-                output.textContent = text;
-            }
-            
-        } catch (error) {
-            output.textContent = `Error: ${error.message}`;
-        }
-        
-
-    });
-
-  </script>
-     <script>
-        const logoutBtn = document.getElementById('logout-btn');
-        logoutBtn.addEventListener('click',async()=>{
-            try {
-                const res = await fetch('/admin/logout',{
-                    method:"POST",
-                    headers:{"Content-Type":"application/json"}
-                });
-                if(res.ok){
-                    const data = await res.json();
-                    alert('Logged out successfully');
-                    window.location.href = '/index.html';
-                }else{
-                    alert(`Logout failed: ${data.error || 'Unknown error'}`);
-                }
-                
-            } catch (error) {
-                alert(`Error: ${error.message}`);
-            }
-        })
-    </script>
+  <!-- ✅ Link protected external script -->
+  <script src="/admin/js/orders.js"></script>
 </body>
 </html>

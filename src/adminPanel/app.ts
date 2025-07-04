@@ -57,7 +57,7 @@ app.use(session({
     }),
     cookie:{
         httpOnly:true,
-        secure:true,
+        secure:false,
         sameSite:'strict',
         maxAge:1000*60*60
     }
@@ -65,6 +65,7 @@ app.use(session({
 
 
 app.use('/admin', protectRoute, express.static(path.join(__dirname, '../..', 'public/admin')));
+app.use('/admin/js', protectRoute, express.static(path.join(__dirname, '../..', 'public/admin/js')));
 app.use(express.static(path.join(__dirname,'../..',"public")))
 
 app.use('/admin',adminRoute);
