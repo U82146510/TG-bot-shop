@@ -15,6 +15,8 @@ const __dirname = path.dirname(__filename);
 const app:Application = express();
 const port:number = 3000;
 
+
+app.disable('x-powered-by');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
