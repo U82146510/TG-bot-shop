@@ -17,6 +17,8 @@ import {registerOrdersHandler} from './scenes/orders.ts';
 import {registerReviewHandler} from './scenes/itemReview.ts';
 import {registerPgpHandler} from './scenes/pgpHandler.ts';
 import {startAdminPanel} from '../adminPanel/app.ts';
+import {checkRateLimit} from './utils/rateLimit.ts';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,6 +34,18 @@ if(!token){
 };
 
 const bot:Bot<Context,Api> = new Bot(token);
+
+bot.use(async (ctx, next) => {
+    const userId = ctx.from?.id;
+    if (userId && !checkRateLimit(userId)) {
+        const redisKey = `rate_limit${userId}`
+        const msg = await ctx.reply("⏳ You're doing that too fast. Please wait a bit.");
+        await redis.pushList(redisKey,[String(msg.message_id)]);
+        return;
+    }
+    await next();
+});
+
 
 const start = async()=>{
     try {

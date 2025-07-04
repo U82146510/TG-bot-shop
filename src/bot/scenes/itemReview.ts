@@ -8,8 +8,11 @@ import { UserFlowState } from '../models/UserFlowState.ts';
 import { z } from 'zod';
 import mongoose from 'mongoose';
 
-export function registerReviewHandler(bot: Bot) {
+function escapeMarkdown(text: string): string {
+  return text.replace(/([_*\[\]()~`>#+=|{}.!\\-])/g, '\\$1');
+}
 
+export function registerReviewHandler(bot: Bot) {
 
   bot.callbackQuery('review', async (ctx: Context) => {
     await ctx.answerCallbackQuery();
@@ -53,85 +56,84 @@ export function registerReviewHandler(bot: Bot) {
     }
   });
 
-
   bot.callbackQuery(/^comments_([a-f0-9]{24})$/, async (ctx: Context) => {
-  const userId = ctx.from?.id;
-  if (!userId) return;
+    const userId = ctx.from?.id;
+    if (!userId) return;
 
-  await deleteCachedMessages(ctx, `review_menu_${userId}`);
-  await deleteCachedMessages(ctx, `msg_item_review${userId}`);
-  await deleteCachedMessages(ctx, `input_msg${userId}`);
+    await deleteCachedMessages(ctx, `review_menu_${userId}`);
+    await deleteCachedMessages(ctx, `msg_item_review${userId}`);
+    await deleteCachedMessages(ctx, `input_msg${userId}`);
 
-  try {
-    const [_, id] = ctx.match ?? [];
-    const variantId = new mongoose.Types.ObjectId(id);
+    try {
+      const [_, id] = ctx.match ?? [];
+      const variantId = new mongoose.Types.ObjectId(id);
 
-    const products = await Product.find();
-    const variants = products.flatMap(p => p.models.flatMap(m => m.options));
-    const variant = variants.find(v => variantId.equals(v._id));
-    if (!variant) {
-      logger.error('Variant not found');
-      return;
-    }
+      const products = await Product.find();
+      const variants = products.flatMap(p => p.models.flatMap(m => m.options));
+      const variant = variants.find(v => variantId.equals(v._id));
+      if (!variant) {
+        logger.error('Variant not found');
+        return;
+      }
 
-    const reviews = await Review.find({ _id: { $in: variant.review },post:true });
-    const backKeyboard = new InlineKeyboard().text("🔙 Back to Variants", "review").row();
+      const reviews = await Review.find({ _id: { $in: variant.review }, post: true });
+      const backKeyboard = new InlineKeyboard().text("🔙 Back to Variants", "review").row();
 
-    
-    if (reviews.length === 0) {
-      const redisKeyMsg = `msg_item_review${userId}`;
-      const msg = await ctx.reply('📭 No comments yet. Be the first to add one!');
-      await redis.pushList(redisKeyMsg, [String(msg.message_id)]);
-    } else {
       const redisKeyMsg = `msg_item_review${userId}`;
       const msgIds: string[] = [];
 
-      for (const r of reviews) {
-        const formatted = r.createdAt?.toLocaleString('en-GB', {
-          dateStyle: 'medium',
-          timeStyle: 'short'
-        }) ?? 'unknown time';
+      if (reviews.length === 0) {
+        const msg = await ctx.reply('📭 No comments yet. Be the first to add one!');
+        await redis.pushList(redisKeyMsg, [String(msg.message_id)]);
+      } else {
+        for (const r of reviews) {
+          const formatted = r.createdAt?.toLocaleString('en-GB', {
+            dateStyle: 'medium',
+            timeStyle: 'short'
+          }) ?? 'unknown time';
 
-        const msg = await ctx.reply(`💭 ${r.comment}\n🕒 _${formatted}_`, {
-          parse_mode: 'Markdown'
-        });
+          const safeComment = escapeMarkdown(r.comment);
+          const msg = await ctx.reply(`💭 ${safeComment}\n🕒 _${formatted}_`, {
+            parse_mode: 'Markdown'
+          });
 
-        msgIds.push(String(msg.message_id));
+          msgIds.push(String(msg.message_id));
+        }
+
+        await redis.pushList(redisKeyMsg, msgIds);
       }
 
-      await redis.pushList(redisKeyMsg, msgIds);
+      await UserFlowState.findOneAndUpdate(
+        { userId: String(userId) },
+        {
+          $set: {
+            flow: 'await_comment',
+            data: {
+              variantId: id,
+              variantName: variant.name
+            }
+          }
+        },
+        { upsert: true }
+      );
+
+      const redisKey = `comment_${userId}`;
+      const msg = await ctx.reply('✏️ *Enter your comment below:* and press "enter"', {
+        parse_mode: 'Markdown',
+        reply_markup: backKeyboard
+      });
+
+      await redis.pushList(redisKey, [String(msg.message_id)]);
+    } catch (error) {
+      logger.error('Error in comments handler', error);
     }
-
-    // Save state for input
-    await UserFlowState.findOneAndUpdate(  // here i need to add the Variant name
-      { userId: String(userId) },
-      { $set: { flow: 'await_comment', data: {
-        variantId: id,
-        variantName: variant.name
-      } } },
-      { upsert: true }
-    );
-
-    // Ask for comment input
-    const redisKey = `comment_${userId}`;
-    const msg = await ctx.reply('✏️ *Enter your comment below:* and press "enter"', {
-      parse_mode: 'Markdown',
-      reply_markup: backKeyboard
-    });
-
-    await redis.pushList(redisKey, [String(msg.message_id)]);
-  } catch (error) {
-    logger.error('Error in comments handler', error);
-  }
-});
-
-
+  });
 
   bot.on('message:text', async (ctx: Context, next) => {
     const userId = ctx.from?.id;
     if (!userId) return;
 
-    const inputSchema = z.string().max(500).transform(val => val.trim().toLowerCase());
+    const inputSchema = z.string().max(500).transform(val => val.trim());
     await deleteCachedMessages(ctx, `comment_${userId}`);
 
     try {
@@ -144,8 +146,12 @@ export function registerReviewHandler(bot: Bot) {
         logger.error('Invalid comment input');
         return;
       }
-      const variantName = flowState.data.variantName; 
-      const comment = await Review.create({ comment: parsed.data,variantName }); // here i should push the variant name too
+
+      const variantName = flowState.data.variantName;
+      const comment = await Review.create({
+        comment: parsed.data,
+        variantName
+      });
 
       const variantId = new mongoose.Types.ObjectId(flowState.data.variantId);
       await Product.findOneAndUpdate({
