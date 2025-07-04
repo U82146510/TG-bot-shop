@@ -1,42 +1,41 @@
 import { Router } from "express";
-import {getOrder,editOrder,deleteOrder} from '../controller/order.controller.ts';
-import {getUser,editUser,delUser} from '../controller/user.controler.ts';
-import {getProduct,editProduct,addProduct,deleteProduct} from '../controller/product.controller.ts';
-import {deleteModel,uploadModel,getModel} from '../controller/model.controller.ts';
-import {paymentHandler} from '../controller/payment.controller.ts';
-import {getReviews,deleteReview,editReview} from '../controller/review.controller.ts';
+import { getOrder, editOrder, deleteOrder } from "../controller/order.controller.ts";
+import { getUser, editUser, delUser } from "../controller/user.controler.ts";
+import { getProduct, editProduct, addProduct, deleteProduct } from "../controller/product.controller.ts";
+import { deleteModel, uploadModel, getModel } from "../controller/model.controller.ts";
+import { paymentHandler } from "../controller/payment.controller.ts";
+import { getReviews, deleteReview, editReview } from "../controller/review.controller.ts";
+import { protectRoute } from "../middleware/protectRoute.ts";
 
-export const adminRoute:Router = Router();
+export const adminRoute: Router = Router();
 
+adminRoute.use(protectRoute); // Protects all routes below
 
 // Review related routes
-adminRoute.get('/review',getReviews);             //done
-adminRoute.delete('/review/:id',deleteReview);   //done
-adminRoute.patch('/review/:id',editReview);  //done
-
+adminRoute.get("/review", getReviews);
+adminRoute.delete("/review/:id", deleteReview);
+adminRoute.patch("/review/:id", editReview);
 
 // Order related routes
-adminRoute.get('/orders',getOrder);                 //done
-adminRoute.patch('/orders/:orderId', editOrder);  //done
-adminRoute.delete('/orders/:orderId',deleteOrder); //done
+adminRoute.get("/orders", getOrder);
+adminRoute.patch("/orders/:orderId", editOrder);
+adminRoute.delete("/orders/:orderId", deleteOrder);
 
 // Payment related routes
-adminRoute.get('/payment',paymentHandler);  // done
+adminRoute.get("/payment", paymentHandler);
 
 // Product related routes
-adminRoute.get('/product',getProduct); //done
-adminRoute.patch('/product',editProduct); //working
-adminRoute.post('/product',addProduct); //done
-adminRoute.delete('/product',deleteProduct); //done
-
+adminRoute.get("/product", getProduct);
+adminRoute.patch("/product", editProduct);
+adminRoute.post("/product", addProduct);
+adminRoute.delete("/product", deleteProduct);
 
 // Model related routes
-adminRoute.delete('/model/:model',deleteModel);  //done
-adminRoute.post('/model',uploadModel);  //done
-adminRoute.get('/model/:model',getModel); //done
+adminRoute.delete("/model/:model", deleteModel);
+adminRoute.post("/model", uploadModel);
+adminRoute.get("/model/:model", getModel);
 
-
-// User related routes.
-adminRoute.get('/users/:username',getUser);           //done
-adminRoute.patch('/users/:username',editUser);      //done
-adminRoute.delete('/users/:username',delUser);      //done
+// User related routes
+adminRoute.get("/users/:username", getUser);
+adminRoute.patch("/users/:username", editUser);
+adminRoute.delete("/users/:username", delUser);
