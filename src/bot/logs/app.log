@@ -471,3 +471,102 @@
 {"level":"info","message":"Redis connected and ready","timestamp":"2025-07-04T23:05:24.089Z"}
 {"level":"info","message":"Server is ON","timestamp":"2025-07-04T23:05:24.099Z"}
 {"level":"info","message":"db disconnected","timestamp":"2025-07-04T23:28:29.770Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-04T23:39:35.564Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-04T23:39:35.581Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-04T23:39:35.583Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-04T23:39:35.593Z"}
+{"ctx":{"api":{"config":{},"raw":{},"token":"7608508685:AAHV-sFzeKKE9r1Qxj26GYeNrgpALPIkfxQ"},"match":"about","me":{"can_connect_to_business":false,"can_join_groups":true,"can_read_all_group_messages":false,"first_name":"U93925934","has_main_web_app":false,"id":7608508685,"is_bot":true,"supports_inline_queries":false,"username":"U93925934_bot"},"update":{"callback_query":{"chat_instance":"8254623494994498915","data":"about","from":{"first_name":"MR. White","id":7580426932,"is_bot":false,"language_code":"en","username":"mr_white99999"},"id":"4887569653349347209","message":{"chat":{"first_name":"MR. White","id":7580426932,"type":"private","username":"mr_white99999"},"date":1751668320,"entities":[{"length":17,"offset":3,"type":"bold"}],"from":{"first_name":"U93925934","id":7608508685,"is_bot":true,"username":"U93925934_bot"},"message_id":270,"reply_markup":{"inline_keyboard":[[{"callback_data":"all_listings","text":"🛍️ Listings"}],[{"callback_data":"read","text":"⚠️ READ FIRST"}],[{"callback_data":"about","text":"ℹ️ About"},{"callback_data":"faq","text":"❓ FAQ"}],[{"callback_data":"review","text":"⭐ Reviews"},{"callback_data":"gen_pgp","text":"🔐 PGP"}],[{"callback_data":"orders","text":"📦 Orders"},{"callback_data":"view_cart","text":"📝 Wishlist"},{"callback_data":"balance","text":"💰 Balance"}],[{"text":"📩 Contact","url":"https://t.me/mr_white99999"},{"text":"👥 Community","url":"https://t.me/+gwqw0iz5shhhODcy"}]]},"text":"🏠 Back to Main Menu\n\nSelect one of the options below to continue:"}},"update_id":911038811}},"error":{"description":"Bad Request: query is too old and response timeout expired or query ID is invalid","error_code":400,"method":"answerCallbackQuery","name":"GrammyError","ok":false,"parameters":{},"payload":{"callback_query_id":"4887569653349347209"}},"level":"error","message":"Telegram Error: GrammyError in middleware: Call to 'answerCallbackQuery' failed! (400: Bad Request: query is too old and response timeout expired or query ID is invalid)","name":"BotError","stack":"GrammyError: Call to 'answerCallbackQuery' failed! (400: Bad Request: query is too old and response timeout expired or query ID is invalid)\n    at toGrammyError (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/error.js:47:12)\n    at ApiClient.callApi (/home/convict/Downloads/Tesseract/node_modules/grammy/out/core/client.js:97:48)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/about.ts:6:9\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-07-04T23:39:35.952Z"}
+{"level":"debug","message":"Failed to delete old message 283 for user 7580426932","timestamp":"2025-07-05T07:28:00.536Z"}
+{"level":"debug","message":"Failed to delete old message 284 for user 7580426932","timestamp":"2025-07-05T07:28:00.594Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:36:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:175:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-07-05T09:39:52.493Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:36:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:175:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-07-05T09:59:44.702Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T10:00:14.186Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T10:00:14.604Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T10:00:14.871Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T10:00:15.232Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T10:00:21.112Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T10:00:23.104Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T10:00:38.148Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T10:00:38.441Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T10:00:38.680Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T10:01:34.952Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T10:02:19.966Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T12:06:35.442Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T12:06:36.389Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T12:06:37.488Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T12:06:39.379Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T12:06:40.355Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T12:06:41.382Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T12:06:42.440Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T12:06:51.898Z"}
+{"level":"debug","message":"Failed to delete old message 360 for user 7580426932","timestamp":"2025-07-05T12:08:25.967Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:36:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:175:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-07-05T12:08:34.750Z"}
+{"level":"debug","message":"Failed to delete message 273 from comment_7580426932","timestamp":"2025-07-05T12:20:34.752Z"}
+{"level":"debug","message":"Failed to delete message 276 from comment_7580426932","timestamp":"2025-07-05T12:20:34.810Z"}
+{"level":"debug","message":"Failed to delete message 279 from comment_7580426932","timestamp":"2025-07-05T12:20:34.869Z"}
+{"level":"debug","message":"Failed to delete message 347 from comment_7580426932","timestamp":"2025-07-05T12:20:34.925Z"}
+{"level":"debug","message":"Failed to delete message 350 from comment_7580426932","timestamp":"2025-07-05T12:20:34.985Z"}
+{"level":"debug","message":"Failed to delete message 353 from comment_7580426932","timestamp":"2025-07-05T12:20:35.043Z"}
+{"level":"debug","message":"Failed to delete message 356 from comment_7580426932","timestamp":"2025-07-05T12:20:35.137Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-05T13:44:28.087Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-05T13:44:32.354Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-05T13:44:32.360Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-05T13:44:32.364Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-05T13:44:32.387Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-05T13:47:28.887Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-05T13:47:30.947Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-05T13:47:30.957Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-05T13:47:30.958Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-05T13:47:30.980Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T13:48:03.738Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T13:48:05.417Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T13:48:06.924Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T13:48:08.190Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T13:48:11.354Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T13:48:32.386Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T13:48:33.381Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-05T13:51:44.917Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-05T13:51:47.180Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-05T13:51:47.189Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-05T13:51:47.190Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-05T13:51:47.201Z"}
+{"level":"debug","message":"Failed to delete message 374 from main_menu:7580426932","timestamp":"2025-07-05T13:51:59.061Z"}
+{"level":"debug","message":"Failed to delete message 389 from checkout_msgs:7580426932","timestamp":"2025-07-05T13:52:02.091Z"}
+{"level":"debug","message":"Failed to delete message 382 from rate_limit7580426932","timestamp":"2025-07-05T13:52:17.201Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-05T13:52:45.544Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-05T13:52:47.732Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-05T13:52:47.747Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-05T13:52:47.748Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-05T13:52:47.760Z"}
+{"level":"debug","message":"Failed to delete message 391 from main_menu:7580426932","timestamp":"2025-07-05T13:52:58.713Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T13:53:02.964Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T13:53:04.004Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T13:53:53.963Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T13:54:11.146Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T13:57:45.147Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:36:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:175:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-07-05T13:58:06.743Z"}
+{"level":"debug","message":"Failed to delete message 398 from main_menu:7580426932","timestamp":"2025-07-05T13:58:13.743Z"}
+{"level":"debug","message":"Failed to delete message 430 from orders_msgs:7580426932","timestamp":"2025-07-05T13:58:44.156Z"}
+{"level":"debug","message":"Failed to delete message 431 from main_menu:7580426932","timestamp":"2025-07-05T13:58:46.110Z"}
+{"level":"debug","message":"Failed to delete message 432 from orders_msgs:7580426932","timestamp":"2025-07-05T13:59:24.317Z"}
+{"level":"debug","message":"Failed to delete message 433 from orders_msgs:7580426932","timestamp":"2025-07-05T13:59:24.379Z"}
+{"level":"debug","message":"Failed to delete message 434 from orders_msgs:7580426932","timestamp":"2025-07-05T13:59:24.441Z"}
+{"level":"debug","message":"Failed to delete message 435 from main_menu:7580426932","timestamp":"2025-07-05T13:59:28.346Z"}
+{"level":"debug","message":"Failed to delete message 445 from orders_msgs:7580426932","timestamp":"2025-07-05T13:59:36.550Z"}
+{"level":"debug","message":"Failed to delete message 446 from orders_msgs:7580426932","timestamp":"2025-07-05T13:59:36.630Z"}
+{"level":"debug","message":"Failed to delete message 447 from orders_msgs:7580426932","timestamp":"2025-07-05T13:59:36.695Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-05T14:01:49.108Z"}
+{"level":"info","message":"db connected","timestamp":"2025-07-05T14:01:51.277Z"}
+{"level":"info","message":"Redis connecting...","timestamp":"2025-07-05T14:01:51.284Z"}
+{"level":"info","message":"Redis connected and ready","timestamp":"2025-07-05T14:01:51.286Z"}
+{"level":"info","message":"Server is ON","timestamp":"2025-07-05T14:01:51.295Z"}
+{"level":"debug","message":"Failed to delete message 448 from main_menu:7580426932","timestamp":"2025-07-05T14:01:55.522Z"}
+{"level":"debug","message":"Failed to delete message 449 from orders_msgs:7580426932","timestamp":"2025-07-05T14:02:02.333Z"}
+{"level":"debug","message":"Failed to delete message 450 from orders_msgs:7580426932","timestamp":"2025-07-05T14:02:02.386Z"}
+{"cause":{"address":"127.0.0.1","code":"ECONNREFUSED","errno":-111,"port":18082,"syscall":"connect"},"level":"error","message":"❌ Failed to generate top-up address fetch failed","stack":"TypeError: fetch failed\n    at node:internal/deps/undici/undici:13510:13\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async handleTopUpXmr (file:///home/convict/Downloads/Tesseract/src/bot/scenes/addBalancePayment.ts:36:17)\n    at async file:///home/convict/Downloads/Tesseract/src/bot/scenes/balance.ts:175:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:578:13\n    at async /home/convict/Downloads/Tesseract/node_modules/grammy/out/composer.js:62:13","timestamp":"2025-07-05T14:02:17.658Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T14:02:23.969Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T14:02:34.337Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T14:02:51.766Z"}
+{"level":"info","message":"User 7580426932 opened variant details","timestamp":"2025-07-05T14:02:52.903Z"}
+{"level":"info","message":"User 7580426932 navigated to model variants","timestamp":"2025-07-05T14:02:54.362Z"}
+{"level":"info","message":"db disconnected","timestamp":"2025-07-05T14:03:10.841Z"}

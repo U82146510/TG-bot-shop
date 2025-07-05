@@ -147,7 +147,11 @@ export function registerCheckoutXmr(bot: Bot<Context>) {
       );
 
        if (updated.modifiedCount === 0) {
-        const msg = await ctx.reply("❌ Product just went out of stock or insufficient quantity.");
+          const cancelKeyboard = new InlineKeyboard()
+            .text("🔙 Back to Listings", "all_listings")
+          const msg = await ctx.reply("❌ Product just went out of stock or insufficient quantity.",{
+          reply_markup:cancelKeyboard
+        });
         checkoutMessageIds.push(msg.message_id);
         await redis.pushList(redisCheckoutKey, checkoutMessageIds.map(String), 600);
         return;

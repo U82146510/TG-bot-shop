@@ -30,7 +30,7 @@ export function registerOrdersHandler(bot: Bot<Context>) {
         return;
       }
 
-      const keyboard = new InlineKeyboard().text("🔙 Continue Shopping", "start").row();
+      const keyboard = new InlineKeyboard().text("🔙 Continue Shopping", "back_to_home").row();
 
       function escapeMarkdown(text: string): string {
         return text.replace(/[_*[\]()~`>#+=|{}.!\\-]/g, '\\$&');

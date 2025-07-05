@@ -18,6 +18,7 @@ export function registerCommonHandlers(bot: Bot<Context>) {
     await deleteCachedMessages(ctx,`review_menu_${userId}`);
     await deleteCachedMessages(ctx,`delete_option_key${userId}`);
     await deleteCachedMessages(ctx,`rate_limit${userId}`);
+    await deleteCachedMessages(ctx, `orders_msgs:${userId}`);
 
     // 🧼 Optionally delete flow state if it's known and abandoned
     if (["checkout", "add_balance"].includes(flowState?.flow || "")) {
