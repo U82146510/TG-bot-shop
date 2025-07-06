@@ -78,6 +78,7 @@ export function registerBalanceHandler(bot:Bot<Context>){
         await deleteCachedMessages(ctx,`error_at_add_balance${userId}`);
         await deleteCachedMessages(ctx,`noAmount${userId}`);
         await deleteCachedMessages(ctx,`dataError${userId}`)
+        await deleteCachedMessages(ctx,`delete_invalid_format$${telegramId}`);
         // 🧼 Clear user flow state
         await UserFlowState.findOneAndUpdate(
             { userId },
@@ -142,9 +143,11 @@ export function registerBalanceHandler(bot:Bot<Context>){
             }
 
             if (!/^(\d+|\d+\.\d{1,8}|\.\d{1,8})$/.test(input)) {
-                await deleteCachedMessages(ctx,redisKey)
+                await deleteCachedMessages(ctx,redisKey);
+                await deleteCachedMessages(ctx,`balance_msgs:${telegramId}`);
+                const redisKeys = `delete_invalid_format$${telegramId}`
                 const msg = await ctx.reply("❌ Invalid format. Use up to 8 decimal places.", { reply_markup: cancelKeyboard });
-                redis.pushList(redisKey,[String(msg.message_id)])
+                redis.pushList(redisKeys,[String(msg.message_id)])
                 return
             }
 
