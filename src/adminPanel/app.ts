@@ -22,6 +22,7 @@ app.use(helmet({
     hsts:false
 }));
 app.disable('x-powered-by');
+app.disable('etag');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
