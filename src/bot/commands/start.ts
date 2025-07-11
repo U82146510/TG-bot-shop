@@ -35,7 +35,7 @@ export function registerMainMenu(bot: Bot<Context>) {
       logger.error('Error at the start menu', error);
     }
 
-    const msg = await ctx.reply(`Welcome @${ctx.from?.username || "Anonym"} to TopDog shop`, {
+    const msg = await ctx.reply(`Welcome @${ctx.from?.username || "Anonym"} to Firver TG shop`, {
       reply_markup: getMainMenuKeyboard(),
     });
     await redis.pushList(redisKey, [String(msg.message_id)]);
